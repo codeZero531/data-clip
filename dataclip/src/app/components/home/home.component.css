@@ -1,3 +1,31 @@
 *{
   font-family: 'Barlow Condensed', sans-serif;
 }
+.top-canvas{
+  height: 500px;
+  /*background: #B24592;  !* fallback for old browsers *!*/
+  /*background: -webkit-linear-gradient(to right, #F15F79, #B24592);  !* Chrome 10-25, Safari 5.1-6 *!*/
+  /*background: linear-gradient(to right, #F15F79, #B24592); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+
+  background: #43cea2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #185a9d, #43cea2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+}
+
+.nav-item{
+  cursor: pointer;
+}
+
+.nav-item :hover {
+  border-bottom: solid 1px white;
+
+}
+.top-button{
+  background-color: white;
+  color: black;
+  border: none;
+}
+
