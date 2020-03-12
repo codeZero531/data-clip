@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../model/user');
+const Bucket = require('../model/bucket');
+const Table = require('../model/table');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRound = 10;
@@ -83,6 +85,22 @@ router.post('/login', (req, res, next) => {
             }
         ).catch(err => console.log(err));
 
+});
+
+router.post('/create-bucket', (req, res, next) => {
+    const table = new Table({
+       _id: new mongoose.Types.ObjectId(),
+        user: req.body.userId,
+        bucketId:  2,
+        bucketName: req.body.bucketName
+    });
+    table.save()
+        .then(
+            result => res.send(result)
+        )
+        .catch(
+            err => res.send(err)
+        );
 });
 
 
