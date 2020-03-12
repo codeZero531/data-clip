@@ -6,7 +6,6 @@ const Bucket = require('../model/bucket');
 const Table = require('../model/table');
 const mongoose = require('mongoose');
 
-/* GET home page. */
 router.post('/:userId/:bucketId', function(req, res, next) {
     const userId = req.params.userId;
     const bucketId = req.params.bucketId;
