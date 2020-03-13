@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,12 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class HomeComponent implements OnInit {
   isSubmit: boolean;
+  user: any;
 
   form: FormGroup;
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {

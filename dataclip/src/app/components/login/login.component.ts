@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,28 +9,30 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./login.component.css']
 })
 export class LOGINComponent implements OnInit {
-  form: FormGroup;
+  loginForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
+    this.loginForm = this.fb.group({
       email : [''],
       password: ['']
     });
   }
   onSubmit() {
-    this.authService.login(this.form.value)
+    this.authService.login(this.loginForm.value)
       .subscribe(
         res => {
-          if (res.status) {
+          if (res.status === true) {
             //success
+            console.log(res);
             localStorage.setItem('token', res.token);
             const data = {name: res.result[0].name, email: res.result[0].email, id: res.result[0]._id};
-            localStorage.setItem('loggedUser', JSON.stringify(data));
-
+            localStorage.setItem('user', JSON.stringify(data));
+            this.router.navigate(['site']);
           } else {
             //invalid
           }
