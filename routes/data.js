@@ -3,11 +3,21 @@ var router = express.Router();
 const User = require('../model/user');
 const Bucket = require('../model/bucket');
 const Table = require('../model/table');
+const Site = require('../model/site');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRound = 10;
 const jwt = require('jsonwebtoken');
 const verifyToken = require('../function/verifyToken');
+
+// getsites
+router.get('/get-sites',verifyToken, (req, res, next) => {
+    Site.find({user: req.userId})
+        .then(result => res.send(result))
+        .catch(err => res.send(err));
+
+});
+
 
 router.get('/:bucketId',verifyToken , (req, res, next) => {
     const bucketId = req.params.bucketId;

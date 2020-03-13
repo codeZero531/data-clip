@@ -8,9 +8,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LOGINComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { SiteComponent } from './components/site/site.component';
 import { DashboardComponent } from './components/site/dashboard/dashboard.component';
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,13 @@ import { DashboardComponent } from './components/site/dashboard/dashboard.compon
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const saltRound = 10;
 const jwt = require('jsonwebtoken');
 const shortId = require('shortid');
+const verifyToken = require('../function/verifyToken');
 
 
 router.post('/register', (req, res, next) => {
@@ -115,10 +116,13 @@ router.post('/create-bucket', (req, res, next) => {
 });
 
 //site create
-router.post('/create-site', (req, res, next) => {
+router.post('/create-site',verifyToken ,(req, res, next) => {
     const site = new Site({
         _id: new mongoose.Types.ObjectId(),
         siteName: req.body.siteName,
+        host: req.body.hostName,
+        user: req.userId
+
     });
     site.save()
         .then(
@@ -127,7 +131,7 @@ router.post('/create-site', (req, res, next) => {
                 const bucketId = shortId.generate();
                 const table = new Table({
                     _id: new mongoose.Types.ObjectId(),
-                    user: req.body.userId,
+                    user: req.userId,
                     bucketId:  bucketId,
                     bucketName: 'default',
                     site : result._id

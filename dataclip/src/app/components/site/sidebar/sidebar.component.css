@@ -1621,12 +1621,13 @@ pre code {
   background-color: transparent;
   border: 0; }
 .form-control:focus {
-  color: #495057;
+  color: black;
   background-color: #fff;
-  border-color: #80bdff;
+  border-color: black;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+
+  /*box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); */
+}
 .form-control::-webkit-input-placeholder {
   color: #6c757d;
   opacity: 1; }
@@ -3133,10 +3134,11 @@ input[type="button"].btn-block {
   -moz-appearance: none;
   appearance: none; }
 .custom-select:focus {
-  border-color: #80bdff;
+  border-color: black;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+  /*-webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);*/
+  /*box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); */
+}
 .custom-select:focus::-ms-value {
   color: #495057;
   background-color: #fff; }
