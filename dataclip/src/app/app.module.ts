@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LOGINComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,11 +15,14 @@ import { SignupComponent } from './components/signup/signup.component';
     SidebarComponent,
     HomeComponent,
     LOGINComponent,
-    SignupComponent
+    SignupComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

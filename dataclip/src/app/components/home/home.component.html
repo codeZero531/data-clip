@@ -1,6 +1,4 @@
-
-
-  <div class="top-canvas mx-auto text-white " >
+<div class="top-canvas mx-auto text-white " >
     <div class="clearfix p-3">
       <div class="float-left"><h4>dataclip</h4></div>
       <div class="float-right">
@@ -35,7 +33,8 @@
       <div class="col-md-3 mx-auto"><h5>Collect info from users without a server—Dataclip is your server. Lead capture forms, surveys, newsletter forms, contact forms, etc. Setup any form in seconds.</h5></div>
       <button routerLink="/signup" class="btn btn-primary top-button mt-4">Signup for free</button>
     </div>
-  </div>
+</div>
+<!--end of the section-->
 
   <div class="mx-auto clearfix">
     <div class="text-center p-5">
@@ -54,7 +53,105 @@
       </div>
     </div>
   </div>
-  <div class="row m-4">
+
+<div class="container">
+  <div class="mx-auto text-center mt-5">
+    <h3>see it in action</h3>
+    <hr  style="background-color: #4DD0E1; height: 2px; width: 5%">
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 p-5" style="background-color: #FAFAFA; border: solid 1px #43cea2">
+      <span>
+        <form [formGroup]="form" >
+          <div class="form-group">
+            <label class="float-left" for="">Your email</label>
+            <input formControlName="email" type="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="float-left" for="">How did you hear about us?</label>
+                <select formControlName="how" id="inputState" class="form-control">
+                  <option selected>Github</option>
+                  <option >Facebook</option>
+                  <option >Friends</option>
+                  <option >Email</option>
+                  <option >Other</option>
+                </select>
+          </div>
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="gridRadios1" value="male" >
+                    <label class="form-check-label" for="gridRadios1">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female">
+                    <label class="form-check-label" for="gridRadios2">
+                      Female
+                    </label>
+                  </div>
+                  <div class="form-check ">
+                    <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="gridRadios3" value="other" >
+                    <label class="form-check-label" for="gridRadios3">
+                      Other
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          <fieldset class="form-group">
+              <div class="row" formGroupName="favorite">
+                <legend class="col-form-label col-sm-2 pt-0">Favorite</legend>
+                <div class="col-sm-10">
+                  <div class="form-check">
+                  <input formControlName="pizza" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Pizza
+                  </label>
+                </div>
+                 <div class="form-check">
+                  <input formControlName="burger" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Burger
+                  </label>
+                </div>
+                  <div class="form-check">
+                  <input formControlName="tacos" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Tacos
+                  </label>
+                </div>
+                </div>
+              </div>
+            </fieldset>
+          <span (click)="onSubmit()" class=" form-button btn btn-primary btn-block">Let us know </span>
+        </form>
+      </span>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isSubmit">
+    <div class="col-md-4"></div>
+    <div class="col-md-4  p-5" style="background-color: #2c3e50">
+      <span>
+        <pre style="color: #1DE9B6;letter-spacing: 2px; font-size: medium">{{form.value |json}}</pre>
+      </span>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+
+<!--end of the section-->
+
+  <div class="row m-5 p-5">
     <div class="col"></div>
     <div class="col">
       <img src="assets/images/vector2.svg" alt="" class="w-100">
@@ -65,6 +162,9 @@
     <div class="col"></div>
   </div>
 
+<!--end of the section-->
+
+
 <div style="background-color: #FAFAFA">
   <div class=" text-center mt-5 pt-5">
     <h2>Uses</h2>
@@ -74,39 +174,95 @@
       <div class="row">
         <div class="col">
           <h3><i class="fas fa-filter fa-2x mr-3" style="color: #80DEEA"></i> Collect Leads for Your New Product</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores atque, aut blanditiis consectetur dignissimos doloremque est facere fugiat, fugit harum id mollitia omnis porro quibusdam sapiente sint, sit ut?</p>
+          <p>Focus on your product, not on setting up server endpoints for your landing page. Testing a new product idea without a finished product? Setup a lead capture landing page without a server.</p>
         </div>
         <div class="col">
           <h3><i class="fas fa-tags fa-2x mr-4" style="color: #80DEEA"></i>White-Labeled Surveys</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fugiat ipsa itaque, laboriosam maxime minus molestias nulla quas ratione recusandae sint ullam? At eligendi modi nemo optio quo tempore voluptate?</p>
+          <p>Build custom survey forms anywhere on your website with your own brand. Create a form with your questions and your brand elements, point it at Pageclip, and watch the results roll in.</p>
         </div>
       </div>
       <div class="row mt-5 pb-5">
         <div class="col">
           <h3> <i class="fas fa-newspaper fa-2x mr-4" style="color: #43cea2" ></i>Capture Emails for a Newsletter</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores atque, aut blanditiis consectetur dignissimos doloremque est facere fugiat, fugit harum id mollitia omnis porro quibusdam sapiente sint, sit ut?</p>
+          <p>You have a static blog and want to engage with your readers. Add a simple email form to your site to kickstart your audience.</p>
         </div>
         <div class="col">
           <h3><i class="fab fa-wpforms fa-2x mr-4" style="color: #43cea2"></i>Setup a Contact Form</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fugiat ipsa itaque, laboriosam maxime minus molestias nulla quas ratione recusandae sint ullam? At eligendi modi nemo optio quo tempore voluptate?</p>
+          <p>Let your visitors get in touch from your website with a custom contact form. We'll email you when someone submits their information.</p>
         </div>
       </div>
   </div>
 
-
-
+  <div class="text-center pb-5 text-muted">
+    <div class=" w-50 mx-auto">
+      Pageclip works anywhere you can put an HTML form or run JavaScript—from your static Jekyll site on GitHub Pages, to landing page services like Unbounce, to blog hosting like Wordpress, to your homegrown webpages hosted on S3 or your Dropbox account.
+      So get creative!
+    </div>
+  </div>
 </div>
+
+<!--end of the section-->
 
 <div class="container pt-5 pb-5">
   <div class="text-center pb-5">
     <h2>Plans & pricing</h2>
     <hr class="" style="background-color: #43cea2; width: 30px">
   </div>
-  <div class="row text-center text-white main-card" style="height: 250px">
-    <div class="col  first-card">hello</div>
-    <div class="col first-card  ">hello</div>
-    <div class="col first-card">hello</div>
-    <div class="col first-card">hello</div>
+  <div class="row text-center text-white main-card" style="height: 270px">
+    <div class="col first-card">
+      <div class="clearfix">
+        <div class="float-left"><h4 class="mb-2">Free</h4></div>
+        <div class="float-right"><h4 class="mb-2 p-3 bg-danger" style="border-radius: 30px"><small class="">free</small></h4></div>
+      </div>
+      <div class="price-details">
+        <h4>One Site</h4>
+        <h4>One Form</h4>
+        <h4>1,000 Submissions</h4>
+      </div>
+      <button class="btn btn-primary btn-block mt-4" style="background-color: white; color: black; border: none">Signup for free</button>
+    </div>
+    <div class="col first-card">
+      <div class="clearfix">
+        <div class="float-left"><h4 class="mb-2">Basic</h4></div>
+        <div class="float-right"><h4 class="mb-2 p-3 bg-dark" style="border-radius: 30px">$ 5</h4></div>
+      </div>
+      <div class="price-details">
+        <h4>One Site</h4>
+        <h4>Unlimited Forms</h4>
+        <h4>20,000 Submissions</h4>
+      </div>
+      <button disabled class="btn btn-primary btn-block mt-4" style="background-color: white; color: black; border: none">coming soon</button>
+    </div>
+    <div class="col first-card">
+      <div class="clearfix">
+        <div class="float-left"><h4 class="mb-2">Pro</h4></div>
+        <div class="float-right"><h4 class="mb-2 p-3 bg-dark" style="border-radius: 30px">$ 14</h4></div>
+      </div>
+      <div class="price-details">
+        <h4>Unlimited Sites</h4>
+        <h4>Unlimited Forms</h4>
+        <h4>100,000 Submissions</h4>
+      </div>
+      <button disabled class="btn btn-primary btn-block mt-4" style="background-color: white; color: black; border: none">coming soon</button>
+    </div>
+    <div class="col first-card">
+      <div class="clearfix">
+        <div class="float-left"><h4 class="mb-2">Agency</h4></div>
+        <div class="float-right"><h4 class="mb-2 p-3 bg-dark" style="border-radius: 30px">$ 20 </h4></div>
+      </div>
+      <div class="price-details">
+        <h4>Unlimited Sites</h4>
+        <h4>Unlimited Form</h4>
+        <h4>Unlimited Submissions</h4>
+      </div>
+      <button disabled class="btn btn-primary btn-block mt-4" style="background-color: white; color: black; border: none">coming soon</button>
+    </div>
+  </div>
+
+  <div class="text-center text-muted">
+    Prices are per month. If you would like multiple users to access a shared organization account please contact us for pricing.
   </div>
 </div>
+
+<!--end of the section-->
 

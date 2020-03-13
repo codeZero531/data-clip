@@ -45,6 +45,8 @@
   /*background: linear-gradient(to right, #38ef7d, #11998e); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
 
   border: #FAFAFA 1px solid;
+  padding-top: 20px;
+  text-align: left;
 
 }
 
@@ -55,3 +57,51 @@
   background: linear-gradient(to left, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+.price-details{
+  font-size: x-large;
+  margin-top: 1px;
+}
+
+
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #43cea2;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #43cea2;
+}
+.form-button {
+  color: #fff;
+  background-color: #43cea2 ;
+  border-color: #43cea2;
+}
+
+.form-button:hover {
+  color: #fff;
+  background-color: #43cea2;
+  border-color: #43cea2 ;
+}
+
+.form-button:focus, .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.form-button.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #43cea2 ;
+  border-color: lightblue;
+}
+
+.form-button:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: white;
+  border-color: #43cea2;
+}
+
+.form-button:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #43cea2;
+}
+
