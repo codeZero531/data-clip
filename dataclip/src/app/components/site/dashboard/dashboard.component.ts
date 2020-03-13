@@ -8,6 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class DashboardComponent implements OnInit {
   siteName: string;
+  siteId: string;
 
   constructor(
     private activatedRoute: ActivatedRoute
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.siteName = this.activatedRoute.snapshot.paramMap.get('name');
+    this.siteId = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
 }

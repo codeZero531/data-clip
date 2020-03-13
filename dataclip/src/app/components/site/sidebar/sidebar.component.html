@@ -11,7 +11,7 @@
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sites</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li *ngFor="let site of sites">
-              <a routerLink="/site/{{site.siteName}}">{{site.siteName}}</a>
+              <a routerLink="/site/{{site.siteName}}/{{site._id}}">{{site.siteName}}</a>
             </li>
           </ul>
         </li>
