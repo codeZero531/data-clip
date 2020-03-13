@@ -15,18 +15,39 @@ router.post('/:userId/:bucketId', function(req, res, next) {
             result => {
                 if (result.length === 1) {
                     //there is a bucket belongs to user
-                    const bucket = new Bucket({
-                        _id: new mongoose.Types.ObjectId(),
-                        bucketId: bucketId,
-                        data: req.body
-                    });
-                    bucket.save()
+                    Bucket.find({bucketId: bucketId})
                         .then(
-                            result => res.send(result)
+                            result => {
+                                console.log(result.length);
+                                if (result.length !== 0) {
+                                    //bucket data have. push data
+                                    Bucket.updateOne(
+                                        {bucketId : bucketId},
+                                        {$push : {data : req.body}}
+                                    )
+                                        .then(result => res.send(result))
+                                        .catch(err => res.send(err));
+
+                                } else {
+                                    // no bucket data. must create new bucket data
+                                    const bucket = new Bucket({
+                                        _id: new mongoose.Types.ObjectId(),
+                                        bucketId: bucketId,
+                                        data: req.body
+                                    });
+                                    bucket.save()
+                                        .then(
+                                            result => res.send(result)
+                                        )
+                                        .catch(
+                                            err => res.send(err)
+                                        );
+
+                                }
+                            }
                         )
-                        .catch(
-                            err => res.send(err)
-                        );
+                        .catch(err => console.log(err));
+
 
                 } else {
                     //no bucket belongs to user

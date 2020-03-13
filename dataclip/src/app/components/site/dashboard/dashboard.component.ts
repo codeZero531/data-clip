@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   siteName: string;
   siteId: string;
   data: any;
+  bucketData: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,6 +24,15 @@ export class DashboardComponent implements OnInit {
     this.mainService.getForms(this.siteId)
       .subscribe(
         res => this.data = res,
+        error => console.log(error)
+      );
+  }
+
+  loadData(bucketId: string) {
+    console.log(bucketId);
+    this.mainService.getBucketData(bucketId)
+      .subscribe(
+        res => {this.bucketData = res[0].data; console.log(res[0].data)},
         error => console.log(error)
       );
   }

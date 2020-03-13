@@ -19,5 +19,8 @@ export class MainService {
   getForms(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/users/get-site/${id}`);
   }
+  getBucketData(id: string):Observable<any> {
+    return this.http.get(`${this.baseUrl}/data/${id}`);
+  }
 
 }
