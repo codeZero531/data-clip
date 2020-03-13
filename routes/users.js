@@ -3,10 +3,12 @@ var router = express.Router();
 const User = require('../model/user');
 const Bucket = require('../model/bucket');
 const Table = require('../model/table');
+const Site = require('../model/site');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRound = 10;
 const jwt = require('jsonwebtoken');
+const shortId = require('shortid');
 
 
 router.post('/register', (req, res, next) => {
@@ -93,16 +95,51 @@ router.post('/login', (req, res, next) => {
 
 });
 
+//bucket create
 router.post('/create-bucket', (req, res, next) => {
+    const bucketId = shortId.generate();
     const table = new Table({
        _id: new mongoose.Types.ObjectId(),
         user: req.body.userId,
-        bucketId:  2,
-        bucketName: req.body.bucketName
+        bucketId:  bucketId,
+        bucketName: req.body.bucketName,
+        site: req.body.siteId
     });
     table.save()
         .then(
             result => res.send(result)
+        )
+        .catch(
+            err => res.send(err)
+        );
+});
+
+//site create
+router.post('/create-site', (req, res, next) => {
+    const site = new Site({
+        _id: new mongoose.Types.ObjectId(),
+        siteName: req.body.siteName,
+    });
+    site.save()
+        .then(
+            result => {
+                //creat default bucket
+                const bucketId = shortId.generate();
+                const table = new Table({
+                    _id: new mongoose.Types.ObjectId(),
+                    user: req.body.userId,
+                    bucketId:  bucketId,
+                    bucketName: 'default',
+                    site : result._id
+                });
+                table.save()
+                    .then(
+                        result => res.send(result)
+                    )
+                    .catch(
+                        err => res.send(err)
+                    );
+            }
         )
         .catch(
             err => res.send(err)

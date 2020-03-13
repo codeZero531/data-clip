@@ -6,6 +6,7 @@ const Bucket = require('../model/bucket');
 const Table = require('../model/table');
 const mongoose = require('mongoose');
 
+//data insert
 router.post('/:userId/:bucketId', function(req, res, next) {
     const userId = req.params.userId;
     const bucketId = req.params.bucketId;
