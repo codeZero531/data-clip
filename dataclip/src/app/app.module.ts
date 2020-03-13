@@ -10,7 +10,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { SiteComponent } from './components/site/site.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './components/site/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
