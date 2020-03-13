@@ -6,6 +6,7 @@ const Table = require('../model/table');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRound = 10;
+const jwt = require('jsonwebtoken');
 
 
 router.post('/register', (req, res, next) => {
@@ -60,11 +61,16 @@ router.post('/login', (req, res, next) => {
                   //email found
                     bcrypt.compare(req.body.password, result[0].password, function (err, rs) {
                         if (rs === true) {
+                            // token genarate
+                            let payload = {subject: result[0]._id};
+                            console.log(payload);
+                            let token = jwt.sign(payload, 'janaka');
                             //success
                             res.status(200).json({
                                 message: 'Login successfully!',
                                 status: rs,
-                                result: result
+                                result: result,
+                                token: token
                             });
 
                         } else {
