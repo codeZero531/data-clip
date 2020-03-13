@@ -14,7 +14,10 @@ export class MainService {
   ) { }
 
   getSites(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/data/get-sites`)
+    return this.http.get(`${this.baseUrl}/users/get-sites`)
+  }
+  getForms(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/get-site/${id}`);
   }
 
 }

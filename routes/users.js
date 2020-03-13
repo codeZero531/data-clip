@@ -97,11 +97,11 @@ router.post('/login', (req, res, next) => {
 });
 
 //bucket create
-router.post('/create-bucket', (req, res, next) => {
+router.post('/create-bucket',verifyToken, (req, res, next) => {
     const bucketId = shortId.generate();
     const table = new Table({
        _id: new mongoose.Types.ObjectId(),
-        user: req.body.userId,
+        user: req.userId,
         bucketId:  bucketId,
         bucketName: req.body.bucketName,
         site: req.body.siteId
@@ -148,6 +148,23 @@ router.post('/create-site',verifyToken ,(req, res, next) => {
         .catch(
             err => res.send(err)
         );
+});
+
+// getsites
+router.get('/get-sites',verifyToken, (req, res, next) => {
+    Site.find({user: req.userId})
+        .then(result => res.send(result))
+        .catch(err => res.send(err));
+
+});
+
+//get site data
+router.get('/get-site/:id', verifyToken, (req, res, next) => {
+   const id = req.params.id;
+    Table.find({site: id})
+        .populate('site')
+        .then(result => res.send(result))
+        .catch(err => res.send(err));
 });
 
 

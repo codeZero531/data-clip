@@ -10,13 +10,7 @@ const saltRound = 10;
 const jwt = require('jsonwebtoken');
 const verifyToken = require('../function/verifyToken');
 
-// getsites
-router.get('/get-sites',verifyToken, (req, res, next) => {
-    Site.find({user: req.userId})
-        .then(result => res.send(result))
-        .catch(err => res.send(err));
 
-});
 
 
 router.get('/:bucketId',verifyToken , (req, res, next) => {
