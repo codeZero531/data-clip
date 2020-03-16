@@ -13,6 +13,36 @@
 </span>
 <hr>
 
-<span *ngFor="let bucket of bucketData | keyvalue">
-  {{bucket.key}} - {{bucket.value}}
-</span>
+
+
+<!--<table border="1">-->
+<!--&lt;!&ndash;  <span >&ndash;&gt;-->
+<!--&lt;!&ndash;  {{bucket.key}} - {{bucket.value | json}}&ndash;&gt;-->
+<!--   <tr *ngFor="let bucket of bucketData ">-->
+<!--      <span *ngFor="let b of bucket | keyvalue">-->
+<!--        <td>     {{b.key}} </td>-->
+<!--        <td>   {{b.value}} </td>-->
+<!--    </span>-->
+<!--   </tr>-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--</table>-->
+
+
+<table class="table table-dark">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">First</th>
+    <th scope="col">First</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let bucket of bucketData ">
+    <div *ngFor="let b of bucket | keyvalue">
+        <td scope="row">1</td>
+        <td>     {{b.key}} </td>
+        <td>   {{b.value}} </td>
+    </div>
+  </tr>
+  </tbody>
+</table>
