@@ -99,20 +99,38 @@ router.post('/login', (req, res, next) => {
 //bucket create
 router.post('/create-bucket',verifyToken, (req, res, next) => {
     const bucketId = shortId.generate();
-    const table = new Table({
-       _id: new mongoose.Types.ObjectId(),
-        user: req.userId,
-        bucketId:  bucketId,
-        bucketName: req.body.bucketName,
-        site: req.body.siteId
-    });
-    table.save()
+    Site.findById(req.body.siteId)
         .then(
-            result => res.send(result)
+            result => {
+                console.log(result.user);
+                if (result.user == req.userId) {
+                    // site belongs to user
+                    const table = new Table({
+                       _id: new mongoose.Types.ObjectId(),
+                        user: req.userId,
+                        bucketId:  bucketId,
+                        bucketName: req.body.bucketName,
+                        site: req.body.siteId
+                    });
+
+                    table.save()
+                        .then(
+                            result => res.send(result)
+                        )
+                        .catch(
+                            err => res.send(err)
+                        );
+                }else {
+                    //site not belong to user id
+                    res.send('site not belongs to user id')
+
+                }
+            }
         )
         .catch(
-            err => res.send(err)
+            err => res.send(err.message)
         );
+
 });
 
 //site create
