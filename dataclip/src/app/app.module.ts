@@ -19,6 +19,8 @@ import { CreateComponent } from './components/site/create/create.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatCardModule} from "@angular/material/card";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {FlashMessagesModule} from "angular2-flash-messages";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {MatCardModule} from "@angular/material/card";
     MatChipsModule,
     MatTabsModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
+    FlashMessagesModule.forRoot(),
   ],
   providers: [
     {

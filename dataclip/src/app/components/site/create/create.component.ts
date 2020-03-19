@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MainService} from "../../../services/main.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
   selector: 'app-create',
@@ -13,7 +15,9 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private mainService: MainService
+    private mainService: MainService,
+    private _snackBar: MatSnackBar,
+    private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -32,8 +36,14 @@ export class CreateComponent implements OnInit {
   onSubmit() {
     this.mainService.createSite(this.siteForm.value)
       .subscribe(
-        res => console.log(res),
-        error => console.log(error)
+        res => {
+           this.flashMessage.show(res.message, {cssClass: 'alert-success text-center' , timeout: 5000});
+
+        },
+        error => {
+          this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center' , timeout: 5000});
+
+        }
       );
 
 
