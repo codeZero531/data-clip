@@ -12,6 +12,7 @@ import {FlashMessagesService} from "angular2-flash-messages";
 export class CreateComponent implements OnInit {
   siteForm: FormGroup;
   sites: any;
+  forms: any;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +47,14 @@ export class CreateComponent implements OnInit {
         }
       );
 
+  }
 
+  loadForms(id: string) {
+    this.mainService.getForms(id)
+      .subscribe(
+        res => this.forms = res,
+        error => console.log(error)
+      );
   }
 
 }

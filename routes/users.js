@@ -178,11 +178,26 @@ router.get('/get-sites',verifyToken, (req, res, next) => {
 
 //get site data
 router.get('/get-site/:id', verifyToken, (req, res, next) => {
-   const id = req.params.id;
-    Table.find({site: id})
-        .populate('site')
-        .then(result => res.send(result))
-        .catch(err => res.send(err));
+   const siteId = req.params.id;
+   Site.findById(siteId)
+       .then(
+           result => {
+               if (result.user == req.userId) {
+                  // site belong to user
+                   Table.find({site: siteId})
+                       .populate('site')
+                       .then(result => res.send(result))
+                       .catch(err => res.send(err));
+
+
+               } else {
+                   // site not elongs to user
+                   res.send('unauthorized access. Site not belongs to user');
+               }
+           }
+       )
+       .catch( err => res.send(err));
+
 });
 
 

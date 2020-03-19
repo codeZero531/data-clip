@@ -1,40 +1,48 @@
 
 
-<!--<div class="accordion" id="accordionExample">-->
-<!--  <div class="card" *ngFor="let site of sites; let i = index">-->
-<!--    <div class="card-header" id="headingOne">-->
-<!--      <h2 class="mb-0">-->
-<!--        <a href="#List-{{ i }}" data-toggle="collapse"  class="btn btn-link" type="button" >-->
-<!--         {{site.siteName}}-->
-<!--        </a>-->
-<!--      </h2>-->
-<!--    </div>-->
-
-<!--    <div id="List-{{ i }}" class="collapse">-->
-<!--      <div class="card-body">-->
-<!--        {{site.host}}-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-
-
 <div class="row justify-content-center">
   <div class="col-4">
     <h3>Your Sites</h3>
+    <div class="accordion mt-5 mb-5" id="accordionExample">
+      <div class="card" *ngFor="let site of sites; let i = index">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <a  aria-expanded="true" (click)="loadForms(site._id)" style="text-decoration: none; color: black" href="#List-{{ i }}" data-toggle="collapse"  class="btn btn-link" type="button" >
+              {{site.siteName}} - {{site.host}}
+            </a>
+          </h2>
+        </div>
 
-    <ul class="list-group list-group-flush pt-5 pb-4">
-      <li class="list-group-item" *ngFor="let site of sites">
-        {{site.siteName}} - {{site.host}}
-        <div class="badge badge-secondary float-right " disabled="">edit</div>
-        <div class="badge badge-danger mr-2 float-right" disabled="">delete</div>
-      </li>
-    </ul>
+        <div id="List-{{ i }}" class="collapse">
+          <div class="card-body">
+            <small class="text-muted">Forms</small>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let form of forms" > {{form.bucketName}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
+
+
+
+
+<!--<div class="row justify-content-center">-->
+<!--  <div class="col-4">-->
+<!--    <h3>Your Sites</h3>-->
+
+<!--    <ul class="list-group list-group-flush pt-5 pb-4">-->
+<!--      <li class="list-group-item" *ngFor="let site of sites">-->
+<!--        {{site.siteName}} - {{site.host}}-->
+<!--        <div class="badge badge-secondary float-right " disabled="">edit</div>-->
+<!--        <div class="badge badge-danger mr-2 float-right" disabled="">delete</div>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
 <hr>
 
 <div class="row justify-content-center mt-5 ">

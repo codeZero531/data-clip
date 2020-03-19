@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../services/main.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 
 @Component({
@@ -10,14 +10,18 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class SidebarComponent implements OnInit {
   sites: any;
+  loadSite: string;
 
   constructor(
     private mainService: MainService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.loadSite = this.activatedRoute.snapshot.paramMap.get('name');
+    console.log(this.loadSite);
     this.mainService.getSites()
       .subscribe(
         res => this.sites = res,
