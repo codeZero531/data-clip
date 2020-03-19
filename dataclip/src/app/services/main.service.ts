@@ -22,5 +22,8 @@ export class MainService {
   getBucketData(id: string):Observable<any> {
     return this.http.get(`${this.baseUrl}/data/${id}`);
   }
+  createSite(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/create-site`, data);
+  }
 
 }
