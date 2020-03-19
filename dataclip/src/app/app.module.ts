@@ -21,6 +21,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatCardModule} from "@angular/material/card";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {FlashMessagesModule} from "angular2-flash-messages";
+import { CodeComponent } from './components/site/code/code.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {FlashMessagesModule} from "angular2-flash-messages";
     SiteComponent,
     DashboardComponent,
     CreateComponent,
+    CodeComponent,
 
   ],
   imports: [

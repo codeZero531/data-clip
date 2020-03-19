@@ -1,6 +1,8 @@
-*{
-  font-family: 'Barlow Condensed', sans-serif;
-}
+  *{
+    font-family: 'Barlow Condensed', sans-serif;
+    /*font-family: 'Inconsolata', monospace;*/
+
+  }
 .top-canvas{
   height: 500px;
   /*background: #B24592;  !* fallback for old browsers *!*/
