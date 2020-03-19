@@ -1,4 +1,3 @@
-
 <!--{{siteName}} - {{siteId}}-->
 {{data | json}}
 <hr>
@@ -28,21 +27,21 @@
 <!--</table>-->
 
 
-<table class="table table-dark">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">First</th>
-    <th scope="col">First</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let bucket of bucketData ">
-    <div *ngFor="let b of bucket | keyvalue">
-        <td scope="row">1</td>
-        <td>     {{b.key}} </td>
-        <td>   {{b.value}} </td>
-    </div>
-  </tr>
-  </tbody>
-</table>
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">First</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bucket of bucketData ">
+      <div *ngFor="let b of bucket | keyvalue">
+  <!--        <td scope="row">1</td>-->
+          <td>     {{b.key}} </td>
+          <td>   {{b.value}} </td>
+      </div>
+    </tr>
+    </tbody>
+  </table>
