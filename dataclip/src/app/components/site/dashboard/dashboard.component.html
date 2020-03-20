@@ -6,28 +6,22 @@
 <hr>
 <h4>Your Buckets</h4>
 <hr>
-<span *ngFor="let d of data">
-  <a (click)="loadData(d.bucketId)" class="text-decoration-none" style="cursor: pointer">{{d.bucketName}} </a>
-  <hr>
-</span>
-<hr>
+<!--<span *ngFor="let d of data" class="test">-->
+<!--  <a (click)="loadData(d.bucketId)" class="text-decoration-none" style="cursor: pointer">{{d.bucketName}} </a>-->
+<!--</span>-->
+
+<div class="row mt-3 test " *ngFor="let d of data" >
+  <div class="col">
+    <a (click)="loadData(d.bucketId)" class="text-decoration-none" style="cursor: pointer">{{d.bucketName}} </a>
+  </div>
+</div>
 
 
-
-<!--<table border="1">-->
-<!--&lt;!&ndash;  <span >&ndash;&gt;-->
-<!--&lt;!&ndash;  {{bucket.key}} - {{bucket.value | json}}&ndash;&gt;-->
-<!--   <tr *ngFor="let bucket of bucketData ">-->
-<!--      <span *ngFor="let b of bucket | keyvalue">-->
-<!--        <td>     {{b.key}} </td>-->
-<!--        <td>   {{b.value}} </td>-->
-<!--    </span>-->
-<!--   </tr>-->
-<!--&lt;!&ndash;</span>&ndash;&gt;-->
-<!--</table>-->
-
-
-  <table class="table table-dark">
+<span *ngIf="isLoaded">
+  <div class="clearfix">
+  <div class="float-right"><button mat-raised-button color="accent">download data as a json file</button></div>
+</div>
+  <table class="table table-striped mt-5 table-ho">
     <thead>
     <tr>
       <th scope="col" *ngFor="let key of keys">{{key}}</th>
@@ -42,5 +36,11 @@
     </tr>
     </tbody>
   </table>
+<div class="progress" style="height: 10px;">
+  <div class="progress-bar" role="progressbar" style="width:40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+</span>
+
+{{bucketDataCount}}
 
 {{keys | json}}

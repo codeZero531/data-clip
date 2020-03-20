@@ -44,7 +44,12 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                                             {bucketId : bucketId},
                                             {$push : {data : fields}}
                                         )
-                                            .then(result => res.send(result))
+                                            .then(result => {
+                                                res.json({
+                                                    status: 'success',
+                                                    result: result
+                                                })
+                                            })
                                             .catch(err => res.send(err));
 
                                     } else {
@@ -56,7 +61,12 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                                         });
                                         bucket.save()
                                             .then(
-                                                result => res.send(result)
+                                                result => {
+                                                    res.json({
+                                                        status: 'success',
+                                                        result: result,
+                                                    })
+                                                }
                                             )
                                             .catch(
                                                 err => res.send(err)

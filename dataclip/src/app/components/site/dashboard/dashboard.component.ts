@@ -14,6 +14,9 @@ export class DashboardComponent implements OnInit {
   bucketData: any;
   keys: any;
 
+  bucketDataCount: number;
+  isLoaded = false;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,6 +41,8 @@ export class DashboardComponent implements OnInit {
           this.bucketData = res[0].data;
           console.log(res[0]);
           this.keys = res[0].keys;
+          this.bucketDataCount = this.bucketData.length;
+          this.isLoaded = true;
         },
         error => console.log(error)
       );
