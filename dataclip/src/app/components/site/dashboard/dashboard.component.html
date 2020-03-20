@@ -2,7 +2,7 @@
 <!--{{data | json}}-->
 <!--<hr>-->
 <!--{{bucketData | json}}-->
-<h1>{{siteName}}</h1>
+<i><h1>{{siteName}}</h1></i>
 <hr>
 <h4>Your Buckets</h4>
 <hr>
@@ -16,11 +16,27 @@
   </div>
 </div>
 
+<div *ngIf="isLoadingStart" class="row justify-content-center mt-5 p-5">
+  <div class="col-2">
+    <div style="color: #43cea2; width: 5rem; height: 5rem" class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
 
 <span *ngIf="isLoaded">
   <div class="clearfix mt-4">
-  <div class="float-right"><button mat-raised-button color="accent">download data as a json file</button></div>
-</div>
+    <div class="float-right"><button mat-raised-button color="accent">download data as a json file</button></div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-2 text-center">
+      Total entries <h1 style="color: #43cea2">{{bucketDataCount}}</h1>
+    </div>
+    <div class="col-2 text-center">
+       Last entry <h1 style="color: #43cea2">2 Days ago</h1>
+    </div>
+  </div>
   <table class="table table-striped mt-5 table-ho">
     <thead>
     <tr>
@@ -36,9 +52,10 @@
     </tr>
     </tbody>
   </table>
-<mat-progress-bar mode="determinate" value="{{bucketDataCount}}" color="warn"></mat-progress-bar>
+<mat-progress-bar mode="determinate" value="{{bucketDataCount}}" color="accent"></mat-progress-bar>
+  {{bucketDataCount}}% <small class="text-muted">capacity</small>
 </span>
 
-{{bucketDataCount}}
+<!--{{bucketDataCount}}-->
 
-{{keys | json}}
+<!--{{keys | json}}-->

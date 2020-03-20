@@ -28,7 +28,10 @@ export class CreateComponent implements OnInit {
     });
     this.mainService.getSites()
       .subscribe(
-        res => this.sites = res,
+        res => {
+          this.sites = res;
+          console.log(res);
+        },
         error => console.log(error)
       );
 
@@ -39,6 +42,7 @@ export class CreateComponent implements OnInit {
       .subscribe(
         res => {
            this.flashMessage.show(res.message, {cssClass: 'alert-success text-center' , timeout: 5000});
+           this.siteForm.reset();
 
         },
         error => {

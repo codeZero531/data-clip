@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
 
   bucketDataCount: number;
   isLoaded = false;
+  isLoadingStart = false;
 
 
   constructor(
@@ -34,6 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadData(bucketId: string) {
+    this.isLoadingStart = true;
     console.log(bucketId);
     this.mainService.getBucketData(bucketId)
       .subscribe(
@@ -43,6 +45,7 @@ export class DashboardComponent implements OnInit {
           this.keys = res[0].keys;
           this.bucketDataCount = this.bucketData.length;
           this.isLoaded = true;
+          this.isLoadingStart = false;
         },
         error => console.log(error)
       );
