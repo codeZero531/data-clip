@@ -23,6 +23,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {FlashMessagesModule} from "angular2-flash-messages";
 import { CodeComponent } from './components/site/code/code.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {MatTableModule} from "@angular/material/table";
     MatCardModule,
     MatSnackBarModule,
     FlashMessagesModule.forRoot(),
-    MatTableModule
+    MatTableModule,
+    MatProgressBarModule
   ],
   providers: [
     {
