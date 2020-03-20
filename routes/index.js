@@ -30,6 +30,7 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                     const values = [];
                     const hello = [];
                     form.parse(req, (err, fields, files) => {
+                        fields.date = Date();
                         console.log(fields);
 
                         // there is a bucket belongs to user
@@ -88,7 +89,7 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                         console.log(keys);
                         Bucket.updateOne(
                             {bucketId : bucketId},
-                            {$push : {keys : keys}}
+                            {$addToSet : {keys : keys}}
                         )
                             .then(result => console.log(result))
                             .catch(err => console.log(err));

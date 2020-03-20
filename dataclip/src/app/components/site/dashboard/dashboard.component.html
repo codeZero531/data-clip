@@ -1,7 +1,7 @@
 <!--{{siteName}} - {{siteId}}-->
-{{data | json}}
-<hr>
-{{bucketData | json}}
+<!--{{data | json}}-->
+<!--<hr>-->
+<!--{{bucketData | json}}-->
 <h1>{{siteName}}</h1>
 <hr>
 <h4>Your Buckets</h4>
@@ -31,11 +31,14 @@
     <thead>
     <tr>
       <th scope="col" *ngFor="let key of keys">{{key}}</th>
+      <th scope="col" >when</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let bucket of bucketData">
-     <td *ngFor="let kf of bucket | keyvalue">{{kf.value}}</td>
+<!--     <td *ngFor="let kf of bucket | keyvalue">{{kf.value}}</td>-->
+     <td *ngFor="let kf of keys">{{bucket[kf]}}</td>
+     <td >{{bucket['date'] | date:'short':'+0530'}}</td>
     </tr>
     </tbody>
   </table>
