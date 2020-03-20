@@ -22,6 +22,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {FlashMessagesModule} from "angular2-flash-messages";
 import { CodeComponent } from './components/site/code/code.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CodeComponent } from './components/site/code/code.component';
     MatCardModule,
     MatSnackBarModule,
     FlashMessagesModule.forRoot(),
+    MatTableModule
   ],
   providers: [
     {

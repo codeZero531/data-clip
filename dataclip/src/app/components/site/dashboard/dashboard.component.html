@@ -30,18 +30,14 @@
   <table class="table table-dark">
     <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">First</th>
+      <th scope="col" *ngFor="let key of keys">{{key}}</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let bucket of bucketData ">
-      <div *ngFor="let b of bucket | keyvalue">
-  <!--        <td scope="row">1</td>-->
-          <td>     {{b.key}} </td>
-          <td>   {{b.value}} </td>
-      </div>
+    <tr *ngFor="let bucket of bucketData">
+     <td *ngFor="let kf of bucket | keyvalue">{{kf.value}}</td>
     </tr>
     </tbody>
   </table>
+
+{{keys | json}}

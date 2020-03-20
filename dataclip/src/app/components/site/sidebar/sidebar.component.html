@@ -12,7 +12,7 @@
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sites</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li *ngFor="let site of sites">
-              <a (click)="onSiteClick(site.siteName, site._id)">{{site.siteName}}</a>
+              <a style="cursor: pointer" (click)="onSiteClick(site.siteName, site._id)">{{site.siteName}}</a>
             </li>
           </ul>
         </li>

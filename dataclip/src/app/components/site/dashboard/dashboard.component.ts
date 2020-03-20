@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
   siteId: string;
   data: any;
   bucketData: any;
+  keys: any;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,9 +34,16 @@ export class DashboardComponent implements OnInit {
     console.log(bucketId);
     this.mainService.getBucketData(bucketId)
       .subscribe(
-        res => {this.bucketData = res[0].data; console.log(res[0].data)},
+        res => {
+          this.bucketData = res[0].data;
+          console.log(res[0]);
+          this.keys = res[0].keys;
+        },
         error => console.log(error)
       );
   }
+
+
+
 
 }
