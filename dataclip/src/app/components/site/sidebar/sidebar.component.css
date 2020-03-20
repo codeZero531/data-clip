@@ -4,6 +4,13 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+*{
+  font-family: 'Barlow Condensed', sans-serif;
+  /*font-family: 'Inconsolata', monospace;*/
+
+}
+
 .content{
   background: #ECE9E6;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */

@@ -30,6 +30,8 @@ export class SidebarComponent implements OnInit {
   }
 
   onSiteClick(siteName: string, siteId: string) {
+    localStorage.setItem('siteName', siteName);
+    localStorage.setItem('siteId', siteId);
     this.router.navigate([`site/${siteName}/${siteId}`])
       .then(
         () => location.reload()
