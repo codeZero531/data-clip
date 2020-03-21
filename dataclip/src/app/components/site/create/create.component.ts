@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MainService} from "../../../services/main.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -9,7 +9,7 @@ import {FlashMessagesService} from "angular2-flash-messages";
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css']
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit{
   siteForm: FormGroup;
   sites: any;
   forms: any;

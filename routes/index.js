@@ -31,7 +31,7 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                     const hello = [];
                     form.parse(req, (err, fields, files) => {
                         fields.date = Date();
-                        console.log(fields);
+                        console.log('fields: '+ ' ' + fields);
 
                         // there is a bucket belongs to user
                         Bucket.find({bucketId: bucketId})
@@ -45,6 +45,14 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                                             {$push : {data : fields}}
                                         )
                                             .then(result => {
+                                                //insert keys
+                                                Bucket.updateOne(
+                                                    {bucketId : bucketId},
+                                                    {$addToSet : {keys : keys}}
+                                                )
+                                                    .then(resu => console.log(resu))
+                                                    .catch(err => console.log(err));
+
                                                 res.json({
                                                     status: 'success',
                                                     result: result
@@ -62,6 +70,15 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                                         bucket.save()
                                             .then(
                                                 result => {
+                                                    // insert keys
+                                                    Bucket.updateOne(
+                                                        {bucketId : bucketId},
+                                                        {$addToSet : {keys : keys}}
+                                                    )
+                                                        .then(resu => console.log(resu))
+                                                        .catch(err => console.log(err));
+
+
                                                     res.json({
                                                         status: 'success',
                                                         result: result,
@@ -97,19 +114,19 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                     form.once('end', () => {
                         console.log('Done!');
                         console.log(keys);
-                        Bucket.updateOne(
-                            {bucketId : bucketId},
-                            {$addToSet : {keys : keys}}
-                        )
-                            .then(result => console.log(result))
-                            .catch(err => console.log(err));
+                        // Bucket.updateOne(
+                        //     {bucketId : bucketId},
+                        //     {$addToSet : {keys : keys}}
+                        // )
+                        //     .then(result => console.log(result))
+                        //     .catch(err => console.log(err));
 
                     });
 
                     form.on('data', ({ name, key, value, buffer, start, end}) => {
                         // console.log(`keys : ${key} , value : ${value}`);
                         keys.push(key);
-                        values.push(value);
+                        // values.push(value);
                         hello.push({ key : value});
 
                     });
