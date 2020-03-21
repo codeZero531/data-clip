@@ -115,10 +115,19 @@ router.post('/create-bucket',verifyToken, (req, res, next) => {
 
                     table.save()
                         .then(
-                            result => res.send(result)
+                            result => {
+                                res.json({
+                                    message: 'Form create successfully!',
+                                    data: result
+                                })
+                            }
                         )
                         .catch(
-                            err => res.send(err)
+                            err => {
+                                res.json({
+                                    message: err.message
+                                })
+                            }
                         );
                 }else {
                     //site not belong to user id
@@ -156,10 +165,19 @@ router.post('/create-site',verifyToken ,(req, res, next) => {
                 });
                 table.save()
                     .then(
-                        result => res.send(result)
+                        result => {
+                            res.json({
+                                message: 'Site create successfully!',
+                                data: result
+                            })
+                        }
                     )
                     .catch(
-                        err => res.send(err)
+                        err => {
+                            res.json({
+                                message: err.message
+                            })
+                        }
                     );
             }
         )

@@ -13,7 +13,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class SidebarComponent implements OnInit {
   sites: any;
   loadSite: string;
-  siteForm: FormGroup
+  siteForm: FormGroup;
+  bucketForm: FormGroup;
 
   constructor(
     private mainService: MainService,
@@ -38,6 +39,11 @@ export class SidebarComponent implements OnInit {
       siteName: ['', Validators.required],
       hostName: ['', Validators.required],
     });
+
+    this.bucketForm = this.fb.group({
+      bucketName: ['', Validators.required],
+      siteId: [localStorage.getItem('siteId'), Validators.required],
+    });
   }
 
   onSiteClick(siteName: string, siteId: string) {
@@ -59,6 +65,24 @@ export class SidebarComponent implements OnInit {
         res => {
           this.flashMessage.show(res.message, {cssClass: 'alert-success text-center' , timeout: 5000});
           this.siteForm.reset();
+          location.reload();
+
+        },
+        error => {
+          this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center' , timeout: 5000});
+
+        }
+      );
+
+  }
+
+  createBucketOnSubmit() {
+    this.mainService.createBucket(this.bucketForm.value)
+      .subscribe(
+        res => {
+          this.flashMessage.show(res.message, {cssClass: 'alert-success text-center' , timeout: 5000});
+          this.siteForm.reset();
+          location.reload();
 
         },
         error => {

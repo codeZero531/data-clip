@@ -25,5 +25,8 @@ export class MainService {
   createSite(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/create-site`, data);
   }
+  createBucket(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/create-bucket`, data);
+  }
 
 }
