@@ -60,6 +60,7 @@ export class SettingsComponent implements OnInit {
       .subscribe(
         res => {
           this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000})
+          this.ngOnInit();
         },
         error => {
           this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000})
@@ -67,8 +68,19 @@ export class SettingsComponent implements OnInit {
         }
       );
   }
-  onFormDelete(id: string) {
-
+  onFormDelete(id: string, name: string) {
+    if(confirm("Are you sure to delete "+name+" ?")) {
+      this.mainService.deleteFormFromId(id)
+        .subscribe(
+          res => {
+            this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000})
+            this.ngOnInit()
+          },
+          error => {
+            this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000})
+          }
+        );
+    }
   }
   onFormEdit(id: string) {
     console.log(id);

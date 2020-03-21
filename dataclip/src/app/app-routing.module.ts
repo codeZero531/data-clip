@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+
+
 import {HomeComponent} from "./components/home/home.component";
 import {LOGINComponent} from "./components/login/login.component";
 import {SignupComponent} from "./components/signup/signup.component";
@@ -9,6 +9,8 @@ import {CreateComponent} from "./components/site/create/create.component";
 import {CodeComponent} from "./components/site/code/code.component";
 import {SidebarComponent} from "./components/site/sidebar/sidebar.component";
 import {SettingsComponent} from "./components/site/settings/settings.component";
+import {RouterModule, Routes} from "@angular/router";
+import {NgModule} from "@angular/core";
 
 
 const routes: Routes = [
