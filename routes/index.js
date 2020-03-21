@@ -42,7 +42,7 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                                         //bucket data have. push data
                                         Bucket.updateOne(
                                             {bucketId : bucketId},
-                                            {$push : {data : fields}}
+                                            {$push : {data : fields}, updatedAt: Date.now()},
                                         )
                                             .then(result => {
                                                 //insert keys
@@ -73,7 +73,7 @@ router.post('/:userId/:bucketId', function(req, res, next) {
                                                     // insert keys
                                                     Bucket.updateOne(
                                                         {bucketId : bucketId},
-                                                        {$addToSet : {keys : keys}}
+                                                        {$addToSet : {keys : keys}, updatedAt: Date.now()},
                                                     )
                                                         .then(resu => console.log(resu))
                                                         .catch(err => console.log(err));

@@ -24,6 +24,8 @@ import {FlashMessagesModule} from "angular2-flash-messages";
 import { CodeComponent } from './components/site/code/code.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+import {csvDownloader} from "./services/csv-downloader";
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     DashboardComponent,
     CreateComponent,
     CodeComponent,
+    DateAgoPipe,
+    csvDownloader
 
   ],
   imports: [
