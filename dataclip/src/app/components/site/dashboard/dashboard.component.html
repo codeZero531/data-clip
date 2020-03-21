@@ -4,17 +4,19 @@
 <!--{{bucketData | json}}-->
 <i><h1>{{siteName}}</h1></i>
 <hr>
-<h4>Your Buckets</h4>
-<hr>
-<!--<span *ngFor="let d of data" class="test">-->
+<h4>Your Buckets  <small class="text-muted">({{data.length}})</small></h4>
+<!--<hr>-->
+<!--<button *ngFor="let d of data" class="test test1">-->
 <!--  <a (click)="loadData(d.bucketId)" class="text-decoration-none" style="cursor: pointer">{{d.bucketName}} </a>-->
-<!--</span>-->
+<!--</button>-->
 
-<div class="row mt-3 test " *ngFor="let d of data" >
-  <div class="col">
-    <a (click)="loadData(d.bucketId)" class="text-decoration-none" style="cursor: pointer">{{d.bucketName}} </a>
-  </div>
-</div>
+<button routerLinkActive="active" (click)="loadData(d.bucketId)" *ngFor="let d of data" class="button button1">{{d.bucketName}}</button>
+
+<!--<div class="row mt-3 test " *ngFor="let d of data" >-->
+<!--  <div class="col">-->
+<!--    <a (click)="loadData(d.bucketId)" class="text-decoration-none" style="cursor: pointer">{{d.bucketName}} </a>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div *ngIf="isLoadingStart && isBucketDataHave" class="row justify-content-center mt-5 p-5">
   <div class="col-2">
@@ -27,6 +29,7 @@
 <div class="row justify-content-center mt-5 p-5" *ngIf="!isBucketDataHave && isLoadingStart">
   <div class="col-4 text-center">
       <h3 style="color: #43cea2">No Form Data</h3>
+      <h3 style="color: #43cea2"><a routerLink="code">Add code to your form</a></h3>
   </div>
 </div>
 
@@ -70,3 +73,4 @@
 <!--{{bucketDataCount}}-->
 
 <!--{{keys | json}}-->
+

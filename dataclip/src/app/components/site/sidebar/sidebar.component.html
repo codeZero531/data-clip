@@ -1,8 +1,8 @@
 <div class="wrapper d-flex align-items-stretch">
   <nav id="sidebar">
-    <div class="w-100 bg-dark mx-auto text-center pt-2 text-white" style="height: 60px">
-          <h6 class="text-white">Janaka Edirisinghe</h6>
-      {{loadSite}}
+    <div class="w-100 bg-dark mx-auto text-center p-3 text-white" >
+          <h5 class="" style="color: #43cea2">{{user.name}}</h5>
+          {{loadSite}}
     </div>
 
     <div class="p-4 pt-5">
@@ -16,8 +16,8 @@
             </li>
           </ul>
         </li>
-        <li routerLinkActive="active">
-          <a data-toggle="modal" data-target="#createFormModal"><i class="far fa-plus-square"></i>Create Form</a>
+        <li *ngIf="isSiteSelected()"  routerLinkActive="active">
+          <a  data-toggle="modal" data-target="#createFormModal"><i class="far fa-plus-square"></i>Create Form</a>
         </li>
         <li routerLinkActive="active">
           <a data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-plus-square"></i>Create Site</a>

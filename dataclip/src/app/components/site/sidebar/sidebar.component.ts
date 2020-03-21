@@ -15,6 +15,9 @@ export class SidebarComponent implements OnInit {
   loadSite: string;
   siteForm: FormGroup;
   bucketForm: FormGroup;
+  user: any;
+
+
 
   constructor(
     private mainService: MainService,
@@ -26,6 +29,7 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user  = this.authService.getUser();
 
     this.loadSite = this.activatedRoute.snapshot.paramMap.get('name');
     console.log(this.loadSite);
@@ -91,6 +95,10 @@ export class SidebarComponent implements OnInit {
         }
       );
 
+  }
+
+  isSiteSelected() {
+    return !!localStorage.getItem('siteId');
   }
 
 
