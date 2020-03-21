@@ -26,6 +26,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import {csvDownloader} from "./services/csv-downloader";
+import { SettingsComponent } from './components/site/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {csvDownloader} from "./services/csv-downloader";
     CreateComponent,
     CodeComponent,
     DateAgoPipe,
-    csvDownloader
+    csvDownloader,
+    SettingsComponent
 
   ],
   imports: [

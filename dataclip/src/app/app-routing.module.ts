@@ -8,6 +8,7 @@ import {DashboardComponent} from "./components/site/dashboard/dashboard.componen
 import {CreateComponent} from "./components/site/create/create.component";
 import {CodeComponent} from "./components/site/code/code.component";
 import {SidebarComponent} from "./components/site/sidebar/sidebar.component";
+import {SettingsComponent} from "./components/site/settings/settings.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'site/:name/:id', component: SidebarComponent, children: [
       {path: '', component: DashboardComponent},
       {path: 'code', component: CodeComponent},
-      {path: 'create', component: CreateComponent}
+      {path: 'create', component: CreateComponent},
+      {path: 'settings', component: SettingsComponent}
     ]},
 ];
 

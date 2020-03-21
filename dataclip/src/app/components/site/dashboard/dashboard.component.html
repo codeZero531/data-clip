@@ -29,7 +29,7 @@
   <div class="clearfix mt-4">
     <div class="float-right">
       <button (click)="downloadJson(bucketData)" mat-raised-button color="accent">download Json</button>
-      <csv-downloader class="ml-3" [data]="bucketData" [headers]="keys"></csv-downloader>
+      <csv-downloader class="ml-3" [fileName]="siteName" [data]="bucketData" [headers]="keys"></csv-downloader>
     </div>
 
   </div>

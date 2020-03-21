@@ -67,7 +67,7 @@ export class csvDownloader {
     this.renderer.setElementStyle(anchor, 'visibility', 'hidden');
     this.renderer.setElementAttribute(anchor, 'href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(data));
     this.renderer.setElementAttribute(anchor, 'target', '_blank');
-    this.renderer.setElementAttribute(anchor, 'download', this.fileName);
+    this.renderer.setElementAttribute(anchor, 'download', this.fileName+'.csv');
 
     setTimeout(() => {
       this.renderer.invokeElementMethod(anchor, 'click');
