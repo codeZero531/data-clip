@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   isLoaded = false;
   isLoadingStart = false;
   lastEntryDate: any;
+  isBucketDataHave: boolean;
 
 
   constructor(
@@ -36,15 +37,23 @@ export class DashboardComponent implements OnInit {
   }
 
   loadData(bucketId: string) {
+    this.isBucketDataHave = false;
     this.isLoadingStart = true;
     console.log(bucketId);
     this.mainService.getBucketData(bucketId)
       .subscribe(
         res => {
           this.bucketData = res[0].data;
+
+          if (this.bucketData.length !==0 ) {
+            this.isBucketDataHave = true;
+          }
+
+          //date sort accending
           this.bucketData.sort((val1, val2)=> {
             // @ts-ignore
             return new Date(val2.date) - new Date(val1.date)});
+
           console.log(res[0]);
           this.lastEntryDate = res[0].updatedAt;
           this.keys = res[0].keys;
