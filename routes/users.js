@@ -232,7 +232,7 @@ router.get('/get-site-from-id/:id', verifyToken ,(req, res, next) => {
 });
 
 //site Update
-router.post('/site-update', (req, res, next) => {
+router.post('/site-update',verifyToken,(req, res, next) => {
     Site.updateOne(
         {_id: req.body.siteId},
         {siteName: req.body.siteName, host: req.body.host}
@@ -248,6 +248,32 @@ router.post('/site-update', (req, res, next) => {
             })
         });
 
+});
+
+//delete bucket (form) from bucket id
+router.get('/bucket-delete/:id', verifyToken,(req, res, next) => {
+    const bucketId = req.params.id;
+   Table.deleteOne({bucketId: bucketId})
+       .then(
+           result => {
+               Bucket.deleteOne({bucketId: bucketId})
+                   .then(
+                       result => res.json({
+                           message: 'form and data delete successfully!'
+                       })
+                   )
+                   .catch(
+                       err => res.json({
+                           message: err.message
+                       })
+                   );
+           }
+       )
+       .catch(
+           err => res.json({
+               message: err.message
+           })
+       );
 });
 
 

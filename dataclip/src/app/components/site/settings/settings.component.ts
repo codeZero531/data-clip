@@ -13,12 +13,14 @@ export class SettingsComponent implements OnInit {
   siteId: string;
 
   site: any;
+  forms: any;
   siteUpdateForm: FormGroup;
 
   constructor(
     private mainService: MainService,
     private fb: FormBuilder,
-    private flashMessage: FlashMessagesService
+    private flashMessage: FlashMessagesService,
+
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,15 @@ export class SettingsComponent implements OnInit {
         error => console.log(error)
       );
 
+    this.mainService.getForms(this.siteId)
+      .subscribe(
+        res => {
+          this.forms = res;
+          console.log(this.forms);
+        },
+        error => console.log(error)
+      );
+
 
   }
   onUpdate() {
@@ -55,6 +66,13 @@ export class SettingsComponent implements OnInit {
 
         }
       );
+  }
+  onFormDelete(id: string) {
+
+  }
+  onFormEdit(id: string) {
+    console.log(id);
+
   }
 
 }

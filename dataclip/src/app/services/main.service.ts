@@ -34,5 +34,8 @@ export class MainService {
   sitDetailsUpdate(data: any):Observable<any> {
     return this.http.post(`${this.baseUrl}/users/site-update`, data);
   }
+  deleteFormFromId(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/bucket-delete/${id}`);
+  }
 
 }

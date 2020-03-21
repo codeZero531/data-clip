@@ -41,7 +41,7 @@ import { SettingsComponent } from './components/site/settings/settings.component
     CodeComponent,
     DateAgoPipe,
     csvDownloader,
-    SettingsComponent
+    SettingsComponent,
 
   ],
   imports: [
