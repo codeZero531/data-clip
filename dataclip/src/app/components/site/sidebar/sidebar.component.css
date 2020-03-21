@@ -11,6 +11,15 @@
 
 }
 
+i{
+  margin-right: 10px;
+}
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .content{
   background: #ECE9E6;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */

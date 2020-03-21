@@ -8,29 +8,29 @@
     <div class="p-4 pt-5">
 <!--      <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(assets/images/logo.jpg);"></a>-->
       <ul class="list-unstyled components mb-5">
-        <li class="active ">
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sites</a>
+        <li routerLinkActive="active">
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-layer-group"></i>Sites</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
-            <li *ngFor="let site of sites">
+            <li routerLinkActive="active" *ngFor="let site of sites">
               <a style="cursor: pointer" (click)="onSiteClick(site.siteName, site._id)">{{site.siteName}}</a>
             </li>
           </ul>
         </li>
-        <li>
-          <a routerLink="create">Create</a>
+        <li routerLinkActive="active">
+          <a routerLink="create"><i class="far fa-plus-square"></i>Create</a>
         </li>
 
-        <li>
-          <a routerLink="code">Placement Code</a>
+        <li routerLinkActive="active">
+          <a routerLink="code"><i class="fas fa-code"></i>Placement Code</a>
         </li>
-        <li>
-          <a routerLink="settings">Site Settings</a>
+        <li routerLinkActive="active">
+          <a routerLink="settings"><i class="fas fa-cog"></i>Site Settings</a>
         </li>
-        <li>
-          <a href="#">Api Key</a>
+        <li routerLinkActive="active">
+          <a href="#"><i class="fas fa-key"></i>Api Key</a>
         </li>
-        <li>
-          <a (click)="logOut()">Logout</a>
+        <li routerLinkActive="active">
+          <a  (click)="logOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </li>
       </ul>
 
