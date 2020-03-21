@@ -218,5 +218,37 @@ router.get('/get-site/:id', verifyToken, (req, res, next) => {
 
 });
 
+//get site data from siteid
+router.get('/get-site-from-id/:id', verifyToken ,(req, res, next) => {
+    const siteId = req.params.id;
+    Site.findById(siteId)
+        .then(
+            result => {
+                res.send(result)
+            }
+        )
+        .catch(err => res.send(err));
+
+});
+
+//site Update
+router.post('/site-update', (req, res, next) => {
+    Site.updateOne(
+        {_id: req.body.siteId},
+        {siteName: req.body.siteName, host: req.body.host}
+    )
+        .then(
+            result => res.json({
+                message : 'site details update successfully!'
+            })
+        )
+        .catch(err => {
+            res.json({
+                message: err.message
+            })
+        });
+
+});
+
 
 module.exports = router;

@@ -28,5 +28,11 @@ export class MainService {
   createBucket(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/create-bucket`, data);
   }
+  getSiteDataFromId(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/get-site-from-id/${id}`);
+  }
+  sitDetailsUpdate(data: any):Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/site-update`, data);
+  }
 
 }
