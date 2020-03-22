@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,15 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private flashMessage: FlashMessagesService
   ) { }
 
   getUser() {
     return JSON.parse(localStorage.getItem('user'));
   }
   logout() {
+    this.flashMessage.show('logout successfully!', {cssClass: 'alert-success' ,timeout: 5000});
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('siteId');

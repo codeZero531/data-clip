@@ -32,7 +32,7 @@ export class LOGINComponent implements OnInit {
       .subscribe(
         res => {
           if (res.status === true) {
-            this.flashMessage.show(res.message, {cssClass: 'alert-success text-center mx-auto w-25 mt-4', timeout: 5000})
+            this.flashMessage.show(res.message, {cssClass: 'alert-success', timeout: 5000})
 
             //success
             console.log(res);
@@ -47,7 +47,7 @@ export class LOGINComponent implements OnInit {
             this.router.navigate(['site']);
           } else {
             //invalid
-            this.flashMessage.show(res.message, {cssClass: 'alert-danger text-center mx-auto w-25 mt-4', timeout: 5000})
+            this.flashMessage.show(res.message, {cssClass: 'alert-danger ', timeout: 5000})
           }
         }
       );
