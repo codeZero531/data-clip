@@ -27,6 +27,9 @@ export class LOGINComponent implements OnInit {
       password: ['', [Validators.required]]
     });
   }
+  get formcontrols() {
+    return this.loginForm.controls;
+  }
   onSubmit() {
     this.authService.login(this.loginForm.value)
       .subscribe(
