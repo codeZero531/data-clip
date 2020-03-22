@@ -23,13 +23,13 @@
           <a data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-plus-square"></i>Create Site</a>
         </li>
 
-        <li routerLinkActive="active">
+        <li *ngIf="isSiteSelected()" routerLinkActive="active">
           <a routerLink="code"><i class="fas fa-code"></i>Placement Code</a>
         </li>
-        <li routerLinkActive="active">
+        <li *ngIf="isSiteSelected()" routerLinkActive="active">
           <a routerLink="settings"><i class="fas fa-cog"></i>Site Settings</a>
         </li>
-        <li routerLinkActive="active">
+        <li *ngIf="isSiteSelected()" routerLinkActive="active">
           <a href="#"><i class="fas fa-key"></i>Api Key</a>
         </li>
         <li routerLinkActive="active">

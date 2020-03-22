@@ -17,6 +17,8 @@ export class SidebarComponent implements OnInit {
   bucketForm: FormGroup;
   user: any;
 
+  isSelectSite = false;
+
 
 
   constructor(
