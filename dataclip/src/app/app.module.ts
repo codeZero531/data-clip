@@ -31,6 +31,7 @@ import {CreateComponent} from "./components/site/create/create.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {NgModule} from "@angular/core";
     DateAgoPipe,
     csvDownloader,
     SettingsComponent,
+    NavBarComponent,
 
   ],
   imports: [
