@@ -15,6 +15,8 @@ export class SettingsComponent implements OnInit {
   site: any;
   forms: any;
   siteUpdateForm: FormGroup;
+  formName: string;
+  formId: string;
 
   constructor(
     private mainService: MainService,
@@ -82,9 +84,14 @@ export class SettingsComponent implements OnInit {
         );
     }
   }
-  onFormEdit(id: string) {
-    console.log(id);
+  onFormEdit(id: string, name: string) {
+    this.formName = name;
+    this.formId = id;
+  }
 
+  onFormEditSubmit(name: string, id: string) {
+    console.log(name)
+    console.log(id)
   }
 
 }

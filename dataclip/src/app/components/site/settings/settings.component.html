@@ -26,7 +26,7 @@
     <div class="float-left"><h5>{{form.bucketName}} </h5></div>
     <div class="float-right form-update-link">
       <a (click)="onFormDelete(form.bucketId, form.bucketName)">delete</a>
-      <a (click)="onFormEdit(form.bucketId)">edit</a>
+      <a data-toggle="modal" data-target="#createFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
     </div>
   </div>
 </div>
@@ -37,3 +37,31 @@
 <i><h3 class="mt-5">Delete site</h3></i>
 <hr>
 <a href="">Delete "boardima.com" and it's all data</a>
+
+
+
+<!-- update form Modal -->
+<div class="modal fade" id="createFormModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createFormModalTitle">Form Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-4">
+        <form  >
+          <div class="form-group">
+            <label for="">Form Name</label>
+            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="formName" placeholder="Ex: contact form" type="text" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onFormEditSubmit(formName,formId)" data-dismiss="modal">Create</button>
+      </div>
+    </div>
+  </div>
+</div>

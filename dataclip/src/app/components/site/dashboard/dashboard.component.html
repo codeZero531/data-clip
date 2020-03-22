@@ -66,9 +66,12 @@
     </tr>
     </tbody>
   </table>
-<mat-progress-bar mode="determinate" value="{{bucketDataCount}}" color="accent"></mat-progress-bar>
-  {{bucketDataCount}}% <small class="text-muted">capacity</small>
+  <hr>
+<mat-progress-bar mode="determinate" value="{{(bucketDataCount/500)*100}}" color="accent"></mat-progress-bar>
+  {{(bucketDataCount/500)*100}}% <small class="text-muted">capacity</small>
 </span>
+
+<div class="mb-5 pb-5"></div>
 
 <!--{{bucketDataCount}}-->
 

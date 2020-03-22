@@ -30,7 +30,7 @@ export class LOGINComponent implements OnInit {
             //success
             console.log(res);
             localStorage.setItem('token', res.token);
-            const data = {name: res.result[0].name, email: res.result[0].email, id: res.result[0]._id};
+            const data = {name: res.result[0].name, email: res.result[0].email, id: res.result[0]._id, type: res.result[0].type};
             localStorage.setItem('user', JSON.stringify(data));
             this.router.navigate(['site']);
           } else {
