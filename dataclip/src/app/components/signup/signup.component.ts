@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -22,9 +24,9 @@ export class SignupComponent implements OnInit {
       this.router.navigate(['site']);
     }
     this.form = this.fb.group({
-      name : [''],
-      email : [''],
-      password: ['']
+      name : ['', Validators.required],
+      email : ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
   onSubmit() {
@@ -33,9 +35,11 @@ export class SignupComponent implements OnInit {
         res => {
           if (res.status) {
             //success
-              console.log(res)
+            this.flashMessage.show(res.message, {cssClass: 'alert-success', timeout: 5000});
+             this.router.navigate(['login']);
           } else {
             //invalid
+            this.flashMessage.show(res.message, {cssClass: 'alert-danger', timeout: 5000})
           }
         }
       );

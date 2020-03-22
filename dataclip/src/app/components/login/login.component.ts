@@ -31,7 +31,7 @@ export class LOGINComponent implements OnInit {
     this.authService.login(this.loginForm.value)
       .subscribe(
         res => {
-          if (res.status === true) {
+          if (res.status) {
             this.flashMessage.show(res.message, {cssClass: 'alert-success', timeout: 5000})
 
             //success

@@ -18,7 +18,7 @@ router.post('/register', (req, res, next) => {
            result => {
                if (result.length === 1) {
                    //email already exits
-                   res.status(400).json({
+                   res.status(203).json({
                        message: 'email already exists!',
                        status: false
                    });
@@ -43,7 +43,7 @@ router.post('/register', (req, res, next) => {
                             )
                             .catch(
                                 err => {
-                                    res.status(400).json({
+                                    res.status(203).json({
                                         message: err.message,
                                         status: false
                                     });

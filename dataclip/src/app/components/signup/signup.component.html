@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 
 
 <div class="container">
@@ -22,7 +23,7 @@
             <label class="float-left" for="">Password</label>
             <input formControlName="password" type="password" class="form-control">
           </div>
-          <button class="btn btn-primary btn-block">Register</button>
+          <button [disabled]="!form.valid" class="btn btn-primary btn-block">Register</button>
         </form>
       </small>
     </div>
