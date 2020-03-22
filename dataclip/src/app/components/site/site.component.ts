@@ -12,6 +12,8 @@ export class SiteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    localStorage.removeItem('siteName');
+    localStorage.removeItem('siteId');
   }
 
 }
