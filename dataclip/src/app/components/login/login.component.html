@@ -17,7 +17,8 @@
             <label class="float-left" for="">Password</label>
             <input formControlName="password" type="password" class="form-control">
           </div>
-          <button class="btn btn-primary btn-block">Login</button>
+          <button [disabled]="loginForm.invalid" class="btn btn-primary pr-4 pl-4">Login</button>
+            <span class="text-muted ml-3"><a routerLink="/signup">Signup instead</a></span>
         </form>
       </small>
     </div>

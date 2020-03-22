@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
@@ -23,8 +23,8 @@ export class LOGINComponent implements OnInit {
       this.router.navigate(['site']);
     }
     this.loginForm = this.fb.group({
-      email : [''],
-      password: ['']
+      email : ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
   onSubmit() {
