@@ -75,11 +75,11 @@ export class SettingsComponent implements OnInit {
       this.mainService.deleteFormFromId(id)
         .subscribe(
           res => {
-            this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000})
+            this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000});
             this.ngOnInit()
           },
           error => {
-            this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000})
+            this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
           }
         );
     }
@@ -90,8 +90,19 @@ export class SettingsComponent implements OnInit {
   }
 
   onFormEditSubmit(name: string, id: string) {
-    console.log(name)
-    console.log(id)
+    console.log(name);
+    console.log(id);
+    const data = {bucketId: id, bucketName: name};
+    this.mainService.updateFormName(data)
+      .subscribe(
+        res => {
+          this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000});
+          this.ngOnInit()
+        },
+        error => {
+          this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
+        }
+      );
   }
 
 }

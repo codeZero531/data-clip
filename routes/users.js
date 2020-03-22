@@ -276,5 +276,20 @@ router.get('/bucket-delete/:id', verifyToken,(req, res, next) => {
        );
 });
 
+//pdate bucket name from id
+router.post('/update-bucket-name', verifyToken,(req, res, next) => {
+    Table.updateOne({bucketId: req.body.bucketId}, {$set: {bucketName: req.body.bucketName}})
+        .then(
+            result => res.json({
+                message: 'form name update successfully!'
+            })
+        )
+        .catch(
+            err => res.json({
+                message: err.message
+            })
+        );
+});
+
 
 module.exports = router;
