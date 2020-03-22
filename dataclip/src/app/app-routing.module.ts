@@ -11,14 +11,18 @@ import {SidebarComponent} from "./components/site/sidebar/sidebar.component";
 import {SettingsComponent} from "./components/site/settings/settings.component";
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
+import {AuthGuard} from "./guards/auth.guard";
+import {SiteSelectGuard} from "./guards/site-select.guard";
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LOGINComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'site', component: SiteComponent},
-  {path: 'site/:name/:id', component: SidebarComponent, children: [
+  {path: 'site',canActivate: [AuthGuard] ,component: SidebarComponent, children: [
+      {path: '', component: SiteComponent}
+    ]},
+  {path: 'site/:name/:id', component: SidebarComponent, canActivate: [AuthGuard, SiteSelectGuard],children: [
       {path: '', component: DashboardComponent},
       {path: 'code', component: CodeComponent},
       {path: 'create', component: CreateComponent},

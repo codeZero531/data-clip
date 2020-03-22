@@ -291,5 +291,40 @@ router.post('/update-bucket-name', verifyToken,(req, res, next) => {
         );
 });
 
+//delete site  from site id and all forms and data
+router.get('/site-delete/:id', verifyToken,(req, res, next) => {
+    const siteId = req.params.id;
+    Site.deleteOne({_id: siteId})
+        .then(
+            result => {
+                Table.deleteMany({site: siteId})
+                    .then(result => {
+                        Bucket.deleteMany({site: siteId})
+                            .then(
+                                result => {
+                                    res.json({
+                                        message: 'site and data delete successfully!'
+                                    })
+                                }
+                            )
+                            .catch(err => {
+                                res.json({
+                                    message: err.message
+                                })
+                            });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.send(err);
+                    });
+            }
+        )
+        .catch(
+            err => console.log(err)
+        );
+
+
+});
+
 
 module.exports = router;

@@ -35,6 +35,7 @@ router.post('/:userId/:bucketId', async function (req, res, next) {
     if (!bucket) {
         return res.send('no bucket belongs to user');
     }
+    const siteName = bucket.site;
 
     // no bucket belongs to user
     if (bucketData && bucketData.data.length >= dataLimit) {
@@ -79,7 +80,8 @@ router.post('/:userId/:bucketId', async function (req, res, next) {
                         const bucket = new Bucket({
                             _id: new mongoose.Types.ObjectId(),
                             bucketId: bucketId,
-                            data: fields
+                            data: fields,
+                            site: siteName
                         });
                         bucket.save()
                             .then(

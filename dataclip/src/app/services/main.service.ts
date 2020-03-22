@@ -13,6 +13,9 @@ export class MainService {
     private http: HttpClient
   ) { }
 
+  isSiteSelected(){
+    return !!localStorage.getItem('siteId');
+  }
   getSites(): Observable<any> {
     return this.http.get(`${this.baseUrl}/users/get-sites`)
   }
@@ -40,5 +43,9 @@ export class MainService {
   updateFormName(data: any): Observable<any>{
     return this.http.post(`${this.baseUrl}/users/update-bucket-name`, data);
   }
+  deleteSiteData(id: string): Observable<any>{
+    return this.http.get(`${this.baseUrl}/users/site-delete/${id}`);
+  }
+
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../services/main.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
@@ -22,6 +23,7 @@ export class SettingsComponent implements OnInit {
     private mainService: MainService,
     private fb: FormBuilder,
     private flashMessage: FlashMessagesService,
+    private router: Router
 
   ) { }
 
@@ -103,6 +105,22 @@ export class SettingsComponent implements OnInit {
           this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
         }
       );
+  }
+  onDeleteSiteData(id: string) {
+    if (confirm("Are you sure to delete '" + this.siteName + "' and all data ?")) {
+      this.mainService.deleteSiteData(id)
+        .subscribe(
+          res => {
+            this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000});
+            localStorage.removeItem('siteName');
+            localStorage.removeItem('siteId');
+            this.router.navigate(['site']);
+          },
+          error => {
+            this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
+          }
+        );
+    }
   }
 
 }
