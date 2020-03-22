@@ -3,7 +3,7 @@
     /*font-family: 'Inconsolata', monospace;*/
 
   }
-.top-canvas{
+.top-canvads{
   height: 100%;
   /*background: #B24592;  !* fallback for old browsers *!*/
   /*background: -webkit-linear-gradient(to right, #F15F79, #B24592);  !* Chrome 10-25, Safari 5.1-6 *!*/
@@ -21,11 +21,25 @@
   /*background: -webkit-linear-gradient(to right, #33001b, #ff0084);  !* Chrome 10-25, Safari 5.1-6 *!*/
   /*background: linear-gradient(to right, #33001b, #ff0084); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
 
-
-
-
-
 }
+  .top-canvas {
+    height: 100%;
+    background: linear-gradient(-45deg, #185a9d, #43cea2, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 50s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 .nav-item{
   cursor: pointer;
