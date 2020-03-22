@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,14 @@ export class LOGINComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
+    if (this.authService.loggedIn()){
+      this.router.navigate(['site']);
+    }
     this.loginForm = this.fb.group({
       email : [''],
       password: ['']
@@ -27,14 +32,22 @@ export class LOGINComponent implements OnInit {
       .subscribe(
         res => {
           if (res.status === true) {
+            this.flashMessage.show(res.message, {cssClass: 'alert-success text-center mx-auto w-25 mt-4', timeout: 5000})
+
             //success
             console.log(res);
             localStorage.setItem('token', res.token);
-            const data = {name: res.result[0].name, email: res.result[0].email, id: res.result[0]._id, type: res.result[0].type};
+            const data = {
+              name: res.result[0].name,
+              email: res.result[0].email,
+              id: res.result[0]._id,
+              type: res.result[0].type
+            };
             localStorage.setItem('user', JSON.stringify(data));
             this.router.navigate(['site']);
           } else {
             //invalid
+            this.flashMessage.show(res.message, {cssClass: 'alert-danger text-center mx-auto w-25 mt-4', timeout: 5000})
           }
         }
       );

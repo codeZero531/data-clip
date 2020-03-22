@@ -10,6 +10,7 @@ import {AuthService} from "../../services/auth.service";
 export class HomeComponent implements OnInit {
   isSubmit: boolean;
   user: any;
+  isLogin: boolean;
 
   form: FormGroup;
   constructor(
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLogin = this.authService.loggedIn();
     this.isSubmit = false;
     this.form = this.fb.group({
       email : [''],

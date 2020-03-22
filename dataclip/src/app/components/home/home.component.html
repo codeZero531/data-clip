@@ -14,11 +14,14 @@
               <li class="nav-item">
                 <span class="nav-link" href="#">Uses</span>
               </li>
-              <li class="nav-item">
+              <li *ngIf="!isLogin" class="nav-item">
                 <span class="nav-link" routerLink="/login">Login</span>
               </li>
-              <li class="nav-item">
+              <li *ngIf="!isLogin" class="nav-item">
                 <span class="nav-link" routerLink="/signup">Signup</span>
+              </li>
+              <li *ngIf="isLogin" class="nav-item">
+                <span class="nav-link" routerLink="/signup">Home</span>
               </li>
 
             </ul>
@@ -26,18 +29,21 @@
         </nav>
       </div>
     </div>
-    <div class="text-center pt-3">
+    <div class="text-center pt-5 mt-5 mb-5">
       <i class="fas fa-paperclip fa-4x mb-4"></i>
       <h1>A server for your HTML forms</h1>
       <hr class="w-50 bg-white">
       <div class="col-md-3 mx-auto"><h5>Collect info from users without a server—Dataclip is your server. Lead capture forms, surveys, newsletter forms, contact forms, etc. Setup any form in seconds.</h5></div>
       <button routerLink="/signup" class="btn btn-primary top-button mt-4">Signup for free</button>
     </div>
+  <div class="row justify-content-center mt-5 ">
+   
+  </div>
 </div>
 <!--end of the section-->
 
   <div class="mx-auto clearfix">
-    <div class="text-center p-5">
+    <div class="text-center mt-5 p-5">
 
       <h3>Get Your Data Via</h3>
       <hr class="" style="background-color: #43cea2; width: 30px">
@@ -154,7 +160,7 @@
   <div class="row m-5 p-5">
     <div class="col"></div>
     <div class="col">
-      <img src="assets/images/vector2.svg" alt="" class="w-100">
+      <img src="assets/images/home.svg" alt="" class="w-100">
     </div>
     <div class="col pl-5 pt-5">
       <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fugiat ipsa itaque, laboriosam maxime minus molestias nulla quas ratione recusandae sint ullam? At eligendi modi nemo optio quo tempore voluptate?</h4>
