@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 const shortId = require('shortid');
 const verifyToken = require('../function/verifyToken');
 
+
 const md5 = require('md5');
 
 router.get('/get-user', verifyToken, async (req, res, next) => {
@@ -63,6 +64,17 @@ router.post('/change-user-password',verifyToken, async (req, res, next) => {
                 res.status(203).json({status: false, message: 'old password not match!'})
             }
     });
+});
+
+router.get('/get-stats', verifyToken, async (req, res, next) => {
+
+   let siteCount = await  Site.countDocuments({user: req.userId});
+   let formCount = await  Table.countDocuments({user: req.userId});
+
+    await res.json({
+        siteCount: siteCount,
+        formCount: formCount
+    })
 });
 
 

@@ -47,4 +47,7 @@ export class AuthService {
   changePassword(data: any): Observable<any>{
     return this.http.post(`${this.baseUrl}/users/change-user-password`, data);
   }
+  getStats(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/get-stats`);
+  }
 }
