@@ -10,6 +10,7 @@ const saltRound = 10;
 const jwt = require('jsonwebtoken');
 const shortId = require('shortid');
 const verifyToken = require('../function/verifyToken');
+const nodemailer = require("nodemailer");
 
 
 const md5 = require('md5');
@@ -392,6 +393,8 @@ router.get('/site-delete/:id', verifyToken,(req, res, next) => {
 
 
 });
+
+
 
 
 module.exports = router;

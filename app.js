@@ -9,6 +9,7 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dataRouter = require('./routes/data');
+var mailRouter = require('./routes/mail');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/users', usersRouter);
 app.use('/', indexRouter);
 app.use('/api/data', dataRouter);
+app.use('/api/mail', mailRouter);
 
 
 
