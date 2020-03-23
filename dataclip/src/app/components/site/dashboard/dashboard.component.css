@@ -47,9 +47,7 @@ table {
   color: white;
 }
 
-.button1:active{
-  background-color: #00B7FF;
-}
+
 a{
   cursor: pointer;
   color: #43cea3;

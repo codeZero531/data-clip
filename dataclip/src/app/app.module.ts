@@ -35,6 +35,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AccountComponent } from './components/profile/account/account.component';
 import { PaymentComponent } from './components/profile/payment/payment.component';
+import { ApiComponent } from './components/site/api/api.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PaymentComponent } from './components/profile/payment/payment.component
     ProfileComponent,
     AccountComponent,
     PaymentComponent,
+    ApiComponent,
 
   ],
   imports: [

@@ -16,6 +16,7 @@ import {SiteSelectGuard} from "./guards/site-select.guard";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {AccountComponent} from "./components/profile/account/account.component";
 import {PaymentComponent} from "./components/profile/payment/payment.component";
+import {ApiComponent} from "./components/site/api/api.component";
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
       {path: '', component: DashboardComponent},
       {path: 'code', component: CodeComponent},
       {path: 'create', component: CreateComponent},
-      {path: 'settings', component: SettingsComponent}
+      {path: 'settings', component: SettingsComponent},
+      {path: 'api', component: ApiComponent},
     ]},
   {path: 'profile', component: ProfileComponent, children: [
       {path: 'settings', component: AccountComponent},
