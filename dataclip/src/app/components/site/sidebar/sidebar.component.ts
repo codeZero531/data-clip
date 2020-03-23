@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../services/main.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Event, NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -19,8 +19,7 @@ export class SidebarComponent implements OnInit {
 
   isSelectSite = false;
 
-
-
+  showIndicator = true;
   constructor(
     private mainService: MainService,
     private authService: AuthService,
@@ -28,11 +27,11 @@ export class SidebarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private flashMessage: FlashMessagesService,
     private fb: FormBuilder
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.authService.getUser().subscribe(res => this.user = res);
-
 
     this.loadSite = this.activatedRoute.snapshot.paramMap.get('name');
     console.log(this.loadSite);
