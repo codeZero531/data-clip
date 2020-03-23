@@ -11,11 +11,17 @@ const jwt = require('jsonwebtoken');
 const shortId = require('shortid');
 const verifyToken = require('../function/verifyToken');
 
-router.get('/get-user', verifyToken,(req, res, next) => {
+const md5 = require('md5');
+
+router.get('/get-user', verifyToken, async (req, res, next) => {
     const userId = req.userId;
+
     User.findById(userId)
         .then(
-            result => res.send(result)
+            result => {
+                result.avatar =  md5((result.email).toLocaleLowerCase());
+                res.send(result);
+            }
         )
         .catch(err => console.log(err));
 });
