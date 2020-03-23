@@ -10,7 +10,8 @@ const saltRound = 10;
 const jwt = require('jsonwebtoken');
 const shortId = require('shortid');
 const verifyToken = require('../function/verifyToken');
-const nodemailer = require("nodemailer");
+
+const smsSend = require('../function/mailSend');
 
 
 const md5 = require('md5');
@@ -92,18 +93,20 @@ router.post('/register', (req, res, next) => {
                    });
                } else {
                    //email not exists
+                   const confirmCode = shortId.generate();
                    bcrypt.hash(req.body.password, saltRound, function (err, hashPassword) {
                         const user = new User({
                             _id : new mongoose.Types.ObjectId(),
                             name: req.body.name,
                             email: req.body.email,
-                            password: hashPassword
+                            password: hashPassword,
+                            confirmCode: confirmCode
                         });
                         user.save()
                             .then(
                                 result => {
                                     res.status(201).json({
-                                        message: 'user sign-up success!',
+                                        message: 'user sign-up success, please check your email!',
                                         status: true,
                                         result: result
                                     });
@@ -133,16 +136,24 @@ router.post('/login', (req, res, next) => {
                     bcrypt.compare(req.body.password, result[0].password, function (err, rs) {
                         if (rs === true) {
                             // token genarate
-                            let payload = {subject: result[0]._id};
-                            console.log(payload);
-                            let token = jwt.sign(payload, 'janaka');
-                            //success
-                            res.status(200).json({
-                                message: 'Login successfully!',
-                                status: rs,
-                                result: result,
-                                token: token
-                            });
+                            if (result[0].confirm){
+                                let payload = {subject: result[0]._id};
+                                console.log(payload);
+                                let token = jwt.sign(payload, 'janaka');
+                                //success
+                                res.status(200).json({
+                                    message: 'Login successfully!',
+                                    status: rs,
+                                    result: result,
+                                    token: token
+                                });
+                            } else {
+                                res.status(203).json({
+                                    message: 'Please confirm your account!',
+                                    status: false
+                                });
+                            }
+
 
                         } else {
                             //password invalid
