@@ -1,0 +1,42 @@
+<div class="wrapper d-flex align-items-stretch">
+  <nav id="sidebar">
+    <div class="w-100 bg-dark mx-auto text-center p-3 text-white" >
+      <h5 class="" style="color: #43cea2">{{user.name}}</h5>
+      {{loadSite}}
+    </div>
+
+    <div class="p-4 pt-5">
+      <!--      <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(assets/images/logo.jpg);"></a>-->
+      <ul class="list-unstyled components mb-5">
+        <li  routerLinkActive="active">
+          <a  routerLink="/profile/settings"  ><i class="fas fa-user-cog"></i>Profile Settings</a>
+        </li>
+        <li routerLinkActive="active">
+          <a  routerLink="/profile/payment" ><i class="fas fa-money-check"></i>Plans and payments</a>
+        </li>
+
+      </ul>
+
+      <div class="footer">
+        <!--        <p>&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;-->
+        <!--          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>-->
+        <!--          &lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;</p>-->
+<!--        <p>Want your code to be notified of new submissions? <a href="">setup a webhook</a></p>-->
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content" class=" content" >
+    <app-nav-bar></app-nav-bar>
+    <!--    <h2 class="mb-4">Sidebar #01</h2>-->
+    <!--    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+    <!--    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+
+    <div class="pl-4 pr-4">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

@@ -13,6 +13,9 @@ import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {AuthGuard} from "./guards/auth.guard";
 import {SiteSelectGuard} from "./guards/site-select.guard";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {AccountComponent} from "./components/profile/account/account.component";
+import {PaymentComponent} from "./components/profile/payment/payment.component";
 
 
 const routes: Routes = [
@@ -28,6 +31,10 @@ const routes: Routes = [
       {path: 'create', component: CreateComponent},
       {path: 'settings', component: SettingsComponent}
     ]},
+  {path: 'profile', component: ProfileComponent, children: [
+      {path: 'settings', component: AccountComponent},
+      {path: 'payment', component: PaymentComponent}
+    ]}
 ];
 
 @NgModule({

@@ -1,0 +1,43 @@
+
+
+<div class="row justify-content-center mb-5 ">
+  <div class="col-md-3">
+    <i><h3 class="mt-4">profile settings</h3></i>
+    <hr>
+    <small class="text-muted ">You can change avatar on <a href="https://en.gravatar.com/" target="_blank">Gravatar</a></small>
+    <form (submit)="onUpdate()" >
+      <div class="form-group">
+        <label for="">Name</label>
+        <input [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}"  type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">Email</label>
+        <input disabled type="text"  class="form-control" placeholder="{{user.email}}">
+      </div>
+      <button [disabled]=" " mat-raised-button color="accent" class="btn-block">save</button>
+    </form>
+  </div>
+
+</div>
+
+
+<div class="row justify-content-center mb-5 ">
+  <div class="col-md-3">
+
+    <i><h3 class="mt-5">Password update</h3></i>
+    <hr>
+    <form (submit)="onUpdate()" >
+      <div class="form-group">
+        <label for="">Old Password</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">New Password</label>
+        <input  type="text"  class="form-control" >
+      </div>
+      <button [disabled]=" " mat-raised-button color="accent" class="btn-block">update password</button>
+    </form>
+  </div>
+
+</div>
+

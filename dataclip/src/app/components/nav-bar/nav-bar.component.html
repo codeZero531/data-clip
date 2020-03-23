@@ -3,7 +3,7 @@
   <div class="container-fluid">
 
         <span  id="sidebarCollapse" >
-            <i style="color: #43cea2" class="fas fa-paperclip mr-2"></i> <span> dataclip&trade;</span>
+            <i style="color: #43cea2" class="fas fa-paperclip mr-2"></i> <span routerLink="/site" style="cursor: pointer"> dataclip&trade;</span>
         </span>
     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa fa-bars"></i>
@@ -15,10 +15,13 @@
         <!--            </li>-->
 
         <li *ngIf="isLogin" class="nav-item">
-          <a class="nav-link" href="#">Payments and plans</a>
+          <a routerLink="/profile/payment" class="nav-link" href="#">Payments and plans</a>
         </li>
         <li *ngIf="isLogin" class="nav-item">
-          <a class="nav-link" href="#">Profile Setting</a>
+          <a routerLink="/profile/settings" class="nav-link" href="#">Profile Setting</a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <img src="https://www.gravatar.com/avatar/ed67cb4693d2e57724f41d5ef06a861a2?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar">
         </li>
 <!--        <li class="nav-item">-->
 <!--          <a class="nav-link" href="#">Logout</a>-->

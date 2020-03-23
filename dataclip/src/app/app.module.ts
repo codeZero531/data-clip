@@ -32,6 +32,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AccountComponent } from './components/profile/account/account.component';
+import { PaymentComponent } from './components/profile/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     csvDownloader,
     SettingsComponent,
     NavBarComponent,
+    ProfileComponent,
+    AccountComponent,
+    PaymentComponent,
 
   ],
   imports: [
