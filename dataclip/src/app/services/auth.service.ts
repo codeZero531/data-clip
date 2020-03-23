@@ -17,8 +17,9 @@ export class AuthService {
     private flashMessage: FlashMessagesService
   ) { }
 
-  getUser() {
-    return JSON.parse(localStorage.getItem('user'));
+  getUser(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/get-user`);
+    // return JSON.parse(localStorage.getItem('user'));
   }
   logout() {
     this.flashMessage.show('logout successfully!', {cssClass: 'alert-success' ,timeout: 5000});
@@ -39,5 +40,11 @@ export class AuthService {
   }
   register(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/register`, data);
+  }
+  changeName(name: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/update-profile-name/${name}`);
+  }
+  changePassword(data: any): Observable<any>{
+    return this.http.post(`${this.baseUrl}/users/change-user-password`, data);
   }
 }

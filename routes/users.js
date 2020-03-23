@@ -11,6 +11,55 @@ const jwt = require('jsonwebtoken');
 const shortId = require('shortid');
 const verifyToken = require('../function/verifyToken');
 
+router.get('/get-user', verifyToken,(req, res, next) => {
+    const userId = req.userId;
+    User.findById(userId)
+        .then(
+            result => res.send(result)
+        )
+        .catch(err => console.log(err));
+});
+
+router.get('/update-profile-name/:name',verifyToken,(req, res, next) => {
+    const name = req.params.name;
+    User.updateOne({_id: req.userId}, {name: name})
+        .then(
+            result => res.json({
+                message: 'profile name update successfully!'
+            })
+        )
+        .catch(
+            err => res.json({
+                message: err.message
+            })
+        );
+});
+
+router.post('/change-user-password',verifyToken, async (req, res, next) => {
+    let user = await User.findOne({_id : req.userId});
+    if (!user){ return res.status(203).json({status: false, message: 'User not found!'}) }
+
+    bcrypt.compare(req.body.oldPassword, user.password, function (err, rs) {
+            if (rs) {
+                //old password matched
+                bcrypt.hash(req.body.newPassword, saltRound, function (err, hashPassword) {
+                    User.updateOne({_id: req.userId}, {password: hashPassword})
+                        .then(
+                            result => res.status(200).json({status: true, message: 'password change successfully!'})
+                        )
+                        .catch(
+                            err => res.status(203).json({status: false, message: err.message})
+                        );
+                });
+
+            } else {
+                //old password not match
+                res.status(203).json({status: false, message: 'old password not match!'})
+            }
+    });
+});
+
+
 
 router.post('/register', (req, res, next) => {
    User.find({'email' : req.body.email})

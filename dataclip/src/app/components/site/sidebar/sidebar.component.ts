@@ -31,7 +31,8 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user  = this.authService.getUser();
+    this.authService.getUser().subscribe(res => this.user = res);
+
 
     this.loadSite = this.activatedRoute.snapshot.paramMap.get('name');
     console.log(this.loadSite);
@@ -56,9 +57,7 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem('siteName', siteName);
     localStorage.setItem('siteId', siteId);
     this.router.navigate([`site/${siteName}/${siteId}`])
-      .then(
-        () => location.reload()
-      );
+      .then(() => location.reload())
   }
   logOut() {
     this.authService.logout();
@@ -71,7 +70,7 @@ export class SidebarComponent implements OnInit {
         res => {
           this.flashMessage.show(res.message, {cssClass: 'alert-success text-center' , timeout: 5000});
           this.siteForm.reset();
-          location.reload();
+          this.ngOnInit();
 
         },
         error => {

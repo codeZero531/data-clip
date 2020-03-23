@@ -5,7 +5,7 @@
     <i><h3 class="mt-4">profile settings</h3></i>
     <hr>
     <small class="text-muted ">You can change avatar on <a href="https://en.gravatar.com/" target="_blank">Gravatar</a></small>
-    <form (submit)="onUpdate()" >
+    <form (submit)="onProfileNameUpdate()" >
       <div class="form-group">
         <label for="">Name</label>
         <input [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}"  type="text" class="form-control">
@@ -14,7 +14,7 @@
         <label for="">Email</label>
         <input disabled type="text"  class="form-control" placeholder="{{user.email}}">
       </div>
-      <button [disabled]=" " mat-raised-button color="accent" class="btn-block">save</button>
+      <button  mat-raised-button color="accent" class="btn-block">save</button>
     </form>
   </div>
 
@@ -26,16 +26,23 @@
 
     <i><h3 class="mt-5">Password update</h3></i>
     <hr>
-    <form (submit)="onUpdate()" >
+    <form (submit)="onPasswordChange()" [formGroup]="passwordUpdateForm" >
       <div class="form-group">
         <label for="">Old Password</label>
-        <input type="text" class="form-control">
+        <input [class.is-invalid]="formcontrols.oldPassword.invalid && formcontrols.oldPassword.touched" formControlName="oldPassword" type="text" class="form-control">
+        <span *ngIf="formcontrols.oldPassword.invalid && formcontrols.oldPassword.touched">
+          <small *ngIf="formcontrols.oldPassword.errors.required" class="text-danger">old password required</small>
+        </span>
       </div>
       <div class="form-group">
         <label for="">New Password</label>
-        <input  type="text"  class="form-control" >
+        <input [class.is-invalid]="formcontrols.newPassword.invalid && formcontrols.newPassword.touched"  formControlName="newPassword"  type="text"  class="form-control" >
+        <span *ngIf="formcontrols.newPassword.invalid && formcontrols.newPassword.touched">
+          <small *ngIf="formcontrols.newPassword.errors.required" class="text-danger">new password required</small>
+          <small *ngIf="formcontrols.newPassword.errors.minlength" class="text-danger">password must be 8 characters</small>
+        </span>
       </div>
-      <button [disabled]=" " mat-raised-button color="accent" class="btn-block">update password</button>
+      <button [disabled]="passwordUpdateForm.invalid" mat-raised-button color="accent" class="btn-block">update password</button>
     </form>
   </div>
 
