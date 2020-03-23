@@ -36,6 +36,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AccountComponent } from './components/profile/account/account.component';
 import { PaymentComponent } from './components/profile/payment/payment.component';
 import { ApiComponent } from './components/site/api/api.component';
+import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ApiComponent } from './components/site/api/api.component';
     AccountComponent,
     PaymentComponent,
     ApiComponent,
+    ConfirmMailComponent,
 
   ],
   imports: [

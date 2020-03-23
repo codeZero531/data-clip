@@ -21,6 +21,9 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}/users/get-user`);
     // return JSON.parse(localStorage.getItem('user'));
   }
+  verifyAccount(data: any): Observable<any>{
+    return this.http.post(`${this.baseUrl}/users/verify-account`, data);
+  }
   logout() {
     this.flashMessage.show('logout successfully!', {cssClass: 'alert-success' ,timeout: 5000});
     localStorage.removeItem('user');

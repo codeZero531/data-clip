@@ -17,10 +17,12 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {AccountComponent} from "./components/profile/account/account.component";
 import {PaymentComponent} from "./components/profile/payment/payment.component";
 import {ApiComponent} from "./components/site/api/api.component";
+import {ConfirmMailComponent} from "./components/confirm-mail/confirm-mail.component";
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'confirm-account/:id/:code', component: ConfirmMailComponent},
   {path: 'login', component: LOGINComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'site',canActivate: [AuthGuard] ,component: SidebarComponent, children: [

@@ -16,6 +16,41 @@ const smsSend = require('../function/mailSend');
 
 const md5 = require('md5');
 
+router.post('/verify-account',async (req, res,next) => {
+   let user = await User.findById(req.body.userId).catch(err => console.log(err));
+   if (!user){return res.json({status: false, message: 'something went wrong!'});}
+
+   if (user.confirmCode === req.body.confirmCode){
+       //code match
+       User.updateOne({_id: req.body.userId}, {confirm: true})
+           .then(
+               result => {
+                   return res.json({
+                       status: true,
+                       message: 'account verification successfully!'
+                   })
+               }
+           )
+           .catch(
+               err => {
+                   return res.json({
+                       status: false,
+                       message: 'something went wrong!'
+                   })
+               }
+           );
+
+
+   } else {
+       // code not match
+       return res.json({
+           status: false,
+           message: 'account verification failed!'
+       })
+   }
+
+});
+
 router.get('/get-user', verifyToken, async (req, res, next) => {
     const userId = req.userId;
 
