@@ -3,7 +3,7 @@ var router = express.Router();
 const mailSend = require('../function/mailSend');
 
 router.get('/hello', async (req, res, next) => {
-    mailSend("janakapradeepedirisinghe@gmail.com", "dfdfdsfsdfdsf").then(
+    mailSend("janakapradeepedirisinghe@gmail.com", "dfdfdsfsdfdsf", 'sdasdasdasdsdasda').then(
         result => res.send(result)
     ).catch(console.error);
 });

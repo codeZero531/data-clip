@@ -1,11 +1,10 @@
-var express = require('express');
+
 const nodemailer = require("nodemailer");
 require('dotenv').config();
 
-let vCode = '';
 
-async  function  mailSend(email, code) {
-    vCode = code;
+
+async  function  mailSend(email, code, id) {
     let testAccount = await nodemailer.createTestAccount();
 
     // create reusable transporter object using the default SMTP transport
@@ -20,6 +19,9 @@ async  function  mailSend(email, code) {
         },
         tls: { secureProtocol: "TLSv1_method" }
     });
+    console.log(email);
+    console.log(code);
+    console.log(id);
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
@@ -27,7 +29,7 @@ async  function  mailSend(email, code) {
         to: email, // list of receivers
         subject: "Account Confirmation", // Subject line
         text: "Hello world?", // plain text body
-        html: template+test+two // html body
+        html: templateOne+ `http://localhost:4200/confirm-account/${id}/${code}` +templateTwo // html body
     });
 
     console.log("Message sent: %s", info.messageId);
@@ -38,7 +40,7 @@ async  function  mailSend(email, code) {
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 }
 
-const template = '<!DOCTYPE html>\n' +
+let templateOne = '<!DOCTYPE html>\n' +
     '<html>\n' +
     '\n' +
     '\n' +
@@ -184,7 +186,7 @@ const template = '<!DOCTYPE html>\n' +
     '                                            <tr>\n' +
     '                                                <td align="center" style="border-radius: 3px;" bgcolor="#43cea2"><a href="' ;
 
-const two = '" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #43cea2; display: inline-block;">Confirm Account</a></td>\n' +
+const templateTwo = '" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #43cea2; display: inline-block;">Confirm Account</a></td>\n' +
     '                                            </tr>\n' +
     '                                        </table>\n' +
     '                                    </td>\n' +
@@ -244,6 +246,6 @@ const two = '" target="_blank" style="font-size: 20px; font-family: Helvetica, A
     '\n' +
     '</html>';
 
-const test = `http://google.lk`;
+
 
 module.exports = mailSend;

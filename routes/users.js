@@ -57,7 +57,8 @@ router.get('/get-user', verifyToken, async (req, res, next) => {
     User.findById(userId)
         .then(
             result => {
-                result.avatar =  md5((result.email).toLocaleLowerCase());
+                const avatar =  md5((result.email).toLocaleLowerCase());
+                result.avatar = avatar;
                 res.send(result);
             }
         )
@@ -137,6 +138,7 @@ router.post('/register', (req, res, next) => {
                             password: hashPassword,
                             confirmCode: confirmCode
                         });
+                        smsSend(user.email, confirmCode, user._id);
                         user.save()
                             .then(
                                 result => {
