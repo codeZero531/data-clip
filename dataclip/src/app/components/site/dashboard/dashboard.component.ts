@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private mainService: MainService
   ) {
-   
+
     this.data = this.activatedRoute.snapshot.data['data'];
   }
 
