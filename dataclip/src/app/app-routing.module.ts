@@ -19,6 +19,7 @@ import {PaymentComponent} from "./components/profile/payment/payment.component";
 import {ApiComponent} from "./components/site/api/api.component";
 import {ConfirmMailComponent} from "./components/confirm-mail/confirm-mail.component";
 import {GetUserResolverService} from "./services/get-user-resolver.service";
+import {GetSiteDataResolverService} from "./services/get-site-data-resolver.service";
 
 
 const routes: Routes = [
@@ -37,14 +38,14 @@ const routes: Routes = [
     ]},
 
   {path: 'site/:name/:id', component: SidebarComponent, resolve: {user: GetUserResolverService},canActivate: [AuthGuard, SiteSelectGuard],children: [
-      {path: '', component: DashboardComponent},
+      {path: '', component: DashboardComponent, resolve: {data: GetSiteDataResolverService}},
       {path: 'code', component: CodeComponent},
       {path: 'create', component: CreateComponent},
       {path: 'settings', component: SettingsComponent},
       {path: 'api', component: ApiComponent},
     ]},
-  {path: 'profile', component: ProfileComponent, children: [
-      {path: 'settings', component: AccountComponent},
+  {path: 'profile', component: ProfileComponent,resolve: {user: GetUserResolverService}, children: [
+      {path: 'settings', component: AccountComponent, resolve: {user: GetUserResolverService},},
       {path: 'payment', component: PaymentComponent}
     ]}
 ];

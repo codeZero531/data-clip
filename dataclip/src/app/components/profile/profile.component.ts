@@ -21,16 +21,18 @@ export class ProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private flashMessage: FlashMessagesService,
     private fb: FormBuilder
-  ) { }
+  ) {
+    this.user = this.activatedRoute.snapshot.data['user'];
+  }
 
   ngOnInit() {
-    this.authService.getUser()
-      .subscribe(
-      res => {
-        this.user = res;
-        console.log(res);
-      }
-      );
+    // this.authService.getUser()
+    //   .subscribe(
+    //   res => {
+    //     this.user = res;
+    //     console.log(res);
+    //   }
+    //   );
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-account',
@@ -15,12 +16,14 @@ export class AccountComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private flashMessage: FlashMessagesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
   ) {
+    this.user = this.activatedRoute.snapshot.data['user'];
   }
 
   ngOnInit() {
-    this.authService.getUser().subscribe(res => this.user = res);
+    // this.authService.getUser().subscribe(res => this.user = res);
     this.passwordUpdateForm = this.fb.group({
       oldPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required, Validators.minLength(8)]]

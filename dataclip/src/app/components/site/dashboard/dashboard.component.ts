@@ -24,16 +24,19 @@ export class DashboardComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private mainService: MainService
-  ) { }
+  ) {
+   
+    this.data = this.activatedRoute.snapshot.data['data'];
+  }
 
   ngOnInit() {
-    this.siteName = this.activatedRoute.snapshot.paramMap.get('name');
-    this.siteId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.mainService.getForms(this.siteId)
-      .subscribe(
-        res => this.data = res,
-        error => console.log(error)
-      );
+    // this.siteName = this.activatedRoute.snapshot.paramMap.get('name');
+    // this.siteId = this.activatedRoute.snapshot.paramMap.get('id');
+    // this.mainService.getForms(this.siteId)
+    //   .subscribe(
+    //     res => this.data = res,
+    //     error => console.log(error)
+    //   );
   }
 
   loadData(bucketId: string) {
