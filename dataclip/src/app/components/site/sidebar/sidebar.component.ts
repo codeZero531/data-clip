@@ -28,10 +28,11 @@ export class SidebarComponent implements OnInit {
     private flashMessage: FlashMessagesService,
     private fb: FormBuilder
   ) {
+    this.user = this.activatedRoute.snapshot.data['user'];
   }
 
   ngOnInit() {
-    this.authService.getUser().subscribe(res => this.user = res);
+    // this.authService.getUser().subscribe(res => this.user = res);
 
     this.loadSite = this.activatedRoute.snapshot.paramMap.get('name');
     console.log(this.loadSite);
