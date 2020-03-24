@@ -1,13 +1,16 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MainService} from "../../../services/main.service";
+import {InteractionService} from "../../../services/interaction.service";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  mySubscription: any;
+
   siteName: string;
   siteId: string;
   data: any;
@@ -23,20 +26,30 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private mainService: MainService
+    private mainService: MainService,
+    private interactionService: InteractionService,
+    private router: Router
   ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.router.navigated = false;
+      }
+    });
 
     this.data = this.activatedRoute.snapshot.data['data'];
   }
 
   ngOnInit() {
-    // this.siteName = this.activatedRoute.snapshot.paramMap.get('name');
-    // this.siteId = this.activatedRoute.snapshot.paramMap.get('id');
-    // this.mainService.getForms(this.siteId)
-    //   .subscribe(
-    //     res => this.data = res,
-    //     error => console.log(error)
-    //   );
+
+  }
+
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
   }
 
   loadData(bucketId: string) {

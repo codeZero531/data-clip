@@ -4,6 +4,7 @@ import {ActivatedRoute, Event, NavigationEnd, NavigationStart, Router} from "@an
 import {AuthService} from "../../../services/auth.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {InteractionService} from "../../../services/interaction.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -26,7 +27,8 @@ export class SidebarComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private flashMessage: FlashMessagesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private interactionService: InteractionService
   ) {
     this.user = this.activatedRoute.snapshot.data['user'];
   }
@@ -56,8 +58,8 @@ export class SidebarComponent implements OnInit {
   onSiteClick(siteName: string, siteId: string) {
     localStorage.setItem('siteName', siteName);
     localStorage.setItem('siteId', siteId);
-    this.router.navigate([`site/${siteName}/${siteId}`])
-      .then(() => location.reload())
+    this.router.navigate([`site/${siteName}/${siteId}`]);
+    // this.interactionService.sendMessage('hello');
   }
   logOut() {
     this.authService.logout();
