@@ -5,6 +5,7 @@ import {AuthService} from "../../../services/auth.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {InteractionService} from "../../../services/interaction.service";
+import {UserLimitService} from "../../../services/user-limit.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -19,6 +20,10 @@ export class SidebarComponent implements OnInit {
   user: any;
 
   isSelectSite = false;
+  limitData: any;
+  stats: any;
+  isSiteLimit: boolean;
+  isFormLimit: boolean;
 
   showIndicator = true;
   constructor(
@@ -28,21 +33,45 @@ export class SidebarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private flashMessage: FlashMessagesService,
     private fb: FormBuilder,
-    private interactionService: InteractionService
+    private interactionService: InteractionService,
+    private userLimitService: UserLimitService
   ) {
     this.user = this.activatedRoute.snapshot.data['user'];
+    if (this.user){
+      this.isSiteLimit = true;
+      this.isFormLimit = true;
+      this.limitData = this.userLimitService.getUserLimit(this.user.type);
+      this.authService.getStats()
+        .subscribe(
+          res => {
+            this.stats = res;
+            if (this.limitData.siteLimit > this.stats.siteCount){
+              this.isSiteLimit = false;
+            }
+            if (this.limitData.formLimit > this.stats.formCount){
+              this.isFormLimit = false;
+            }
+            console.log(this.limitData);
+            console.log(this.stats);
+          }
+        );
+
+      // console.log(this.limitData);
+
+
+    }
   }
 
   ngOnInit() {
-    // this.authService.getUser().subscribe(res => this.user = res);
-
     this.loadSite = this.activatedRoute.snapshot.paramMap.get('name');
     console.log(this.loadSite);
     this.mainService.getSites()
       .subscribe(
-        res => this.sites = res,
+        res => {this.sites = res; console.log(this.sites)},
         error => console.log(error)
       );
+
+
 
     this.siteForm = this.fb.group({
       siteName: ['', Validators.required],
