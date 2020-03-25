@@ -149,7 +149,7 @@ router.post('/:userId/:bucketId', async function (req, res, next) {
 router.get('/', function (req, res, next) {
     const id = req.params.id;
     const name = req.params.name;
-    res.send('error');
+    res.send('working');
 });
 
 module.exports = router;
