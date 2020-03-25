@@ -38,6 +38,7 @@ import { PaymentComponent } from './components/profile/payment/payment.component
 import { ApiComponent } from './components/site/api/api.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.com
     ApiComponent,
     ConfirmMailComponent,
 
+
   ],
   imports: [
     BrowserModule,
@@ -75,14 +77,15 @@ import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.com
     MatSnackBarModule,
     FlashMessagesModule.forRoot(),
     MatTableModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

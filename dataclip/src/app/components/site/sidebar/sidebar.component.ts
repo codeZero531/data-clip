@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MainService} from "../../../services/main.service";
 import {ActivatedRoute, Event, NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
     private flashMessage: FlashMessagesService,
     private fb: FormBuilder,
     private interactionService: InteractionService,
-    private userLimitService: UserLimitService
+    private userLimitService: UserLimitService,
   ) {
     this.user = this.activatedRoute.snapshot.data['user'];
     if (this.user){
@@ -133,5 +133,172 @@ export class SidebarComponent implements OnInit {
     return !!localStorage.getItem('siteId');
   }
 
+  //
+  // ngAfterViewInit(): void {
+  //   this.shepherdService.defaultStepOptions = {
+  //     classes: '.',
+  //     scrollTo: true,
+  //     cancelIcon: {
+  //       enabled: true
+  //     }
+  //   };
+  //   this.shepherdService.modal = true;
+  //   this.shepherdService.confirmCancel = false;
+  //   this.shepherdService.addSteps([
+  //     {
+  //       id: 'intro',
+  //       attachTo: {
+  //         element: '.avatar',
+  //         on: 'bottom'
+  //       },
+  //       beforeShowPromise: function() {
+  //         return new Promise(function(resolve) {
+  //           setTimeout(function() {
+  //             window.scrollTo(0, 0);
+  //             resolve();
+  //           }, 300);
+  //         });
+  //       },
+  //       buttons: [
+  //         {
+  //           classes: 'shepherd-button-secondary',
+  //           text: 'Exit',
+  //           type: 'cancel'
+  //         },
+  //         {
+  //           classes: 'shepherd-button-primary',
+  //           text: 'Back',
+  //           type: 'back'
+  //         },
+  //         {
+  //           classes: 'shepherd-button-primary',
+  //           text: 'Next',
+  //           type: 'next'
+  //         }
+  //       ],
+  //       cancelIcon: {
+  //         enabled: true
+  //       },
+  //       classes: '',
+  //       highlightClass: 'highlight',
+  //       scrollTo: false,
+  //       title: 'Welcome to DataClip!',
+  //       text: ['You can see profile settings and packages, pricing related to packages.'],
+  //       when: {
+  //         show: () => {
+  //           console.log('show step');
+  //         },
+  //         hide: () => {
+  //           console.log('hide step');
+  //         }
+  //       }
+  //     },
+  //     {
+  //       id: 'intro',
+  //       attachTo: {
+  //         element: '.step-two',
+  //         on: 'bottom'
+  //       },
+  //       beforeShowPromise: function () {
+  //         return new Promise(function (resolve) {
+  //           setTimeout(function () {
+  //             window.scrollTo(0, 0);
+  //             resolve();
+  //           }, 300);
+  //         });
+  //       },
+  //       buttons: [
+  //         {
+  //           classes: 'shepherd-button-secondary',
+  //           text: 'Exit',
+  //           type: 'cancel'
+  //         },
+  //         {
+  //           classes: 'shepherd-button-primary',
+  //           text: 'Back',
+  //           type: 'back'
+  //         },
+  //         {
+  //           classes: 'shepherd-button-primary',
+  //           text: 'Next',
+  //           type: 'next'
+  //         }
+  //       ],
+  //       cancelIcon: {
+  //         enabled: true
+  //       },
+  //       classes: '',
+  //       highlightClass: 'highlight',
+  //       scrollTo: false,
+  //       title: 'Step 1',
+  //       text: ['Please create the your first site'],
+  //       when: {
+  //         show: () => {
+  //           console.log('show step');
+  //         },
+  //         hide: () => {
+  //           console.log('hide step');
+  //         }
+  //       }
+  //     },
+  //     {
+  //       id: 'intro',
+  //       attachTo: {
+  //         element: '.step-three',
+  //         on: 'bottom'
+  //       },
+  //       beforeShowPromise: function () {
+  //         return new Promise(function (resolve) {
+  //           setTimeout(function () {
+  //             window.scrollTo(0, 0);
+  //             resolve();
+  //           }, 300);
+  //         });
+  //       },
+  //       buttons: [
+  //         {
+  //           classes: 'shepherd-button-secondary',
+  //           text: 'Exit',
+  //           type: 'cancel'
+  //         },
+  //         {
+  //           classes: 'shepherd-button-primary',
+  //           text: 'Back',
+  //           type: 'back'
+  //         },
+  //         {
+  //           classes: 'shepherd-button-primary',
+  //           text: 'Next',
+  //           type: 'next'
+  //         }
+  //       ],
+  //       cancelIcon: {
+  //         enabled: true
+  //       },
+  //       classes: '',
+  //       highlightClass: 'highlight',
+  //       scrollTo: false,
+  //       title: 'Step 2',
+  //       text: ['After create a site choose your site from this dropdown'],
+  //       when: {
+  //         show: () => {
+  //           console.log('show step');
+  //         },
+  //         hide: () => {
+  //           console.log('hide step');
+  //         }
+  //       }
+  //     }
+  //   ]);
+  //
+  //   if (localStorage.getItem('tour')){
+  //     console.log('not new');
+  //   } else {
+  //     this.shepherdService.start();
+  //     localStorage.setItem('tour', 'ok');
+  //   }
+  //
+  // }
+  //
 
 }

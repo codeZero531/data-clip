@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MainService} from "../../../services/main.service";
 import {InteractionService} from "../../../services/interaction.service";
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private mainService: MainService,
     private interactionService: InteractionService,
-    private router: Router
+    private router: Router,
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -92,8 +92,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     element.click(); // simulate click
     document.body.removeChild(element);
   }
-
-
 
 
 }

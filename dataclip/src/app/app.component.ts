@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {AfterViewInit, Component, OnDestroy} from "@angular/core";
+
 
 
 @Component({
@@ -8,4 +9,11 @@ import {Component} from "@angular/core";
 })
 export class AppComponent {
   title = 'dataclip';
+
+  constructor(
+  ) {
+
+  }
+
+
 }

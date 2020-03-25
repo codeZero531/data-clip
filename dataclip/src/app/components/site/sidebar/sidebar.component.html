@@ -8,8 +8,8 @@
     <div class="p-4 pt-5">
 <!--      <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(assets/images/logo.jpg);"></a>-->
       <ul class="list-unstyled components mb-5">
-        <li routerLinkActive="active">
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-layer-group"></i>Sites</a>
+        <li routerLinkActive="active" class="step-three">
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle "><i class="fas fa-layer-group"></i>Sites</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li routerLinkActive="active" *ngFor="let site of sites">
               <a style="cursor: pointer" (click)="onSiteClick(site.siteName, site._id)">{{site.siteName}}</a>
@@ -28,7 +28,7 @@
         <li *ngIf="isSiteSelected()"  routerLinkActive="active">
           <a  data-toggle="modal" data-target="#createFormModal"><i class="far fa-plus-square"></i>Create Form</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active"  class="step-two">
           <a  data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-plus-square"></i>Create Site</a>
         </li>
 

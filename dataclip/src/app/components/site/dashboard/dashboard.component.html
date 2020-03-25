@@ -10,7 +10,9 @@
 <!--  <a (click)="loadData(d.bucketId)" class="text-decoration-none" style="cursor: pointer">{{d.bucketName}} </a>-->
 <!--</button>-->
 
-<button routerLinkActive="active" (click)="loadData(d.bucketId)" *ngFor="let d of data" class="button button1">{{d.bucketName}}</button>
+<div class="step-four">
+  <button routerLinkActive="active" (click)="loadData(d.bucketId)" *ngFor="let d of data" class="button button1">{{d.bucketName}}</button>
+</div>
 
 <!--<div class="row mt-3 test " *ngFor="let d of data" >-->
 <!--  <div class="col">-->
