@@ -25,7 +25,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/style/bootstrap.css"
             ],
             "scripts": []
           },
@@ -54,8 +55,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "160kb",
-                  "maximumError": "160kb"
+                  "maximumWarning": "3kb",
+                  "maximumError": "6kb"
                 }
               ]
             }

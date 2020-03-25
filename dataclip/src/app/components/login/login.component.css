@@ -1,6 +1,7 @@
 .btn-primary{
   background-color: #4DD0E1;
   border: none;
+  border-radius: 0;
 }
 a{
   text-decoration: none;
@@ -12,3 +13,6 @@ a:hover{
   color: black;
 }
 
+.form-control{
+  border-radius: 0;
+}

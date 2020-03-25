@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter, Renderer} from '@angular/core';
 @Component({
   selector: 'csv-downloader',
   template: `
-    <button mat-raised-button color="accent" (click)="build()">{{downloaderName}}</button>
+    <button class="btn btn-primary" (click)="build()">{{downloaderName}}</button>
   `
 })
 export class csvDownloader {

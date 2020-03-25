@@ -15,7 +15,7 @@
         <label for="">Email</label>
         <input disabled type="text"  class="form-control" placeholder="{{user.email}}">
       </div>
-      <button  mat-raised-button color="accent" class="btn-block">save</button>
+      <button  class="btn btn-primary btn-block">save</button>
     </form>
   </div>
 
@@ -43,7 +43,7 @@
           <small *ngIf="formcontrols.newPassword.errors.minlength" class="text-danger">password must be 8 characters</small>
         </span>
       </div>
-      <button [disabled]="passwordUpdateForm.invalid" mat-raised-button color="accent" class="btn-block">update password</button>
+      <button [disabled]="passwordUpdateForm.invalid"  class="btn btn-primary btn-block">update password</button>
     </form>
   </div>
 
