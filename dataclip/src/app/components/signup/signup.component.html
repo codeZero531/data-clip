@@ -1,46 +1,95 @@
-<app-nav-bar></app-nav-bar>
+<!--<app-nav-bar></app-nav-bar>-->
 
-<div class="janaka">
+<!--<div class="janaka">-->
 
-  <div class="container" style=" top: 50%; left: 50%; position: absolute; transform: translate(-50%, -50%);" >
-    <div class="mx-auto text-center mt-5">
-      <h3>Create an account</h3>
-      <hr  style="background-color: #4DD0E1; height: 2px; width: 5%">
+<!--  <div class="container" style=" top: 50%; left: 50%; position: absolute; transform: translate(-50%, -50%);" >-->
+<!--    <div class="mx-auto text-center mt-5">-->
+<!--      <h3>Create an account</h3>-->
+<!--      <hr  style="background-color: #4DD0E1; height: 2px; width: 5%">-->
+<!--    </div>-->
+<!--    <div class="row mt-5">-->
+<!--      <div class="col-md-4"></div>-->
+<!--      <div class="col-md-4 p-5" style="background-color: #FAFAFA; border: solid 1px #eee">-->
+<!--        <small>-->
+<!--          <form [formGroup]="form" (submit)="onSubmit()">-->
+<!--            <div class="form-group">-->
+<!--              <label class="float-left" for="">Name</label>-->
+<!--              <input [class.is-invalid]="formcontrols.name.invalid && formcontrols.name.touched" formControlName="name" type="text" class="form-control">-->
+<!--              <span *ngIf="formcontrols.name.invalid && formcontrols.name.touched">-->
+<!--              <small *ngIf="formcontrols.name.errors.required" class="text-danger">Name required</small>-->
+<!--            </span>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label class="float-left" for="">Email</label>-->
+<!--              <input [class.is-invalid]="formcontrols.email.invalid && formcontrols.email.touched"  formControlName="email" type="text" class="form-control">-->
+<!--              <span *ngIf="formcontrols.email.invalid && formcontrols.email.touched">-->
+<!--              <small *ngIf="formcontrols.email.errors.required" class="text-danger">Email required</small>-->
+<!--            </span>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label class="float-left" for="">Password</label>-->
+<!--              <input [class.is-invalid]="formcontrols.password.invalid && formcontrols.password.touched" formControlName="password" type="password" class="form-control">-->
+<!--              <span *ngIf="formcontrols.password.invalid && formcontrols.password.touched">-->
+<!--              <small *ngIf="formcontrols.password.errors.required" class="text-danger">Password required</small>-->
+<!--              <small *ngIf="formcontrols.password.errors.minlength" class="text-danger">Password must be 8 characters</small>-->
+<!--            </span>-->
+<!--            </div>-->
+<!--            <button [disabled]="form.invalid" class="btn btn-primary pr-4 pl-4">Register</button>-->
+<!--            <span class="text-muted ml-3"><a routerLink="/login">Login instead</a></span>-->
+<!--          </form>-->
+<!--        </small>-->
+<!--      </div>-->
+<!--      <div class="col-md-4"></div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<div class=" d-flex align-items-stretch">
+  <nav id="sidebar">
+    <span style="color: #43cea2; font-size: large">   <i class="fas fa-paperclip mb-5"></i> dataclip</span>
+    <h4 class="mb-3">Create a new account</h4>
+
+              <form [formGroup]="form" (submit)="onSubmit()">
+                <div class="form-group">
+                  <label class="float-left" for="">Name</label>
+                  <input [class.is-invalid]="formcontrols.name.invalid && formcontrols.name.touched" formControlName="name" type="text" class="form-control">
+                  <span *ngIf="formcontrols.name.invalid && formcontrols.name.touched" class="float-right">
+                    <small *ngIf="formcontrols.name.errors.required" class="text-danger">Name required</small>
+                  </span>
+                </div>
+                <div class="form-group">
+                  <label class="float-left" for="">Email</label>
+                  <input [class.is-invalid]="formcontrols.email.invalid && formcontrols.email.touched"  formControlName="email" type="text" class="form-control">
+                  <span *ngIf="formcontrols.email.invalid && formcontrols.email.touched" class="float-right">
+                    <small *ngIf="formcontrols.email.errors.required" class="text-danger">Email required</small>
+                  </span>
+                </div>
+                <div class="form-group">
+                  <label class="float-left" for="">Password</label>
+                  <input [class.is-invalid]="formcontrols.password.invalid && formcontrols.password.touched" formControlName="password" type="password" class="form-control">
+                  <span *ngIf="formcontrols.password.invalid && formcontrols.password.touched" class="float-right">
+                    <small *ngIf="formcontrols.password.errors.required" class="text-danger">Password required</small>
+                    <small *ngIf="formcontrols.password.errors.minlength" class="text-danger">Password must be 8 characters</small>
+                  </span>
+                </div>
+                <button [disabled]="form.invalid" class="btn btn-primary pr-4 pl-4">Register</button>
+                <span class="text-muted ml-3"><a routerLink="/login">Login instead</a></span>
+              </form>
+
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content" class=" content" >
+
+    <div>
+      <img class="rounded float-right" src="assets/images/login-top.svg" alt="" style="width: 20%; position: fixed;top: 0">
     </div>
-    <div class="row mt-5">
-      <div class="col-md-4"></div>
-      <div class="col-md-4 p-5" style="background-color: #FAFAFA; border: solid 1px #eee">
-        <small>
-          <form [formGroup]="form" (submit)="onSubmit()">
-            <div class="form-group">
-              <label class="float-left" for="">Name</label>
-              <input [class.is-invalid]="formcontrols.name.invalid && formcontrols.name.touched" formControlName="name" type="text" class="form-control">
-              <span *ngIf="formcontrols.name.invalid && formcontrols.name.touched">
-              <small *ngIf="formcontrols.name.errors.required" class="text-danger">Name required</small>
-            </span>
-            </div>
-            <div class="form-group">
-              <label class="float-left" for="">Email</label>
-              <input [class.is-invalid]="formcontrols.email.invalid && formcontrols.email.touched"  formControlName="email" type="text" class="form-control">
-              <span *ngIf="formcontrols.email.invalid && formcontrols.email.touched">
-              <small *ngIf="formcontrols.email.errors.required" class="text-danger">Email required</small>
-            </span>
-            </div>
-            <div class="form-group">
-              <label class="float-left" for="">Password</label>
-              <input [class.is-invalid]="formcontrols.password.invalid && formcontrols.password.touched" formControlName="password" type="password" class="form-control">
-              <span *ngIf="formcontrols.password.invalid && formcontrols.password.touched">
-              <small *ngIf="formcontrols.password.errors.required" class="text-danger">Password required</small>
-              <small *ngIf="formcontrols.password.errors.minlength" class="text-danger">Password must be 8 characters</small>
-            </span>
-            </div>
-            <button [disabled]="form.invalid" class="btn btn-primary pr-4 pl-4">Register</button>
-            <span class="text-muted ml-3"><a routerLink="/login">Login instead</a></span>
-          </form>
-        </small>
-      </div>
-      <div class="col-md-4"></div>
+
+    <div class="clearfix col-md-2" style="position: fixed; bottom: 10%; right: 0 ">
+      <span style="font-size: 100px" class="text-white">data<span style="color: #43cea2">clip</span></span> <br>
+      <small class="text-muted">Collect info from users without a server—Dataclip™ is your server.</small>
     </div>
+
   </div>
-
 </div>
