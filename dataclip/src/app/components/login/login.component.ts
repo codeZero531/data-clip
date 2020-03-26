@@ -51,6 +51,7 @@ export class LOGINComponent implements OnInit {
           } else {
             //invalid
             this.flashMessage.show(res.message, {cssClass: 'alert-danger ', timeout: 5000})
+            this.formcontrols.password.reset();
           }
         }
       );

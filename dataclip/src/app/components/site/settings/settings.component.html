@@ -27,7 +27,7 @@
     <div class="float-left"><h5>{{form.bucketName}} </h5></div>
     <div class="float-right form-update-link">
       <a (click)="onFormDelete(form.bucketId, form.bucketName)">delete</a>
-      <a data-toggle="modal" data-target="#createFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
+      <a data-toggle="modal" data-target="#editFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
     </div>
   </div>
 </div>
@@ -42,7 +42,7 @@
 
 
 <!-- update form Modal -->
-<div class="modal fade" id="createFormModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
+<div class="modal fade" id="editFormModal " tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

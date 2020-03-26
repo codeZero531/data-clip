@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="287px" height="146px" viewBox="0 0 287 146" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63 (92445) - https://sketch.com -->
+    <title>img_grid-top</title>
+    <desc>Created with Sketch.</desc>
+    <g id="For-Review" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+        <g id="MDWB-Login_1" transform="translate(-385.000000, 0.000000)" stroke="#C8E7D9">
+            <g id="Right" transform="translate(385.000000, 0.000000)">
+                <g id="img_grid-top" transform="translate(-8.000000, -11.000000)">
+                    <polyline id="Path-2" points="0 77.9459637 62 118 195 40 228 59.5 195 79 63.7621162 0.357990905"></polyline>
+                    <polyline id="Path-3" points="7 111.709095 162 21.5 129.988175 0.357990905"></polyline>
+                    <line x1="0.185062066" y1="77.97731" x2="129.988175" y2="0.357990905" id="Path-4"></line>
+                    <line x1="128.422865" y1="78.7704132" x2="29.4382161" y2="21.3266215" id="Path-6"></line>
+                    <polyline id="Path-7" points="95 98.2893678 0 39.1319776 63.4480289 0.357990905"></polyline>
+                    <polygon id="Stroke-21" points="262 119 295 99.5 262 80 229 99.5"></polygon>
+                    <polygon id="Stroke-51" points="162 136.518079 194.970034 156 228 136.481921 195.029966 117"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
