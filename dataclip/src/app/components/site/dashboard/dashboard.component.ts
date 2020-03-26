@@ -18,10 +18,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   keys: any;
 
   bucketDataCount: number;
+  lastEntryDate: any;
+
   isLoaded = false;
   isLoadingStart = false;
-  lastEntryDate: any;
-  isBucketDataHave: boolean;
+  isBucketDataHave = false;
+  isClickOnBucket = false;
 
 
   constructor(
@@ -55,27 +57,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loadData(bucketId: string) {
     this.isBucketDataHave = false;
     this.isLoadingStart = true;
+    this.isClickOnBucket = true;
     console.log(bucketId);
     this.mainService.getBucketData(bucketId)
       .subscribe(
         res => {
-          this.bucketData = res[0].data;
-
-          if (this.bucketData.length !==0 ) {
+          if (res.length !== 0 ) {
+            this.bucketData = res[0].data;
             this.isBucketDataHave = true;
+            this.isLoadingStart = false;
+            //date sort accending
+            this.bucketData.sort((val1, val2)=> {
+              // @ts-ignore
+              return new Date(val2.date) - new Date(val1.date)});
+
+            console.log(res[0]);
+            this.lastEntryDate = res[0].updatedAt;
+            this.keys = res[0].keys;
+
+            this.bucketDataCount = this.bucketData.length;
           }
 
-          //date sort accending
-          this.bucketData.sort((val1, val2)=> {
-            // @ts-ignore
-            return new Date(val2.date) - new Date(val1.date)});
-
-          console.log(res[0]);
-          this.lastEntryDate = res[0].updatedAt;
-          this.keys = res[0].keys;
-
-          this.bucketDataCount = this.bucketData.length;
-          this.isLoaded = true;
+          // this.isLoaded = true;
           this.isLoadingStart = false;
         },
         error => console.log(error)

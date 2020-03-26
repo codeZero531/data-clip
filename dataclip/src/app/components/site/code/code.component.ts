@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {log} from "util";
 import {MainService} from "../../../services/main.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-code',
@@ -15,10 +16,15 @@ export class CodeComponent implements OnInit {
   forms: any;
   bucketId: any;
 
+  userId: any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    private mainService: MainService
-  ) { }
+    private mainService: MainService,
+    private authService: AuthService,
+  ) {
+    this.authService.getUser().subscribe(res => this.userId = res._id);
+  }
 
   ngOnInit() {
     this.siteName = localStorage.getItem('siteName');
