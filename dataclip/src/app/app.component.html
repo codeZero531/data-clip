@@ -1,6 +1,7 @@
 <flash-messages class="message w-25"></flash-messages>
 
-<div class="sk-chase" *ngIf="loadingIndicator">
+<div class="overlay" *ngIf="loadingIndicator">
+<div class="sk-chase" >
   <div class="sk-chase-dot"></div>
   <div class="sk-chase-dot"></div>
   <div class="sk-chase-dot"></div>
@@ -8,5 +9,11 @@
   <div class="sk-chase-dot"></div>
   <div class="sk-chase-dot"></div>
 </div>
+</div>
+
+
+
+
+
 <router-outlet></router-outlet>
 

@@ -11,6 +11,7 @@ import {FlashMessagesService} from "angular2-flash-messages";
 })
 export class SignupComponent implements OnInit {
   form: FormGroup;
+  loadingIndicator: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +34,7 @@ export class SignupComponent implements OnInit {
     return this.form.controls;
   }
   onSubmit() {
+    this.loadingIndicator = true;
     this.authService.register(this.form.value)
       .subscribe(
         res => {
@@ -40,9 +42,12 @@ export class SignupComponent implements OnInit {
             //success
             this.flashMessage.show(res.message, {cssClass: 'alert-success', timeout: 5000});
              this.router.navigate(['login']);
+             this.loadingIndicator = false;
           } else {
             //invalid
-            this.flashMessage.show(res.message, {cssClass: 'alert-danger', timeout: 5000})
+            this.flashMessage.show(res.message, {cssClass: 'alert-danger', timeout: 5000});
+            this.loadingIndicator = false;
+
           }
         }
       );

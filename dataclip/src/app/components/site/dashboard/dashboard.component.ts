@@ -2,6 +2,7 @@ import {AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleCha
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MainService} from "../../../services/main.service";
 import {InteractionService} from "../../../services/interaction.service";
+import {UserLimitService} from "../../../services/user-limit.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   bucketDataCount: number;
   lastEntryDate: any;
+  userLimits: any;
 
   isLoaded = false;
   isLoadingStart = false;
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private mainService: MainService,
     private interactionService: InteractionService,
     private router: Router,
+    private userLimitService: UserLimitService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -42,6 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     this.data = this.activatedRoute.snapshot.data['data'];
+    // this.userLimits = this.userLimitService.getUserLimit();
   }
 
   ngOnInit() {

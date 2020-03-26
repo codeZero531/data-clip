@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnDestroy} from "@angular/core";
-import {Router, Event, NavigationStart, NavigationEnd} from "@angular/router";
+import {Router, Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError} from "@angular/router";
 
 
 
@@ -22,7 +22,10 @@ export class AppComponent {
         this.loadingIndicator = true;
 
       }
-      if (routerEvent instanceof  NavigationEnd) {
+      if (routerEvent instanceof  NavigationEnd ||
+        routerEvent instanceof NavigationCancel ||
+        routerEvent instanceof NavigationError
+      ) {
         console.log('stop loading');
         this.loadingIndicator = false;
       }
