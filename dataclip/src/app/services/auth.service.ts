@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
+import {Observable, ErrorObserver, observable, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {catchError} from "rxjs/operators";
+import {ObserveOnMessage} from "rxjs/internal/operators/observeOn";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class AuthService {
   ) { }
 
   getUser(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users/get-user`);
+    return this.http.get(`${this.baseUrl}/users/get-user`).pipe(catchError(this.errorHandle));
+      // .pipe(catchError(err => {console.log('err'); return throwError(err)}));
     // return JSON.parse(localStorage.getItem('user'));
   }
   verifyAccount(data: any): Observable<any>{
@@ -52,5 +55,14 @@ export class AuthService {
   }
   getStats(): Observable<any> {
     return this.http.get(`${this.baseUrl}/users/get-stats`);
+  }
+
+  errorHandle(errorResponse: HttpErrorResponse){
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.error('CLIENT SIDE ERROR: ', errorResponse.error.message);
+    } else {
+      console.error('Server side error: ', errorResponse)
+    }
+    return throwError(errorResponse)
   }
 }

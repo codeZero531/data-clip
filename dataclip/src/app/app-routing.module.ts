@@ -20,6 +20,7 @@ import {ApiComponent} from "./components/site/api/api.component";
 import {ConfirmMailComponent} from "./components/confirm-mail/confirm-mail.component";
 import {GetUserResolverService} from "./services/get-user-resolver.service";
 import {GetSiteDataResolverService} from "./services/get-site-data-resolver.service";
+import {MaintenanceModeComponent} from "./components/maintenance-mode/maintenance-mode.component";
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'confirm-account/:id/:code', component: ConfirmMailComponent},
   {path: 'login', component: LOGINComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'maintenance ', component: MaintenanceModeComponent},
 
   {
     path: 'site',

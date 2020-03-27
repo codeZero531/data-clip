@@ -37,6 +37,7 @@ import { AccountComponent } from './components/profile/account/account.component
 import { PaymentComponent } from './components/profile/payment/payment.component';
 import { ApiComponent } from './components/site/api/api.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
+import { MaintenanceModeComponent } from './components/maintenance-mode/maintenance-mode.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.com
     PaymentComponent,
     ApiComponent,
     ConfirmMailComponent,
+    MaintenanceModeComponent,
 
 
   ],
