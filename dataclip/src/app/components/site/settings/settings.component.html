@@ -1,8 +1,9 @@
-<i><h3>{{siteName}} settings</h3></i>
-<hr>
 
-<div class="row ">
+
+<div class="row justify-content-center">
   <div class="col-md-3">
+    <i><h3>'{{siteName}}' settings</h3></i>
+    <hr>
     <form (submit)="onUpdate()" [formGroup]="siteUpdateForm">
       <div class="form-group">
         <label for="">site name</label>
@@ -12,37 +13,44 @@
         <label for="">domains</label>
         <input formControlName="host" type="text"  class="form-control">
       </div>
-      <button [disabled]="!siteUpdateForm.valid" mat-raised-button color="accent" class="btn-block">update</button>
+      <button [disabled]="siteUpdateForm.invalid"  class="btn btn-primary btn-block">update</button>
     </form>
   </div>
 
 </div>
 
+<div class="row justify-content-center mb-4">
+  <div class="col-md-3">
+    <i><h3 class="mt-5">Forms settings</h3></i>
+    <hr>
+  </div>
+</div>
 
-<i><h3 class="mt-5">Forms settings</h3></i>
-<hr>
-
-<div class="row form-edit" *ngFor="let form of forms">
+<div class="row justify-content-center mb-3" *ngFor="let form of forms">
   <div class="col-md-3 clearfix form-edit-column">
     <div class="float-left"><h5>{{form.bucketName}} </h5></div>
     <div class="float-right form-update-link">
-      <a (click)="onFormDelete(form.bucketId, form.bucketName)">delete</a>
-      <a data-toggle="modal" data-target="#editFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
+      <a class="text-secondary" data-toggle="modal" data-target="#editFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
+      <a class="text-danger" (click)="onFormDelete(form.bucketId, form.bucketName)">delete</a>
     </div>
   </div>
 </div>
 
 
 
+<div class="row justify-content-center">
+  <div class="col-md-3">
 
-<i><h3 class="mt-5">Delete site</h3></i>
-<hr>
-<a (click)="onDeleteSiteData(siteId)">Delete "boardima.com" and it's all data</a>
+    <i><h3 class="mt-5">Delete site</h3></i>
+    <hr>
+    <a (click)="onDeleteSiteData(siteId)">Delete "boardima.com" and it's all data</a>
 
+  </div>
+</div>
 
 
 <!-- update form Modal -->
-<div class="modal fade" id="editFormModal " tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
+<div class="modal fade" id="editFormModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -61,7 +69,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onFormEditSubmit(formName,formId)" data-dismiss="modal">Create</button>
+        <button type="button" class="btn btn-primary" (click)="onFormEditSubmit(formName,formId)" data-dismiss="modal">UPDATE</button>
       </div>
     </div>
   </div>
