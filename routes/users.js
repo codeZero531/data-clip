@@ -442,7 +442,8 @@ router.get('/site-delete/:id', verifyToken,(req, res, next) => {
 
 });
 router.post('/set-webhook', verifyToken, (req, res, next) => {
-   User.updateOne({_id: req.userId}, {webhookUrl: req.body.webhookUrl})
+   const token = shortId.generate(1);
+   User.updateOne({_id: req.userId}, {webhookUrl: req.body.webhookUrl, webhookToken: token})
        .then(
            result => res.json({status: true, message: 'webhook set successfully!'})
        )
@@ -451,13 +452,13 @@ router.post('/set-webhook', verifyToken, (req, res, next) => {
 router.get('/get-webhook', verifyToken,async (req, res, next) => {
   let user = await User.findById(req.userId).catch(err=>console.log(err.message));
   if (user.webhookUrl) {
-      return res.json({status: true, webhookUrl: user.webhookUrl});
+      return res.json({status: true, webhookUrl: user.webhookUrl, webhookToken: user.webhookToken});
   } else {
       return res.json({status: false});
   }
 });
 router.get('/delete-webhook', verifyToken, async (req, res, next) => {
-    User.updateOne({_id: req.userId}, {$unset: {webhookUrl: ''}})
+    User.updateOne({_id: req.userId}, {$unset: {webhookUrl: '', webhookToken: ''}})
         .then(result => res.send(true))
         .catch(err=>console.log(err));
 });

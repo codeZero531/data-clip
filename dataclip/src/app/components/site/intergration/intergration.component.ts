@@ -10,6 +10,7 @@ import {FlashMessagesService} from "angular2-flash-messages";
 export class IntergrationComponent implements OnInit {
   webhookUrl: string;
   isWebhookCreated = false;
+  webhookToken: string;
 
   constructor(
     private mainService: MainService,
@@ -23,6 +24,7 @@ export class IntergrationComponent implements OnInit {
           if (res.status) {
             this.isWebhookCreated = true;
             this.webhookUrl = res.webhookUrl;
+            this.webhookToken = res.webhookToken;
           } else {
             this.isWebhookCreated = false;
           }

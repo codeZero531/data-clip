@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
     avatar: {type: String, require: false},
     confirm: {type: Boolean, require: false, default: false},
     confirmCode: {type: String, required: true},
-    webhookUrl: {type: String, required: false}
+    webhookUrl: {type: String, required: false},
+    webhookToken: {type: String, required: false}
 });
 module.exports = mongoose.model('User',userSchema);

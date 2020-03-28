@@ -7,11 +7,11 @@
     <form *ngIf="isWebhookCreated">
       <div class="form-group">
         <label for="">Webhook URL</label>
-        <input value="{{webhookUrl}}" type="text" class="form-control">
+        <input disabled value="{{webhookUrl}}" type="text" class="form-control">
       </div>
       <div class="form-group">
         <label for="">Token</label>
-        <input type="text" class="form-control">
+        <input value="{{webhookToken}}" type="text" class="form-control">
       </div>
     <div class="float-right">
       <a data-toggle="modal" data-target="#createFormModal" class="text-muted mr-2">Edit</a>
