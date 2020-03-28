@@ -49,11 +49,11 @@ export class MainService {
   setWebhook(data: any): Observable<any>{
     return this.http.post(`${this.baseUrl}/users/set-webhook`, data);
   }
-  getWebhook(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/users/get-webhook`);
+  getWebhook(siteId: string): Observable<any>{
+    return this.http.get(`${this.baseUrl}/users/get-webhook/${siteId}`);
   }
-  deleteWebhook(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users/delete-webhook`);
+  deleteWebhook(siteId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/delete-webhook/${siteId}`);
   }
 
 

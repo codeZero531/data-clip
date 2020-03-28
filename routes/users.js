@@ -4,6 +4,7 @@ const User = require('../model/user');
 const Bucket = require('../model/bucket');
 const Table = require('../model/table');
 const Site = require('../model/site');
+const Integrations = require('../model/integration');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRound = 10;
@@ -438,27 +439,47 @@ router.get('/site-delete/:id', verifyToken,(req, res, next) => {
         .catch(
             err => console.log(err)
         );
-
-
 });
-router.post('/set-webhook', verifyToken, (req, res, next) => {
+
+// integrations web hook functions -----------------------------------------------------------------------------------------------------------
+
+router.post('/set-webhook', verifyToken, async (req, res, next) => {
    const token = shortId.generate(1);
-   User.updateOne({_id: req.userId}, {webhookUrl: req.body.webhookUrl, webhookToken: token})
-       .then(
-           result => res.json({status: true, message: 'webhook set successfully!'})
-       )
-       .catch(err => res.json({status: false, message: err.message}));
+   let integration = await Integrations.findOne({_id: req.body.siteId}).catch(err => console.log(err.message));
+   if (integration){
+       //update
+       Integrations.updateOne({_id: req.body.siteId}, {user: req.userId, webhookUrl: req.body.webhookUrl, webhookToken: token})
+           .then(
+               result => {return  res.json({status: true, message: 'WEBHOOK update successfully!'})}
+           )
+           .catch(err => { return res.json({status: false, message: err.message}) });
+   } else {
+       //add
+       const integration = new Integrations({
+          _id : req.body.siteId,
+          webhookUrl : req.body.webhookUrl,
+          webhookToken : token,
+          user: req.userId
+       });
+
+       integration.save()
+           .then(
+               result => {return  res.json({status: true, message: 'WEBHOOK set successfully!'})}
+           )
+           .catch(err => { return res.json({status: false, message: err.message}) });
+   }
+
 });
-router.get('/get-webhook', verifyToken,async (req, res, next) => {
-  let user = await User.findById(req.userId).catch(err=>console.log(err.message));
-  if (user.webhookUrl) {
-      return res.json({status: true, webhookUrl: user.webhookUrl, webhookToken: user.webhookToken});
+router.get('/get-webhook/:id', verifyToken,async (req, res, next) => {
+  let integration = await Integrations.findById(req.params.id).catch(err=>console.log(err.message));
+  if (integration) {
+      return res.json({status: true, webhookUrl: integration.webhookUrl, webhookToken: integration.webhookToken});
   } else {
       return res.json({status: false});
   }
 });
-router.get('/delete-webhook', verifyToken, async (req, res, next) => {
-    User.updateOne({_id: req.userId}, {$unset: {webhookUrl: '', webhookToken: ''}})
+router.get('/delete-webhook/:id', verifyToken, async (req, res, next) => {
+    Integrations.deleteOne({_id: req.params.id})
         .then(result => res.send(true))
         .catch(err=>console.log(err));
 });

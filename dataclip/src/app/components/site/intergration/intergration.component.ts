@@ -11,6 +11,7 @@ export class IntergrationComponent implements OnInit {
   webhookUrl: string;
   isWebhookCreated = false;
   webhookToken: string;
+  siteId: string;
 
   constructor(
     private mainService: MainService,
@@ -18,7 +19,8 @@ export class IntergrationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mainService.getWebhook()
+    this.siteId = localStorage.getItem('siteId');
+    this.mainService.getWebhook(this.siteId)
       .subscribe(
         res => {
           if (res.status) {
@@ -34,7 +36,7 @@ export class IntergrationComponent implements OnInit {
   }
 
   onClickCreateWebHook() {
-    const data = {webhookUrl: this.webhookUrl};
+    const data = {webhookUrl: this.webhookUrl, siteId: this.siteId};
     this.mainService.setWebhook(data)
       .subscribe(
         res => {
@@ -53,7 +55,7 @@ export class IntergrationComponent implements OnInit {
   }
 
   onClickRemoveWebhook(){
-    this.mainService.deleteWebhook()
+    this.mainService.deleteWebhook(this.siteId)
       .subscribe(
         res => {
           if (res){
