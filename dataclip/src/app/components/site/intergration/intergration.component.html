@@ -1,25 +1,57 @@
 
-
-<div class="row justify-content-center mb-5 ">
+<div class="row justify-content-center">
   <div class="col-md-3">
-    <i><h3 class="mt-4">Webhook</h3></i>
+    <i><h3 class="mt-4">Integrations</h3></i>
     <hr>
-    <form *ngIf="isWebhookCreated">
+    <div class="alert-success text-white p-3">Integrations allow another service to get an update when there is a form submission on this site*</div>
+  </div>
+</div>
+
+
+<div class="row justify-content-center mb-5 mt-4">
+  <div class="col-md-3">
+    <h3>Webhook</h3>
+    <form class="mt-3" *ngIf="isWebhookCreated">
       <div class="form-group">
         <label for="">Webhook URL</label>
         <input disabled value="{{webhookUrl}}" type="text" class="form-control">
       </div>
       <div class="form-group">
         <label for="">Token</label>
-        <input value="{{webhookToken}}" type="text" class="form-control">
+        <div class="input-group">
+          <input value="{{webhookToken}}" type="text" class="form-control" aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+            <button class="btn btn-primary" id="basic-addon1">copy</button>
+          </div>
+        </div>
       </div>
     <div class="float-right">
-      <a data-toggle="modal" data-target="#createFormModal" class="text-muted mr-2">Edit</a>
-      <a data-toggle="modal" data-target="#removeConfirmModal" class="text-muted">Remove</a>
+      <a style="cursor: pointer" data-toggle="modal" data-target="#createFormModal" class="text-secondary mr-2">Edit</a>
+      <a style="cursor: pointer" data-toggle="modal" data-target="#removeConfirmModal" class="text-danger">Remove</a>
     </div>
     </form>
 
-    <button *ngIf="!isWebhookCreated" data-toggle="modal" data-target="#createFormModal" class="btn btn-primary btn-block">set webhook</button>
+    <button *ngIf="!isWebhookCreated" data-toggle="modal" data-target="#createFormModal" class="btn btn-primary btn-block mt-3">set webhook</button>
+  </div>
+
+</div>
+
+<div class="row justify-content-center mb-5 mt-4">
+  <div class="col-md-3">
+    <h3>Other Integrations</h3>
+    <p>Is there a service you wish DataClip integrated with? Let us know! Your feedback is super valuable in helping decide the next supported integrations.</p>
+
+    <form class="mt-3">
+      <div class="form-group">
+        <label for="">Server Name</label>
+        <input placeholder="Eg. slack" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">A bit about your usecases</label>
+        <input placeholder="Eg. I want to collect messages" type="text" class="form-control">
+      </div>
+      <button class="btn btn-primary btn-block">send</button>
+    </form>
   </div>
 
 </div>

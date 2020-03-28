@@ -12,6 +12,7 @@ export class IntergrationComponent implements OnInit {
   isWebhookCreated = false;
   webhookToken: string;
   siteId: string;
+  siteName: string;
 
   constructor(
     private mainService: MainService,
@@ -20,6 +21,7 @@ export class IntergrationComponent implements OnInit {
 
   ngOnInit() {
     this.siteId = localStorage.getItem('siteId');
+    this.siteName = localStorage.getItem('siteName');
     this.mainService.getWebhook(this.siteId)
       .subscribe(
         res => {
