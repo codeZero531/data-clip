@@ -29,7 +29,7 @@ const routes: Routes = [
   {path: 'confirm-account/:id/:code', component: ConfirmMailComponent},
   {path: 'login', component: LOGINComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'maintenance ', component: MaintenanceModeComponent},
+  {path: 'maintenance', component: MaintenanceModeComponent},
 
   {
     path: 'site',

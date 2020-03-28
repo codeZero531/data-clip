@@ -11,6 +11,14 @@ Primary use:
 
 }
 
+i{
+  border: solid 5px white;
+  padding: 10px;
+}
+i:hover{
+  color: cornflowerblue;
+}
+
 
 
 .input100 {
@@ -435,10 +443,10 @@ Primary use:
   top: 0;
   left: 0;
   background: #30bab6;
-  background: -webkit-linear-gradient(to left, #009efd, #2af598);
-  background: -o-linear-gradient(to left, #009efd, #2af598);
-  background: -moz-linear-gradient(to left, #009efd, #2af598);
-  background: linear-gradient(to left, #009efd, #2af598);
+  background: -webkit-linear-gradient(top, #009efd, #2af598);
+  background: -o-linear-gradient(top, #009efd, #2af598);
+  background: -moz-linear-gradient(top, #009efd, #2af598);
+  background: linear-gradient(top, #009efd, #2af598);
   opacity: 0.8;
 }
 
