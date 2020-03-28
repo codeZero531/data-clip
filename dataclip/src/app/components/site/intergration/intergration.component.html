@@ -1,0 +1,22 @@
+
+
+<div class="row justify-content-center mb-5 ">
+  <div class="col-md-3">
+    <i><h3 class="mt-4">Webhook</h3></i>
+    <hr>
+    <img src="https://www.gravatar.com/avatar/{{user.avatar}}?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar">
+    <span class="text-muted ">You can change avatar on <a href="https://en.gravatar.com/" target="_blank">Gravatar</a></span>
+    <form (submit)="onProfileNameUpdate()" >
+      <div class="form-group">
+        <label for="">Name</label>
+        <input [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}"  type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">Email</label>
+        <input disabled type="text"  class="form-control" placeholder="{{user.email}}">
+      </div>
+      <button  class="btn btn-primary btn-block">save</button>
+    </form>
+  </div>
+
+</div>

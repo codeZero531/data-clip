@@ -21,6 +21,7 @@ import {ConfirmMailComponent} from "./components/confirm-mail/confirm-mail.compo
 import {GetUserResolverService} from "./services/get-user-resolver.service";
 import {GetSiteDataResolverService} from "./services/get-site-data-resolver.service";
 import {MaintenanceModeComponent} from "./components/maintenance-mode/maintenance-mode.component";
+import {IntergrationComponent} from "./components/site/intergration/intergration.component";
 
 
 const routes: Routes = [
@@ -45,6 +46,7 @@ const routes: Routes = [
       {path: 'create', component: CreateComponent},
       {path: 'settings', component: SettingsComponent},
       {path: 'api', component: ApiComponent},
+      {path: 'integrations', component: IntergrationComponent},
     ]},
   {path: 'profile', component: ProfileComponent,resolve: {user: GetUserResolverService}, children: [
       {path: 'settings', component: AccountComponent, resolve: {user: GetUserResolverService},},
