@@ -4,19 +4,68 @@
   <div class="col-md-3">
     <i><h3 class="mt-4">Webhook</h3></i>
     <hr>
-    <img src="https://www.gravatar.com/avatar/{{user.avatar}}?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar">
-    <span class="text-muted ">You can change avatar on <a href="https://en.gravatar.com/" target="_blank">Gravatar</a></span>
-    <form (submit)="onProfileNameUpdate()" >
+    <form *ngIf="isWebhookCreated">
       <div class="form-group">
-        <label for="">Name</label>
-        <input [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}"  type="text" class="form-control">
+        <label for="">Webhook URL</label>
+        <input value="{{webhookUrl}}" type="text" class="form-control">
       </div>
       <div class="form-group">
-        <label for="">Email</label>
-        <input disabled type="text"  class="form-control" placeholder="{{user.email}}">
+        <label for="">Token</label>
+        <input type="text" class="form-control">
       </div>
-      <button  class="btn btn-primary btn-block">save</button>
+    <div class="float-right">
+      <a data-toggle="modal" data-target="#createFormModal" class="text-muted mr-2">Edit</a>
+      <a data-toggle="modal" data-target="#removeConfirmModal" class="text-muted">Remove</a>
+    </div>
     </form>
+
+    <button *ngIf="!isWebhookCreated" data-toggle="modal" data-target="#createFormModal" class="btn btn-primary btn-block">set webhook</button>
   </div>
 
+</div>
+
+
+
+<!-- create form Modal -->
+<div class="modal fade" id="createFormModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createFormModalTitle">Set Webhook</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-4"  >
+        <form>
+          <div class="form-group">
+            <label for="">Webhook URL</label>
+            <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="webhookUrl" placeholder="Ex: https://yoursite.com/dataclip-webhook/" type="text" class="form-control">
+          </div>
+          <button (click)="onClickCreateWebHook()" type="button" class="btn btn-primary" data-dismiss="modal">SET WEBHOOK</button>
+        </form>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- delete confirm Modal -->
+<div class="modal fade" id="removeConfirmModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeConfirmModalTitle">Really remove webhook?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-4"  >
+        <span>Are you sure you really want to delete the webhook for this site? Your webhook will stop receiving new submissions immediately.</span>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onClickRemoveWebhook()" type="button" class="btn btn-danger btn-block" data-dismiss="modal">YES, REALLY REMOVE WEBHOOK</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -46,6 +46,15 @@ export class MainService {
   deleteSiteData(id: string): Observable<any>{
     return this.http.get(`${this.baseUrl}/users/site-delete/${id}`);
   }
+  setWebhook(data: any): Observable<any>{
+    return this.http.post(`${this.baseUrl}/users/set-webhook`, data);
+  }
+  getWebhook(): Observable<any>{
+    return this.http.get(`${this.baseUrl}/users/get-webhook`);
+  }
+  deleteWebhook(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/delete-webhook`);
+  }
 
 
 }
