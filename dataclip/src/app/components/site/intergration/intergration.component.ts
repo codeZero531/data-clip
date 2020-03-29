@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../services/main.service";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-intergration',
@@ -13,28 +14,27 @@ export class IntergrationComponent implements OnInit {
   webhookToken: string;
   siteId: string;
   siteName: string;
+  data: any;
 
   constructor(
     private mainService: MainService,
-    private flashMessage: FlashMessagesService
-  ) { }
+    private flashMessage: FlashMessagesService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.data = this.activatedRoute.snapshot.data['data'];
+    console.log(this.data);
+    if (this.data.status) {
+      this.isWebhookCreated = true;
+      this.webhookUrl = this.data.webhookUrl;
+      this.webhookToken = this.data.webhookToken;
+    } else {
+      this.isWebhookCreated = false;
+    }
+  }
 
   ngOnInit() {
     this.siteId = localStorage.getItem('siteId');
     this.siteName = localStorage.getItem('siteName');
-    this.mainService.getWebhook(this.siteId)
-      .subscribe(
-        res => {
-          if (res.status) {
-            this.isWebhookCreated = true;
-            this.webhookUrl = res.webhookUrl;
-            this.webhookToken = res.webhookToken;
-          } else {
-            this.isWebhookCreated = false;
-          }
-        },
-        error => console.log(error),
-      );
   }
 
   onClickCreateWebHook() {

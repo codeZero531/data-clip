@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../services/main.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FlashMessagesService} from "angular2-flash-messages";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
@@ -23,9 +23,15 @@ export class SettingsComponent implements OnInit {
     private mainService: MainService,
     private fb: FormBuilder,
     private flashMessage: FlashMessagesService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
 
-  ) { }
+  ) {
+    this.forms = this.activatedRoute.snapshot.data['data'];
+    this.site = this.activatedRoute.snapshot.data['site'];
+    console.log(this.site);
+  }
+
 
   ngOnInit() {
     this.siteName = localStorage.getItem('siteName');
@@ -37,25 +43,17 @@ export class SettingsComponent implements OnInit {
       siteId: [this.siteId, Validators.required]
     });
 
-    this.mainService.getSiteDataFromId(this.siteId)
-      .subscribe(
-        res =>{
-          this.site = res;
-          this.siteUpdateForm.get('host').setValue(this.site.host)
-          this.siteUpdateForm.get('siteName').setValue(this.site.siteName)
-        },
-        error => console.log(error)
-      );
+    this.siteUpdateForm.get('host').setValue(this.site.host);
+    this.siteUpdateForm.get('siteName').setValue(this.site.siteName);
 
-    this.mainService.getForms(this.siteId)
-      .subscribe(
-        res => {
-          this.forms = res;
-          console.log(this.forms);
-        },
-        error => console.log(error)
-      );
-
+    // this.mainService.getSiteDataFromId(this.siteId)
+    //   .subscribe(
+    //     res =>{
+    //       this.site = res;
+    //
+    //     },
+    //     error => console.log(error)
+    //   );
 
   }
   onUpdate() {

@@ -17,13 +17,16 @@ export class CodeComponent implements OnInit {
   bucketId: any;
 
   userId: any;
+  user: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private mainService: MainService,
     private authService: AuthService,
   ) {
-    this.authService.getUser().subscribe(res => this.userId = res._id);
+    this.user = this.activatedRoute.snapshot.data['user'];
+    this.userId = this.user._id;
+    // this.authService.getUser().subscribe(res => this.userId = res._id);
   }
 
   ngOnInit() {

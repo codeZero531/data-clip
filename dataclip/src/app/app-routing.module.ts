@@ -18,10 +18,13 @@ import {AccountComponent} from "./components/profile/account/account.component";
 import {PaymentComponent} from "./components/profile/payment/payment.component";
 import {ApiComponent} from "./components/site/api/api.component";
 import {ConfirmMailComponent} from "./components/confirm-mail/confirm-mail.component";
-import {GetUserResolverService} from "./services/get-user-resolver.service";
-import {GetSiteDataResolverService} from "./services/get-site-data-resolver.service";
+import {GetUserResolverService} from "./resolver/get-user-resolver.service";
+import {GetSiteDataResolverService} from "./resolver/get-site-data-resolver.service";
 import {MaintenanceModeComponent} from "./components/maintenance-mode/maintenance-mode.component";
 import {IntergrationComponent} from "./components/site/intergration/intergration.component";
+import {IntegrationDataResolverService} from "./resolver/integration-data-resolver.service";
+import {GetFormsResolverService} from "./resolver/get-forms-resolver.service";
+import {GetSiteDataFormIdResolverService} from "./resolver/get-site-data-form-id-resolver.service";
 
 
 const routes: Routes = [
@@ -42,11 +45,11 @@ const routes: Routes = [
 
   {path: 'site/:name/:id', component: SidebarComponent, resolve: {user: GetUserResolverService},canActivate: [AuthGuard, SiteSelectGuard],children: [
       {path: '', component: DashboardComponent, resolve: {data: GetSiteDataResolverService}},
-      {path: 'code', component: CodeComponent},
+      {path: 'code', component: CodeComponent, resolve: {user: GetUserResolverService}},
       {path: 'create', component: CreateComponent},
-      {path: 'settings', component: SettingsComponent},
+      {path: 'settings', component: SettingsComponent, resolve: {data: GetFormsResolverService, site: GetSiteDataFormIdResolverService}},
       {path: 'api', component: ApiComponent},
-      {path: 'integrations', component: IntergrationComponent},
+      {path: 'integrations', component: IntergrationComponent, resolve: {data: IntegrationDataResolverService}},
     ]},
   {path: 'profile', component: ProfileComponent,resolve: {user: GetUserResolverService}, children: [
       {path: 'settings', component: AccountComponent, resolve: {user: GetUserResolverService},},
