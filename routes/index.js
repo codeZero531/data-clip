@@ -27,72 +27,82 @@ function getDataLimit(userType) {
 
 //data insert
 router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
-    const userId = await req.params.userId;
-    const bucketId = await req.params.bucketId;
-    let user = await User.findById(userId);
-    let userType = await user.type;
-    let dataLimit = await getDataLimit(userType);
-    let bucketData = await Bucket.findOne({bucketId: bucketId});
+    try {
+        const userId = await req.params.userId;
+        const bucketId = await req.params.bucketId;
+        let user = await User.findById(userId);
+        let userType = await user.type;
+        let dataLimit = await getDataLimit(userType);
+        let bucketData = await Bucket.findOne({bucketId: bucketId});
 
-    let bucket = await Table.findOne({user: userId, bucketId: bucketId});
-    if (!bucket) {
-        return res.send('no bucket belongs to user');
-    }
-    const siteName = bucket.site;
+        let bucket = await Table.findOne({user: userId, bucketId: bucketId}).populate('site');
+        if (!bucket) {
+            return res.status(403).json({status: false, error: 'no bucket belongs to user!'})
+        }
 
-    // no bucket belongs to user
-    if (bucketData && bucketData.data.length >= dataLimit) {
-        return res.send('limit over')
-    }
+        //host check
+        const siteId = bucket.site._id;
+        const host = bucket.site.host;
+        console.log(req.headers.host);
+        if (host !== req.headers.host){
+            return res.status(403).json({status: false, error: 'host not matched!'});
+        }
 
-    const data = req.body;
-    const  keys = _.keys(data);
-    data.date = Date();
-    console.log(data);
+        // no bucket belongs to user
+        if (bucketData && bucketData.data.length >= dataLimit) {
+            return res.status(403).json({status: false, error: 'your plan expire with limits!'})
+        }
 
-    let bucketInBucket = await Bucket.findOne({bucketId: bucketId}).catch(err=>console.log(err));
-    if (bucketInBucket){
-        //push data to bucket
-         console.log('thynwa');
-         Bucket.updateOne(
-             {bucketId: bucketId},
-             {$push: {data: data}},
-         )
-             .then(result => {
-                 Bucket.updateOne(
-                     {bucketId: bucketId},
-                     {$addToSet: {keys: keys}}
-                 )
-                     .then(result => {return res.json({status: 'success', result: result})})
-                     .catch(err => {return res.send(err.message)});
-             })
-             .catch(err => {return res.send(err.message)});
+        //keys and data filters
+        const data = req.body;
+        const  keys = _.keys(data);
+        data.date = Date();
 
-    }else{
-        //create an add data to bucket
-        console.log('naha');
-        const bucket = new Bucket({
-            _id: new mongoose.Types.ObjectId(),
-            bucketId: bucketId,
-            data: data,
-            site: siteName
-        });
-        bucket.save()
-            .then(
-                result => {
+        let bucketInBucket = await Bucket.findOne({bucketId: bucketId});
+        if (bucketInBucket){
+            //push data to bucket
+            console.log('thynwa');
+            Bucket.updateOne(
+                {bucketId: bucketId},
+                {$push: {data: data}},
+            )
+                .then(result => {
                     Bucket.updateOne(
                         {bucketId: bucketId},
-                        {$addToSet: {keys: keys}},
+                        {$addToSet: {keys: keys}}
                     )
-                        .then(result => {return res.json({status: 'success', result: result})})
-                        .catch(err => {return res.send(err.message)});
-                }
-            )
-            .catch(err => {return res.send(err.message)});
+                        .then(result => {return res.status(201).json({status: true, message: 'data saved!'})});
 
+                });
+
+
+        }else{
+            //create an add data to bucket
+            console.log('naha');
+            const bucket = new Bucket({
+                _id: new mongoose.Types.ObjectId(),
+                bucketId: bucketId,
+                data: data,
+                site: siteId
+            });
+            bucket.save()
+                .then(
+                    result => {
+                        Bucket.updateOne(
+                            {bucketId: bucketId},
+                            {$addToSet: {keys: keys}},
+                        )
+                            .then(result => {return res.status(201).json({status: true, message: 'data saved!'})});
+                    }
+                );
+
+        }
+
+
+    }catch (e) {
+        console.log(e.message);
+        res.status(403).json({status: false, message: 'failed', err: e.message});
     }
-
-
 
 });
 

@@ -14,7 +14,7 @@ async function sendwebHook(req, res, next) {
     const bucketId = await req.params.bucketId;
     let table = await Table.findOne({bucketId: bucketId}).populate('user').populate('site').catch(err => console.log(err.message));
     if (!table) {
-        return res.status(203).send('bucket not found');
+        return res.status(403).json({status: false, message: 'bucket not found'});
     }
     let integration = await Integrations.findById(table.site).catch(err => console.log(err.message));
 
@@ -52,7 +52,7 @@ async function sendwebHook(req, res, next) {
         }
         next();
     } catch (e) {
-        console.log(e);
+       res.status(403).json({status: false, error: e.message});
     }
 
 
