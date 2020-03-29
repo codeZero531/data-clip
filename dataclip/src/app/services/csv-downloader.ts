@@ -2,11 +2,11 @@ import {Component, Input, Output, EventEmitter, Renderer} from '@angular/core';
 @Component({
   selector: 'csv-downloader',
   template: `
-    <button class="btn btn-primary" (click)="build()">{{downloaderName}}</button>
+    <button class="btn btn-success" (click)="build()">{{downloaderName}}</button>
   `
 })
 export class csvDownloader {
-  @Input() downloaderName: string = 'Download CSV';
+  @Input() downloaderName: string = 'DOWNLOAD CSV';
   @Input() headers: string[] = [];
   @Input() data: any[] = [];
   @Input() fileName: string = 'data.csv';

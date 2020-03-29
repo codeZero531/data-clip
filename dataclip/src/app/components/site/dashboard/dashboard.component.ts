@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isLoadingStart = false;
   isBucketDataHave = false;
   isClickOnBucket = false;
+  selectedBucketId = '';
 
 
   constructor(
@@ -49,7 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+      this.siteName = localStorage.getItem('siteName');
   }
 
   ngOnDestroy() {
