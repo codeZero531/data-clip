@@ -31,7 +31,7 @@
     <div class="float-left"><h5>{{form.bucketName}} </h5></div>
     <div class="float-right form-update-link">
       <a class="text-secondary" data-toggle="modal" data-target="#editFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
-      <a class="text-danger" (click)="onFormDelete(form.bucketId, form.bucketName)">delete</a>
+      <a class="text-danger"  (click)="onFormDelete(form.bucketId, form.bucketName)" >delete</a>
     </div>
   </div>
 </div>
@@ -43,7 +43,7 @@
 
     <i><h3 class="mt-5">Delete site</h3></i>
     <hr>
-    <a (click)="onDeleteSiteData(siteId)">Delete "boardima.com" and it's all data</a>
+    <a style="cursor: pointer" data-toggle="modal" data-target="#siteeRemoveConfirmModal">Delete "boardima.com" and it's all data</a>
 
   </div>
 </div>
@@ -74,3 +74,28 @@
     </div>
   </div>
 </div>
+
+
+<!-----------------------------------------------------modals -------------------------------------------------------------------------------------->
+
+<!-- site delete confirm Modal -->
+<div class="modal fade" id="siteeRemoveConfirmModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="siteeRemoveConfirmModalTitle">Really remove site?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-4"  >
+        <span>Are you sure you really want to delete site "{{siteName}}" and all its data? <br> There is no going back!</span>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onDeleteSiteData(siteId)" type="button" class="btn btn-danger btn-block" data-dismiss="modal">YES, REALLY REMOVE SITE AND DATA</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -44,12 +44,6 @@ button:hover, button:focus {
   -webkit-box-shadow: none !important;
   box-shadow: none !important; }
 
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5 {
-  line-height: 1.5;
-  font-weight: 400;
-  font-family: "Poppins", Arial, sans-serif;
-  color: #000; }
 
 .ftco-section {
   padding: 7em 0; }
@@ -135,7 +129,7 @@ h1, h2, h3, h4, h5,
 #sidebar ul li.active > a {
   background: transparent;
   color: #43cea2; }
-@media (max-width: 991.98px) {
+@media (max-width: 500.98px) {
   #sidebar {
     margin-left: -300px; }
   #sidebar.active {

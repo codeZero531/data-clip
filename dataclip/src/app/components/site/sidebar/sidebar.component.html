@@ -96,12 +96,19 @@
     </div>
 
     <div class="modal-content" *ngIf="isSiteLimit">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createFormModal3Title">Please upgrade to add a new site</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body p-4"  >
-        <h6>Your can't create new site.Please upgrade your plan!</h6>
+        <h6>Oops, you are at your plan limit of 1 site. Please upgrade to add a new site.</h6>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Upgrade plan</button>
+        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">UPGRADE</button>
+        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">MAY BE LATER</button>
+
       </div>
     </div>
   </div>
@@ -135,12 +142,18 @@
       </div>
     </div>
     <div class="modal-content" *ngIf="isFormLimit">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createFormModal2Title">Please upgrade to add a new form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body p-4"  >
         <h6>Your can't create new form.Please update your plan!</h6>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Upgrade plan</button>
+        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">UPGRADE</button>
+        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">MAY BE LATER</button>
       </div>
     </div>
 

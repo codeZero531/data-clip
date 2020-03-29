@@ -107,7 +107,6 @@ export class SettingsComponent implements OnInit {
       );
   }
   onDeleteSiteData(id: string) {
-    if (confirm("Are you sure to delete '" + this.siteName + "' and all data ?")) {
       this.mainService.deleteSiteData(id)
         .subscribe(
           res => {
@@ -120,7 +119,6 @@ export class SettingsComponent implements OnInit {
             this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
           }
         );
-    }
   }
 
 }
