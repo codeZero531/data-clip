@@ -38,15 +38,16 @@ async function sendwebHook(req, res, next) {
                 },
                 payload: req.body
             };
-            // console.log(data);
-            request.post('http://localhost:8000/api/webhook', {
+            request.post(integration.webhookUrl, {
                 json: data
             }, (error, res, body) => {
                 if (error) {
-                    console.error(error);
+                    console.error(error.message);
+                } else {
+                    // console.log(`statusCode: ${res.statusCode}`);
+                    console.log(body);
                 }
-                console.log(`statusCode: ${res.statusCode}`);
-                console.log(body);
+
             })
         }
         next();
