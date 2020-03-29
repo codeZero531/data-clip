@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const hello = require('get-form-data');
 const formidable = require('formidable');
 const sendwebHook = require('../function/webhook');
+const _ = require('lodash');
 
 
 
@@ -44,107 +45,53 @@ router.post('/:userId/:bucketId',async function (req, res, next) {
         return res.send('limit over')
     }
 
-    //bucket belongs to user
-    const form = formidable({multiples: true});
-    const keys = [];
-    form.parse(req, (err, fields, files) => {
-        fields.date = Date();
-        console.log('fields: ' + ' ' + fields);
+    const data = req.body;
+    const  keys = _.keys(data);
+    data.date = Date();
 
-        Bucket.find({bucketId: bucketId})
+    let bucketInBucket = await Bucket.findOne({bucketId: bucketId}).catch(err=>console.log(err));
+    if (bucketInBucket){
+        //push data to bucket
+         console.log('thynwa');
+         Bucket.updateOne(
+             {bucketId: bucketId},
+             {$push: {data: data}},
+         )
+             .then(result => {
+                 Bucket.updateOne(
+                     {bucketId: bucketId},
+                     {$addToSet: {keys: keys}}
+                 )
+                     .then(result => {return res.json({status: 'success', result: result})})
+                     .catch(err => {return res.send(err.message)});
+             })
+             .catch(err => {return res.send(err.message)});
+
+    }else{
+        //create an add data to bucket
+        console.log('naha');
+        const bucket = new Bucket({
+            _id: new mongoose.Types.ObjectId(),
+            bucketId: bucketId,
+            data: data,
+            site: siteName
+        });
+        bucket.save()
             .then(
                 result => {
-                    console.log(result.length);
-                    if (result.length !== 0) {
-                        //bucket data have. push data
-                        Bucket.updateOne(
-                            {bucketId: bucketId},
-                            {$push: {data: fields}, updatedAt: Date.now()},
-                        )
-                            .then(result => {
-                                //insert keys
-                                Bucket.updateOne(
-                                    {bucketId: bucketId},
-                                    {$addToSet: {keys: keys}}
-                                )
-                                    .then(resu => console.log(resu))
-                                    .catch(err => console.log(err));
-
-                                res.json({
-                                    status: 'success',
-                                    result: result
-                                })
-                            })
-                            .catch(err => res.send(err));
-
-                    } else {
-                        // no bucket data. must create new bucket data
-                        const bucket = new Bucket({
-                            _id: new mongoose.Types.ObjectId(),
-                            bucketId: bucketId,
-                            data: fields,
-                            site: siteName
-                        });
-                        bucket.save()
-                            .then(
-                                result => {
-                                    // insert keys
-                                    Bucket.updateOne(
-                                        {bucketId: bucketId},
-                                        {$addToSet: {keys: keys}, updatedAt: Date.now()},
-                                    )
-                                        .then(resu => console.log(resu))
-                                        .catch(err => console.log(err));
-
-
-                                    res.json({
-                                        status: 'success',
-                                        result: result,
-                                    })
-                                }
-                            )
-                            .catch(
-                                err => res.send(err)
-                            );
-
-                    }
+                    Bucket.updateOne(
+                        {bucketId: bucketId},
+                        {$addToSet: {keys: keys}},
+                    )
+                        .then(result => {return res.json({status: 'success', result: result})})
+                        .catch(err => {return res.send(err.message)});
                 }
             )
-            .catch(err => console.log(err));
+            .catch(err => {return res.send(err.message)});
 
+    }
 
-        // console.log('files:', files);
-    });
-    form.once('error', console.error);
-
-    form.on('fileBegin', (filename, file) => {
-        form.emit('data', {name: 'fileBegin', filename, value: file});
-    });
-
-    form.on('file', (filename, file) => {
-        form.emit('data', {name: 'file', key: filename, value: file});
-    });
-
-    form.on('field', (fieldName, fieldValue) => {
-        form.emit('data', {name: 'field', key: fieldName, value: fieldValue});
-    });
-
-    form.once('end', () => {
-        console.log('Done!');
-        console.log(keys);
-        // Bucket.updateOne(
-        //     {bucketId : bucketId},
-        //     {$addToSet : {keys : keys}}
-        // )
-        //     .then(result => console.log(result))
-        //     .catch(err => console.log(err));
-
-    });
-
-    form.on('data', ({name, key, value, buffer, start, end}) => {
-        keys.push(key);
-    });
-
+   
 
 });
 

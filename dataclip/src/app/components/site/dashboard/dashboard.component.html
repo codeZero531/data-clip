@@ -68,8 +68,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let bucket of bucketData">
-<!--     <td *ngFor="let kf of bucket | keyvalue">{{kf.value}}</td>-->
-     <td *ngFor="let kf of keys">{{bucket[kf]}}</td>
+     <td *ngFor="let key of keys">{{bucket[key] | json | slice:1:-1}}</td>
      <td >{{bucket['date'] | date:'short':'+0530'}}</td>
     </tr>
     </tbody>

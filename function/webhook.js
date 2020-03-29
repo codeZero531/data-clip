@@ -18,34 +18,34 @@ async function sendwebHook(req, res, next) {
     if (integration) {
         // console.log(table);
         // // console.log(integration);
-        const hey = formidable({ multiples: true });
-
-        hey.parse(req, (err, fields, files) => {
-            if (err) {
-                next(err);
-                return;
-            }
-            const data = {
-                token: integration.webhookToken,
-                user: {
-                    user_id: table.user._id,
-                    name: table.user.name,
-                    email: table.user.email
-                },
-                site: {
-                    site_id: table.site._id,
-                    name: table.site.siteName,
-                    host: table.site.host
-                },
-                form: {
-                    form_id: table.bucketId,
-                    name: table.bucketName
-                },
-                payload: fields
-            };
-
-            next();
-        });
+        // const hey = formidable({ multiples: true });
+        //
+        // hey.parse(req, (err, fields, files) => {
+        //     if (err) {
+        //         next(err);
+        //         return;
+        //     }
+        // });
+        const data = {
+            token: integration.webhookToken,
+            user: {
+                user_id: table.user._id,
+                name: table.user.name,
+                email: table.user.email
+            },
+            site: {
+                site_id: table.site._id,
+                name: table.site.siteName,
+                host: table.site.host
+            },
+            form: {
+                form_id: table.bucketId,
+                name: table.bucketName
+            },
+            payload: req
+        };
+        console.log(req);
+        next();
 
     }
     try {

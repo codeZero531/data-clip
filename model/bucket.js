@@ -6,8 +6,7 @@ const bucketSchema = mongoose.Schema({
     data: {type: Array , required:true},
     keys: {type: Array, required: false},
     site: {type: mongoose.Schema.Types.ObjectId, ref: 'Site', required: false},
-    updatedAt: {type: Date, required: false}
-});
+}, {timestamps: true});
 
 
 module.exports = mongoose.model('Bucket', bucketSchema);
