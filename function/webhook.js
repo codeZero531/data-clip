@@ -6,6 +6,8 @@ const Site = require('../model/site');
 const Integrations = require('../model/integration');
 const mongoose = require('mongoose');
 const formidable = require('formidable');
+const _ = require('lodash');
+const request = require('request');
 
 async function sendwebHook(req, res, next) {
     const userId = await req.params.userId;
@@ -15,49 +17,41 @@ async function sendwebHook(req, res, next) {
         return res.status(203).send('bucket not found');
     }
     let integration = await Integrations.findById(table.site).catch(err => console.log(err.message));
-    if (integration) {
-        // console.log(table);
-        // // console.log(integration);
-        // const hey = formidable({ multiples: true });
-        //
-        // hey.parse(req, (err, fields, files) => {
-        //     if (err) {
-        //         next(err);
-        //         return;
-        //     }
-        // });
-        const data = {
-            token: integration.webhookToken,
-            user: {
-                user_id: table.user._id,
-                name: table.user.name,
-                email: table.user.email
-            },
-            site: {
-                site_id: table.site._id,
-                name: table.site.siteName,
-                host: table.site.host
-            },
-            form: {
-                form_id: table.bucketId,
-                name: table.bucketName
-            },
-            payload: req
-        };
-        console.log(req);
-        next();
 
-    }
     try {
-        // let payload = jwt.verify( token, 'janaka') ;
-        // req.userId = payload.subject;
-        console.log(userId);
-        console.log(bucketId);
-        console.log('hello wade ok');
+        if (integration) {
+           const data = {
+                token: integration.webhookToken,
+                user: {
+                    user_id: table.user._id,
+                    name: table.user.name,
+                    email: table.user.email
+                },
+                site: {
+                    site_id: table.site._id,
+                    name: table.site.siteName,
+                    host: table.site.host
+                },
+                form: {
+                    form_id: table.bucketId,
+                    name: table.bucketName
+                },
+                payload: req.body
+            };
+            // console.log(data);
+            request.post('http://localhost:8000/api/webhook', {
+                json: data
+            }, (error, res, body) => {
+                if (error) {
+                    console.error(error);
+                }
+                console.log(`statusCode: ${res.statusCode}`);
+                console.log(body);
+            })
+        }
+        next();
     } catch (e) {
-        console.log('hello notok');
-        return res.status(401).send('Unauthorized request');
-
+        console.log(e);
     }
 
 

@@ -26,7 +26,7 @@ function getDataLimit(userType) {
 }
 
 //data insert
-router.post('/:userId/:bucketId',async function (req, res, next) {
+router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
     const userId = await req.params.userId;
     const bucketId = await req.params.bucketId;
     let user = await User.findById(userId);
@@ -48,6 +48,7 @@ router.post('/:userId/:bucketId',async function (req, res, next) {
     const data = req.body;
     const  keys = _.keys(data);
     data.date = Date();
+    console.log(data);
 
     let bucketInBucket = await Bucket.findOne({bucketId: bucketId}).catch(err=>console.log(err));
     if (bucketInBucket){
@@ -91,7 +92,7 @@ router.post('/:userId/:bucketId',async function (req, res, next) {
 
     }
 
-   
+
 
 });
 
