@@ -444,7 +444,7 @@ router.get('/site-delete/:id', verifyToken,(req, res, next) => {
 
 // integrations web hook functions -----------------------------------------------------------------------------------------------------------
 
-router.post('/set-webhook', verifyToken,sendwebHook,async (req, res, next) => {
+router.post('/set-webhook', verifyToken,async (req, res, next) => {
    const token = shortId.generate(1);
    let integration = await Integrations.findOne({_id: req.body.siteId}).catch(err => console.log(err.message));
    if (integration){
