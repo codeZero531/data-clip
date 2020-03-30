@@ -23,9 +23,6 @@
           <a routerLink="settings"><i class="fas fa-cog"></i>Site Settings</a>
         </li>
         <li *ngIf="isSiteSelected()" routerLinkActive="active">
-          <a routerLink="api"><i class="fas fa-key"></i>Api Key</a>
-        </li>
-        <li *ngIf="isSiteSelected()" routerLinkActive="active">
           <a routerLink="integrations"><i class="fas fa-cloud-upload-alt"></i>Integrations</a>
         </li>
         <li *ngIf="isSiteSelected()"  routerLinkActive="active">
@@ -34,7 +31,9 @@
         <li routerLinkActive="active"  class="step-two">
           <a  data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-plus-square"></i>Create Site</a>
         </li>
-
+        <li *ngIf="isSiteSelected()" routerLinkActive="active">
+          <a class="text-muted"><i class="fas fa-key"></i>Api Key  <small style="font-size: x-small" class="text-muted">( coming soon )</small></a>
+        </li>
         <li routerLinkActive="active">
           <a  (click)="logOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </li>
