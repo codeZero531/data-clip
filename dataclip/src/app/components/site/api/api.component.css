@@ -1,0 +1,23 @@
+*{
+  font-family: 'Baloo Thambi 2', cursive;
+}
+
+.section{
+  margin-top: 200px;
+}
+
+.tag{
+  color: #f50057;
+
+
+}
+
+.att{
+  color: #1de9b6;
+}
+
+.val{
+  color: #ffc107
+
+;
+}

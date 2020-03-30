@@ -8,7 +8,8 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 export class ApiComponent implements OnInit {
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }
