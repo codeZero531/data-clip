@@ -25,6 +25,7 @@ import {IntergrationComponent} from "./components/site/intergration/intergration
 import {IntegrationDataResolverService} from "./resolver/integration-data-resolver.service";
 import {GetFormsResolverService} from "./resolver/get-forms-resolver.service";
 import {GetSiteDataFormIdResolverService} from "./resolver/get-site-data-form-id-resolver.service";
+import {DocComponent} from "./components/doc/doc.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'login', component: LOGINComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'maintenance', component: MaintenanceModeComponent},
+  {path: 'doc', component: DocComponent},
 
   {
     path: 'site',

@@ -39,6 +39,7 @@ import { ApiComponent } from './components/site/api/api.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 import { MaintenanceModeComponent } from './components/maintenance-mode/maintenance-mode.component';
 import { IntergrationComponent } from './components/site/intergration/intergration.component';
+import { DocComponent } from './components/doc/doc.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { IntergrationComponent } from './components/site/intergration/intergrati
     ConfirmMailComponent,
     MaintenanceModeComponent,
     IntergrationComponent,
+    DocComponent,
 
 
   ],
