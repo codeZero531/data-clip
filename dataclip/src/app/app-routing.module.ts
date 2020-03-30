@@ -35,6 +35,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'maintenance', component: MaintenanceModeComponent},
   {path: 'doc', component: DocComponent},
+  {path: 'api', component: ApiComponent},
 
   {
     path: 'site',
