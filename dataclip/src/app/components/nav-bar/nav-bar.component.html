@@ -21,7 +21,7 @@
 <!--          <a routerLink="/profile/settings" class="nav-link" href="#">Profile Setting</a>-->
 <!--        </li>-->
         <li *ngIf="isLogin" class="nav-item ">
-          <img style="cursor: pointer" src="https://www.gravatar.com/avatar/{{user.avatar}}?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img style="cursor: pointer" src="https://www.gravatar.com/avatar/{{user?.avatar}}?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="dropdown-menu dropdown-menu-sm-right">
             <button routerLink="/profile/payment" class="dropdown-item" type="button">Payment and Plans</button>
             <button routerLink="/profile/settings" class="dropdown-item" type="button">Profile</button>

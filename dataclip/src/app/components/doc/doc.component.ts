@@ -10,6 +10,10 @@ export class DocComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+  }
+  eventHandle(string: string){
+   console.log(string);
   }
 
 }
