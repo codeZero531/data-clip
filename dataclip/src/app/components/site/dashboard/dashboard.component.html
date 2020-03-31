@@ -70,14 +70,14 @@
     </thead>
     <tbody>
     <tr *ngFor="let bucket of bucketData">
-     <td *ngFor="let key of keys">{{bucket[key] | json | slice:1:-1}}</td>
+     <td *ngFor="let key of keys">{{bucket[key]}}</td>
      <td >{{bucket['date'] | date:'short':'+0530'}}</td>
     </tr>
     </tbody>
   </table>
   <hr>
 <mat-progress-bar mode="determinate" value="{{(bucketDataCount/500)*100}}" color="accent"></mat-progress-bar>
-  {{(bucketDataCount/500)*100}}% <small class="text-muted">capacity</small>
+  {{((bucketDataCount/500)*100)}}% <small class="text-muted">capacity</small>
 </span>
 
 <div class="mb-5 pb-5"></div>
