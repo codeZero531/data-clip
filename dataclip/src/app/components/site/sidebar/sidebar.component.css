@@ -129,9 +129,9 @@ button:hover, button:focus {
 #sidebar ul li.active > a {
   background: transparent;
   color: #43cea2; }
-@media (max-width: 500.98px) {
+@media (max-width: 991.98px) {
   #sidebar {
-    margin-left: -300px; }
+    margin-left: -200px; padding-left: 200px}
   #sidebar.active {
     margin-left: 0; } }
 
