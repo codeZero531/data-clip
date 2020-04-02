@@ -27,17 +27,14 @@ router.get('/:bucketName',apiVerifyToken ,async (req, res, next) => {
 });
 
 router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
-   //  console.log(req.params.bucketName);
-   // console.log(req.apiToken);
-   // console.log(req.body);
     try {
         const apiToken = req.apiToken;
 
         let user = await User.findOne({apiToken: apiToken});
         const userId = user._id;
-        if (!user){return res.status(403).json({status: false, message: 'api key invalid'})}
+        if (!user){return res.status(403).json({status: 403, message: 'api key invalid'})}
         let bucketWithFewDetails = await Table.findOne({bucketName: req.params.bucketName, user: userId});
-        if (!bucketWithFewDetails){ return res.status(403).json({status: false, message: 'form name invalid'}) }
+        if (!bucketWithFewDetails){ return res.status(403).json({status: 403, message: 'form name invalid'}) }
         const bucketId = await bucketWithFewDetails.bucketId;
         let userType = await user.type;
 
@@ -46,7 +43,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
 
         let bucket = await Table.findOne({user: userId, bucketId: bucketId}).populate('site');
         if (!bucket) {
-            return res.status(403).json({status: false, message: 'no bucket belongs to user!'})
+            return res.status(403).json({status: 403, message: 'no bucket belongs to user!'})
         }
 
         //host check
@@ -59,7 +56,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
 
         // no bucket belongs to user
         if (bucketData && bucketData.data.length >= dataLimit) {
-            return res.status(403).json({status: false, message: 'your plan expire with limits!'})
+            return res.status(403).json({status: 403, message: 'your plan expire with limits!'})
         }
 
         //keys and data filters
@@ -80,7 +77,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
                         {bucketId: bucketId},
                         {$addToSet: {keys: keys}}
                     )
-                        .then(result => {return res.status(201).json({status: true, message: 'data saved!',form_name: req.params.bucketName})});
+                        .then(result => {return res.status(201).json({status: 201, message: 'data saved!',form_name: req.params.bucketName})});
 
                 });
 
@@ -101,7 +98,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
                             {bucketId: bucketId},
                             {$addToSet: {keys: keys}},
                         )
-                            .then(result => {return res.status(201).json({status: true, message: 'data saved!',form_name: req.params.bucketName})});
+                            .then(result => {return res.status(201).json({status: 201, message: 'data saved!',form_name: req.params.bucketName})});
                     }
                 );
 
@@ -110,7 +107,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
 
     }catch (e) {
         console.log(e.message);
-        res.status(403).json({status: false, message: 'failed', err: e.message});
+        res.status(403).json({status: 403, message: 'something went wrong'});
     }
 
 });
