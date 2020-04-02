@@ -27,17 +27,18 @@ router.get('/:bucketName',apiVerifyToken ,async (req, res, next) => {
 });
 
 router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
-    console.log(req.params.bucketName);
-   console.log(req.apiToken);
-   console.log(req.body);
+   //  console.log(req.params.bucketName);
+   // console.log(req.apiToken);
+   // console.log(req.body);
     try {
         const apiToken = req.apiToken;
-        let bucketWithFewDetails = await Table.findOne({bucketName: req.params.bucketName});
-        if (!bucketWithFewDetails){ return res.status(403).json({status: false, message: 'form name invalid'}) }
-        const bucketId = await bucketWithFewDetails.bucketId;
+
         let user = await User.findOne({apiToken: apiToken});
         const userId = user._id;
         if (!user){return res.status(403).json({status: false, message: 'api key invalid'})}
+        let bucketWithFewDetails = await Table.findOne({bucketName: req.params.bucketName, user: userId});
+        if (!bucketWithFewDetails){ return res.status(403).json({status: false, message: 'form name invalid'}) }
+        const bucketId = await bucketWithFewDetails.bucketId;
         let userType = await user.type;
 
         let dataLimit = await getDataLimit(userType);
@@ -79,7 +80,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
                         {bucketId: bucketId},
                         {$addToSet: {keys: keys}}
                     )
-                        .then(result => {return res.status(201).json({status: true, message: 'data saved!'})});
+                        .then(result => {return res.status(201).json({status: true, message: 'data saved!',form_name: req.params.bucketName})});
 
                 });
 
@@ -100,7 +101,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
                             {bucketId: bucketId},
                             {$addToSet: {keys: keys}},
                         )
-                            .then(result => {return res.status(201).json({status: true, message: 'data saved!'})});
+                            .then(result => {return res.status(201).json({status: true, message: 'data saved!',form_name: req.params.bucketName})});
                     }
                 );
 
