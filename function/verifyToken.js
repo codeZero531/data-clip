@@ -20,7 +20,6 @@ function verifyToken(req, res, next) {
     } catch (e) {
         console.log('not verify');
         return res.status(401).send('Unauthorized request');
-
     }
 
 

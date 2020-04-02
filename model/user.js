@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
     confirm: {type: Boolean, require: false, default: false},
     confirmCode: {type: String, required: true},
     webhookUrl: {type: String, required: false},
-    webhookToken: {type: String, required: false}
+    webhookToken: {type: String, required: false},
+    apiKey: {type: String, required: true}
 });
 module.exports = mongoose.model('User',userSchema);

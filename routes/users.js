@@ -132,13 +132,15 @@ router.post('/register', (req, res, next) => {
                } else {
                    //email not exists
                    const confirmCode = shortId.generate();
+                   const apiKey = 'api_'+shortId.generate();
                    bcrypt.hash(req.body.password, saltRound, function (err, hashPassword) {
                         const user = new User({
                             _id : new mongoose.Types.ObjectId(),
                             name: req.body.name,
                             email: req.body.email,
                             password: hashPassword,
-                            confirmCode: confirmCode
+                            confirmCode: confirmCode,
+                            apiKey: apiKey
                         });
                         smsSend(user.email, confirmCode, user._id);
                         user.save()
