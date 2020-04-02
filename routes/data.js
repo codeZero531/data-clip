@@ -5,13 +5,7 @@ const Bucket = require('../model/bucket');
 const Table = require('../model/table');
 const Site = require('../model/site');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRound = 10;
-const jwt = require('jsonwebtoken');
 const verifyToken = require('../function/verifyToken');
-const apiVerifyToken = require('../function/apiVerifyToken');
-
-
 
 
 router.get('/:bucketId',verifyToken , (req, res, next) => {
@@ -35,7 +29,6 @@ router.get('/:bucketId',verifyToken , (req, res, next) => {
             }
         )
         .catch(err => res.send(err));
-
 });
 
 
