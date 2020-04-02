@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dataRouter = require('./routes/data');
 var mailRouter = require('./routes/mail');
+var nodePackage = require('./routes/node-package');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/users', usersRouter);
 app.use('/', indexRouter);
 app.use('/api/data', dataRouter);
 app.use('/api/mail', mailRouter);
+app.use('/api', nodePackage );
 
 
 
