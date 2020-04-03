@@ -19,7 +19,7 @@ router.get('/:bucketName',apiVerifyToken ,async (req, res, next) => {
         const bucketId = bucket.bucketId;
         let data = await Bucket.findOne({bucketId: bucketId});
         if (!data){return res.status(403).json({status: 200, message: 'form data empty', data: []})}
-        return res.status(200).json({status: 200, data: data.data, message: 'success', form_name: bucketName});
+        return res.status(200).json({status: 200, data: data.data, last_entry: data.updatedAt ,message: 'success', form_name: bucketName});
     }catch (e) {
         return res.status(403).json({status: 403, message: 'something went wrong'});
     }
@@ -27,14 +27,15 @@ router.get('/:bucketName',apiVerifyToken ,async (req, res, next) => {
 
 router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
     try {
-        const apiToken = req.apiToken;
+        const siteId = req.apiToken.slice(4);
 
-        let user = await User.findOne({apiToken: apiToken});
-        const userId = user._id;
-        if (!user){return res.status(403).json({status: 403, message: 'api key invalid'})}
-        let bucketWithFewDetails = await Table.findOne({bucketName: req.params.bucketName, user: userId});
+        let site = await Site.findById(siteId);
+        if (!site){return res.status(403).json({status: 403, message: 'api key invalid'})}
+        let bucketWithFewDetails = await Table.findOne({bucketName: req.params.bucketName, site: siteId});
         if (!bucketWithFewDetails){ return res.status(403).json({status: 403, message: 'form name invalid'}) }
         const bucketId = await bucketWithFewDetails.bucketId;
+        let user = await User.findById(site.user);
+        const userId = user._id;
         let userType = await user.type;
 
         let dataLimit = await getDataLimit(userType);
@@ -45,15 +46,6 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
             return res.status(403).json({status: 403, message: 'no bucket belongs to user!'})
         }
 
-        //host check
-        const siteId = bucket.site._id;
-        const host = bucket.site.host;
-        console.log(req.headers.host);
-        // if (host !== req.headers.host){
-        //     return res.status(403).json({status: false, error: 'host not matched!'});
-        // }
-
-        // no bucket belongs to user
         if (bucketData && bucketData.data.length >= dataLimit) {
             return res.status(403).json({status: 403, message: 'your plan expire with limits'})
         }
