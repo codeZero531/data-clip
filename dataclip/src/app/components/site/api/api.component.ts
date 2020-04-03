@@ -9,15 +9,14 @@ import {FlashMessagesService} from "angular2-flash-messages";
   styleUrls: ['./api.component.css']
 })
 export class ApiComponent implements OnInit {
-  user: any;
+  token: any;
 
   constructor(
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private flashMessage: FlashMessagesService
   ) {
-    this.user = this.activatedRoute.snapshot.data['user'];
-
+    this.token = this.activatedRoute.snapshot.data['data'];
   }
 
   ngOnInit() {

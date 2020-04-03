@@ -55,6 +55,8 @@ export class MainService {
   deleteWebhook(siteId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/users/delete-webhook/${siteId}`);
   }
-
+  getSiteApiToken(siteId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/get-site-api-token/${siteId}`);
+  }
 
 }

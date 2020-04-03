@@ -11,7 +11,7 @@
 <div class="row justify-content-center mt-5">
   <div class="col-md-3">
       <div class="input-group">
-        <input type="text" value="{{user?.apiToken}}" class="form-control" #apikey >
+        <input type="text" value="{{token?.token}}" class="form-control" #apikey >
         <div class="input-group-prepend">
           <button (click)="copyInputMessage(apikey)" class="btn btn-primary" id="basic-addon1">copy</button>
         </div>
@@ -19,3 +19,4 @@
     <span class="mt-3 text-muted float-right"><a href="https://www.npmjs.com/package/dataclip" target="_blank">See the API docs for details</a></span>
   </div>
 </div>
+<!--{{token | json}}-->

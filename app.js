@@ -52,8 +52,8 @@ app.use(function(err, req, res, next) {
 });
 
 // mongoose connect localhost
-// mongoose.connect('mongodb://localhost/pageclip',
-mongoose.connect('mongodb+srv://janaka531:Jayantha@531@cluster0-01qr2.mongodb.net/dataclip?retryWrites=true&w=majority',
+mongoose.connect('mongodb://localhost/pageclip',
+// mongoose.connect('mongodb+srv://janaka531:Jayantha@531@cluster0-01qr2.mongodb.net/dataclip?retryWrites=true&w=majority',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true

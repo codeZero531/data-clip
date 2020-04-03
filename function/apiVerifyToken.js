@@ -3,7 +3,7 @@ function apiVerifyToken(req, res, next) {
         return res.status(401).json({status: 401, message: 'Unauthorized request'});
     }
     let apiToken = req.headers.authorization.split(' ')[1];
-    console.log(req.headers.authorization);
+
     if (apiToken === 'null'){
         return res.status(401).json({status: 401, message: 'Unauthorized request'});
     }

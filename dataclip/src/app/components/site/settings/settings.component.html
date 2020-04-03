@@ -27,7 +27,7 @@
 </div>
 
 <div class="row justify-content-center mb-3" *ngFor="let form of forms">
-  <div class="col-md-3 clearfix form-edit-column">
+  <div class="col-md-3 clearfix form-edit-column shadow">
     <div class="float-left"><h5>{{form.bucketName}} </h5></div>
     <div class="float-right form-update-link">
       <a class="text-secondary" data-toggle="modal" data-target="#editFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>

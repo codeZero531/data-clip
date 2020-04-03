@@ -11,15 +11,14 @@ const _ = require('lodash');
 router.get('/:bucketName',apiVerifyToken ,async (req, res, next) => {
     try{
         const bucketName = req.params.bucketName;
-        const apiToken = req.apiToken;
-        let user = await User.findOne({apiToken: apiToken});
-        if (!user){return res.status(403).json({status: 403, message: 'api key invalid'})}
-        const userId= user._id;
-        let bucket = await Table.findOne({bucketName: bucketName, user: userId});
+        const siteId = req.apiToken.slice(4);
+        let site = await Site.findById(siteId);
+        if (!site){return res.status(403).json({status: 403, message: 'api key invalid'})}
+        let bucket = await Table.findOne({bucketName: bucketName, site: site._id});
         if (!bucket){return res.status(403).json({status: 403, message: 'form name invalid'})}
         const bucketId = bucket.bucketId;
         let data = await Bucket.findOne({bucketId: bucketId});
-        if (!data){return res.status(403).json({status: 403, message: 'form data not found'})}
+        if (!data){return res.status(403).json({status: 200, message: 'form data empty', data: []})}
         return res.status(200).json({status: 200, data: data.data, message: 'success', form_name: bucketName});
     }catch (e) {
         return res.status(403).json({status: 403, message: 'something went wrong'});

@@ -132,7 +132,6 @@ router.post('/register', (req, res, next) => {
                } else {
                    //email not exists
                    const confirmCode = shortId.generate();
-                   const apiKey = 'api_'+shortId.generate();
                    bcrypt.hash(req.body.password, saltRound, function (err, hashPassword) {
                         const user = new User({
                             _id : new mongoose.Types.ObjectId(),
@@ -140,7 +139,6 @@ router.post('/register', (req, res, next) => {
                             email: req.body.email,
                             password: hashPassword,
                             confirmCode: confirmCode,
-                            apiKey: apiKey
                         });
                         smsSend(user.email, confirmCode, user._id);
                         user.save()
@@ -269,8 +267,8 @@ router.post('/create-site',verifyToken ,(req, res, next) => {
         siteName: req.body.siteName,
         host: req.body.hostName,
         user: req.userId
-
     });
+    site.apiToken = 'api_'+site._id;
     site.save()
         .then(
             result => {
@@ -485,6 +483,13 @@ router.get('/delete-webhook/:id', verifyToken, async (req, res, next) => {
     Integrations.deleteOne({_id: req.params.id})
         .then(result => res.send(true))
         .catch(err=>console.log(err));
+});
+
+// get site api token
+router.get('/get-site-api-token/:id', verifyToken,async (req, res, next) => {
+   const siteId = req.params.id;
+   let site = await Site.findById(siteId);
+   if (site){return res.json({token: site.apiToken})}
 });
 
 

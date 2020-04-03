@@ -27,6 +27,7 @@ import {GetFormsResolverService} from "./resolver/get-forms-resolver.service";
 import {GetSiteDataFormIdResolverService} from "./resolver/get-site-data-form-id-resolver.service";
 import {DocComponent} from "./components/doc/doc.component";
 import {NewHomeComponent} from "./components/new-home/new-home.component";
+import {GetSiteApiTokenService} from "./resolver/get-site-api-token.service";
 
 
 const routes: Routes = [
@@ -52,7 +53,7 @@ const routes: Routes = [
       {path: 'code', component: CodeComponent, resolve: {user: GetUserResolverService}},
       {path: 'create', component: CreateComponent},
       {path: 'settings', component: SettingsComponent, resolve: {data: GetFormsResolverService, site: GetSiteDataFormIdResolverService}},
-      {path: 'api', component: ApiComponent, resolve: {user: GetUserResolverService}},
+      {path: 'api', component: ApiComponent, resolve: {data: GetSiteApiTokenService}},
       {path: 'integrations', component: IntergrationComponent, resolve: {data: IntegrationDataResolverService}},
     ]},
   {path: 'profile', component: ProfileComponent,resolve: {user: GetUserResolverService}, children: [
