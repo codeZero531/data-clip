@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
+import {ActivatedRoute} from "@angular/router";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
   selector: 'app-api',
@@ -7,19 +9,26 @@ import {AuthService} from "../../../services/auth.service";
   styleUrls: ['./api.component.css']
 })
 export class ApiComponent implements OnInit {
-  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
-
-  isLogin: boolean;
+  user: any;
 
   constructor(
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private flashMessage: FlashMessagesService
+  ) {
+    this.user = this.activatedRoute.snapshot.data['user'];
+
+  }
 
   ngOnInit() {
-    this.isLogin = this.authService.loggedIn();
+
   }
-  onClick(){
-    this.notify.emit('hello');
+  /* To copy Text from Textbox */
+  copyInputMessage(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    this.flashMessage.show('Copied to clipboard', {cssClass: 'alert-secondary', timeout: 3000})
   }
 
 

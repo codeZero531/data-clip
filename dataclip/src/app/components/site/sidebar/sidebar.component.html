@@ -32,7 +32,7 @@
           <a  data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-plus-square"></i>Create Site</a>
         </li>
         <li *ngIf="isSiteSelected()" routerLinkActive="active">
-          <a class="text-muted"><i class="fas fa-key"></i>Api Key  <small style="font-size: x-small" class="text-muted">( coming soon )</small></a>
+          <a routerLink="api"><i class="fas fa-key"></i>Api Key</a>
         </li>
         <li routerLinkActive="active">
           <a  (click)="logOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>

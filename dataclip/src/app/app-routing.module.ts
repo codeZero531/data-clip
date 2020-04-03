@@ -52,7 +52,7 @@ const routes: Routes = [
       {path: 'code', component: CodeComponent, resolve: {user: GetUserResolverService}},
       {path: 'create', component: CreateComponent},
       {path: 'settings', component: SettingsComponent, resolve: {data: GetFormsResolverService, site: GetSiteDataFormIdResolverService}},
-      {path: 'api', component: ApiComponent},
+      {path: 'api', component: ApiComponent, resolve: {user: GetUserResolverService}},
       {path: 'integrations', component: IntergrationComponent, resolve: {data: IntegrationDataResolverService}},
     ]},
   {path: 'profile', component: ProfileComponent,resolve: {user: GetUserResolverService}, children: [

@@ -95,6 +95,8 @@ export class IntergrationComponent implements OnInit {
     inputElement.select();
     document.execCommand('copy');
     inputElement.setSelectionRange(0, 0);
+    this.flashMessage.show('Copied to clipboard', {cssClass: 'alert-secondary', timeout: 3000})
+
   }
 
 }
