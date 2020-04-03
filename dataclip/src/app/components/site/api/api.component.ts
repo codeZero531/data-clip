@@ -9,17 +9,21 @@ import {FlashMessagesService} from "angular2-flash-messages";
   styleUrls: ['./api.component.css']
 })
 export class ApiComponent implements OnInit {
-  token: any;
+  siteId: string;
+  token: string;
 
   constructor(
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private flashMessage: FlashMessagesService
   ) {
-    this.token = this.activatedRoute.snapshot.data['data'];
+
   }
 
   ngOnInit() {
+    this.siteId = localStorage.getItem('siteId');
+    this.token = 'api_'+this.siteId;
+
 
   }
   /* To copy Text from Textbox */

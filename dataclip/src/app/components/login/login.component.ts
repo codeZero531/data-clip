@@ -46,7 +46,7 @@ export class LOGINComponent implements OnInit {
               id: res.result[0]._id,
               type: res.result[0].type
             };
-            localStorage.setItem('user', JSON.stringify(data));
+            // localStorage.setItem('user', JSON.stringify(data));
             this.router.navigate(['site']);
           } else {
             //invalid

@@ -30,7 +30,7 @@
   <div class="col-md-3 clearfix form-edit-column shadow">
     <div class="float-left"><h5>{{form.bucketName}} </h5></div>
     <div class="float-right form-update-link">
-      <a class="text-secondary" data-toggle="modal" data-target="#editFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
+      <a class="text-secondary mr-3" data-toggle="modal" data-target="#editFormModal" (click)="onFormEdit(form.bucketId, form.bucketName)">edit</a>
       <a class="text-danger"  (click)="onFormDelete(form.bucketId, form.bucketName)" >delete</a>
     </div>
   </div>
@@ -68,8 +68,8 @@
         </form>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-block" (click)="onFormEditSubmit(formName,formId)" data-dismiss="modal">UPDATE</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onFormEditSubmit(formName,formId)" data-dismiss="modal">UPDATE</button>
       </div>
     </div>
   </div>

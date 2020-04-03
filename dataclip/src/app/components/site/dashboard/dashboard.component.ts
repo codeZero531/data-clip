@@ -3,6 +3,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MainService} from "../../../services/main.service";
 import {InteractionService} from "../../../services/interaction.service";
 import {UserLimitService} from "../../../services/user-limit.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,7 @@ import {UserLimitService} from "../../../services/user-limit.service";
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   mySubscription: any;
+  user: any;
 
   siteName: string;
   siteId: string;
@@ -34,7 +36,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private mainService: MainService,
     private interactionService: InteractionService,
     private router: Router,
-    private userLimitService: UserLimitService
+    private userLimitService: UserLimitService,
+    private authService: AuthService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -51,6 +54,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
       this.siteName = localStorage.getItem('siteName');
+      this.authService.getUser().subscribe(
+        res=> {
+          this.user = res;
+          this.userLimits = this.userLimitService.getUserLimit(this.user.type);
+        });
+
   }
 
   ngOnDestroy() {

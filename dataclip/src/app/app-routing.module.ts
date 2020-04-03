@@ -53,7 +53,7 @@ const routes: Routes = [
       {path: 'code', component: CodeComponent, resolve: {user: GetUserResolverService}},
       {path: 'create', component: CreateComponent},
       {path: 'settings', component: SettingsComponent, resolve: {data: GetFormsResolverService, site: GetSiteDataFormIdResolverService}},
-      {path: 'api', component: ApiComponent, resolve: {data: GetSiteApiTokenService}},
+      {path: 'api', component: ApiComponent},
       {path: 'integrations', component: IntergrationComponent, resolve: {data: IntegrationDataResolverService}},
     ]},
   {path: 'profile', component: ProfileComponent,resolve: {user: GetUserResolverService}, children: [

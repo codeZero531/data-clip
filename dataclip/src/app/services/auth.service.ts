@@ -29,14 +29,14 @@ export class AuthService {
   }
   logout() {
     this.flashMessage.show('logout successfully!', {cssClass: 'alert-success' ,timeout: 5000});
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('siteId');
     localStorage.removeItem('siteName');
     this.router.navigate(['']);
   }
   loggedIn() {
-    return !!localStorage.getItem('user');
+    return !!localStorage.getItem('token');
   }
   getToken() {
     return localStorage.getItem('token');

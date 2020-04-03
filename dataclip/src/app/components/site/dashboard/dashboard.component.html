@@ -77,7 +77,7 @@
   </table>
   <hr>
 <mat-progress-bar mode="determinate" value="{{(bucketDataCount/500)*100}}" color="accent"></mat-progress-bar>
-  {{((bucketDataCount/500)*100)}}% <small class="text-muted">capacity</small>
+  {{((bucketDataCount/userLimits?.submissionLimit)*100)}}% <small class="text-muted">capacity</small>
 </span>
 
 <div class="mb-5 pb-5"></div>
