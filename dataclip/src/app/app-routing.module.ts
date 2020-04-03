@@ -26,10 +26,11 @@ import {IntegrationDataResolverService} from "./resolver/integration-data-resolv
 import {GetFormsResolverService} from "./resolver/get-forms-resolver.service";
 import {GetSiteDataFormIdResolverService} from "./resolver/get-site-data-form-id-resolver.service";
 import {DocComponent} from "./components/doc/doc.component";
+import {NewHomeComponent} from "./components/new-home/new-home.component";
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: NewHomeComponent},
   {path: 'confirm-account/:id/:code', component: ConfirmMailComponent},
   {path: 'login', component: LOGINComponent},
   {path: 'signup', component: SignupComponent},

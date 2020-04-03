@@ -40,6 +40,7 @@ import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.com
 import { MaintenanceModeComponent } from './components/maintenance-mode/maintenance-mode.component';
 import { IntergrationComponent } from './components/site/intergration/intergration.component';
 import { DocComponent } from './components/doc/doc.component';
+import { NewHomeComponent } from './components/new-home/new-home.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { DocComponent } from './components/doc/doc.component';
     MaintenanceModeComponent,
     IntergrationComponent,
     DocComponent,
+    NewHomeComponent,
 
 
   ],

@@ -45,16 +45,25 @@ export class SettingsComponent implements OnInit {
 
     this.siteUpdateForm.get('host').setValue(this.site.host);
     this.siteUpdateForm.get('siteName').setValue(this.site.siteName);
+  }
 
-    // this.mainService.getSiteDataFromId(this.siteId)
-    //   .subscribe(
-    //     res =>{
-    //       this.site = res;
-    //
-    //     },
-    //     error => console.log(error)
-    //   );
-
+  loadSiteDetails() {
+    this.mainService.getSiteDataFromId(this.siteId)
+      .subscribe(
+        res =>{
+          this.site = res;
+        },
+        error => console.log(error)
+      );
+  }
+  loadFormsDetails() {
+    this.mainService.getForms(this.siteId)
+      .subscribe(
+        res =>{
+          this.forms = res;
+        },
+        error => console.log(error)
+      );
   }
   onUpdate() {
     console.log(this.siteUpdateForm.value);
@@ -62,7 +71,7 @@ export class SettingsComponent implements OnInit {
       .subscribe(
         res => {
           this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000})
-          this.ngOnInit();
+          this.loadSiteDetails();
         },
         error => {
           this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000})
@@ -76,7 +85,7 @@ export class SettingsComponent implements OnInit {
         .subscribe(
           res => {
             this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000});
-            this.ngOnInit()
+            this.loadFormsDetails()
           },
           error => {
             this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
@@ -97,7 +106,7 @@ export class SettingsComponent implements OnInit {
       .subscribe(
         res => {
           this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000});
-          this.ngOnInit()
+          this.loadFormsDetails();
         },
         error => {
           this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});

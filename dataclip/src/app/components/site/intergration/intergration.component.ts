@@ -37,6 +37,23 @@ export class IntergrationComponent implements OnInit {
     this.siteName = localStorage.getItem('siteName');
   }
 
+  loadWebHook() {
+    this.mainService.getWebhook(this.siteId)
+      .subscribe(
+        res => {
+          this.data = res;
+          if (this.data.status) {
+            this.isWebhookCreated = true;
+            this.webhookUrl = this.data.webhookUrl;
+            this.webhookToken = this.data.webhookToken;
+          } else {
+            this.isWebhookCreated = false;
+          }
+        }
+
+      );
+  }
+
   onClickCreateWebHook() {
     const data = {webhookUrl: this.webhookUrl, siteId: this.siteId};
     this.mainService.setWebhook(data)
@@ -44,7 +61,7 @@ export class IntergrationComponent implements OnInit {
         res => {
           if (res.status){
             this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000});
-            this.ngOnInit();
+            this.loadWebHook();
           } else {
             this.flashMessage.show(res.message, {cssClass: 'alert-danger text-center', timeout: 5000})
           }
@@ -63,7 +80,7 @@ export class IntergrationComponent implements OnInit {
           if (res){
             this.flashMessage.show('webhook delete successfully!', {cssClass: 'alert-success text-center', timeout: 5000});
             this.webhookUrl ='';
-            this.ngOnInit();
+            this.loadWebHook();
           } else {
             this.flashMessage.show('something went wrong. Try again!', {cssClass: 'alert-danger text-center', timeout: 5000})
           }
