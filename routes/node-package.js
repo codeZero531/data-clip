@@ -56,13 +56,21 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
 
         // no bucket belongs to user
         if (bucketData && bucketData.data.length >= dataLimit) {
-            return res.status(403).json({status: 403, message: 'your plan expire with limits!'})
+            return res.status(403).json({status: 403, message: 'your plan expire with limits'})
         }
 
         //keys and data filters
         const data = req.body;
-        const  keys = _.keys(data);
-        data.date = Date();
+        let keys = null;
+        if(_.isArrayLikeObject(data)){
+            data.forEach(function(item, index, array) {
+                keys = _.keys(item);
+                item.date = Date();
+            });
+        } else{
+            keys = _.keys(data);
+            data.date = Date();
+        }
 
         let bucketInBucket = await Bucket.findOne({bucketId: bucketId});
         if (bucketInBucket){
@@ -77,7 +85,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
                         {bucketId: bucketId},
                         {$addToSet: {keys: keys}}
                     )
-                        .then(result => {return res.status(201).json({status: 201, message: 'data saved!',form_name: req.params.bucketName})});
+                        .then(result => {return res.status(201).json({status: 201, message: 'data saved success',form_name: req.params.bucketName, data: data})});
 
                 });
 
@@ -98,7 +106,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
                             {bucketId: bucketId},
                             {$addToSet: {keys: keys}},
                         )
-                            .then(result => {return res.status(201).json({status: 201, message: 'data saved!',form_name: req.params.bucketName})});
+                            .then(result => {return res.status(201).json({status: 201, message: 'data saved success',form_name: req.params.bucketName, data: data})});
                     }
                 );
 
