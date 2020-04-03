@@ -37,7 +37,7 @@ router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
 
         let bucket = await Table.findOne({user: userId, bucketId: bucketId}).populate('site');
         if (!bucket) {
-            return res.status(403).json({status: false, error: 'no bucket belongs to user!'})
+            return res.status(204).json({status: false, error: 'no bucket belongs to user!'})
         }
 
         //host check
@@ -50,7 +50,7 @@ router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
 
         // no bucket belongs to user
         if (bucketData && bucketData.data.length >= dataLimit) {
-            return res.status(403).json({status: false, error: 'your plan expire with limits!'})
+            return res.status(204).json({status: false, error: 'your plan expire with limits!'})
         }
 
         //keys and data filters
