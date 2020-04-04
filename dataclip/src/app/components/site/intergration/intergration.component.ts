@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../services/main.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-intergration',
@@ -19,8 +20,11 @@ export class IntergrationComponent implements OnInit {
   constructor(
     private mainService: MainService,
     private flashMessage: FlashMessagesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('Site Integrations - Dataclip');
+
     this.data = this.activatedRoute.snapshot.data['data'];
     console.log(this.data);
     if (this.data.status) {

@@ -3,6 +3,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {log} from "util";
 import {MainService} from "../../../services/main.service";
 import {AuthService} from "../../../services/auth.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-code',
@@ -23,7 +24,9 @@ export class CodeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private mainService: MainService,
     private authService: AuthService,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('Code Placements - Dataclip');
     this.user = this.activatedRoute.snapshot.data['user'];
     this.userId = this.user._id;
     // this.authService.getUser().subscribe(res => this.userId = res._id);

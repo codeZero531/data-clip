@@ -3,6 +3,7 @@ import {AuthService} from "../../../services/auth.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-account',
@@ -17,8 +18,10 @@ export class AccountComponent implements OnInit {
     private authService: AuthService,
     private flashMessage: FlashMessagesService,
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('Account - Dataclip');
     this.user = this.activatedRoute.snapshot.data['user'];
   }
 

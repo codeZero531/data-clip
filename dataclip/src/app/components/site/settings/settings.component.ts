@@ -3,6 +3,7 @@ import {MainService} from "../../../services/main.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-settings',
@@ -24,9 +25,12 @@ export class SettingsComponent implements OnInit {
     private fb: FormBuilder,
     private flashMessage: FlashMessagesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title
 
   ) {
+    this.titleService.setTitle('Site Settings - Dataclip');
+
     this.forms = this.activatedRoute.snapshot.data['data'];
     this.site = this.activatedRoute.snapshot.data['site'];
     console.log(this.site);

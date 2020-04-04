@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {Title} from "@angular/platform-browser";
+
 
 @Component({
   selector: 'app-login',
@@ -16,8 +18,11 @@ export class LOGINComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private flashMessage: FlashMessagesService
-  ) { }
+    private flashMessage: FlashMessagesService,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('Login - Dataclip');
+  }
 
   ngOnInit() {
     if (this.authService.loggedIn()){

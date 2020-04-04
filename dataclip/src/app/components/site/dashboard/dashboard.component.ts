@@ -4,6 +4,7 @@ import {MainService} from "../../../services/main.service";
 import {InteractionService} from "../../../services/interaction.service";
 import {UserLimitService} from "../../../services/user-limit.service";
 import {AuthService} from "../../../services/auth.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-dashboard',
@@ -37,8 +38,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private interactionService: InteractionService,
     private router: Router,
     private userLimitService: UserLimitService,
-    private authService: AuthService
+    private authService: AuthService,
+    private titleService: Title,
   ) {
+    this.titleService.setTitle('Site - Dataclip');
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

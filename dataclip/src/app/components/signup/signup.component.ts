@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {passwordValidator} from "../../guards/password.validator";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-signup',
@@ -18,8 +19,12 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private flashMessage: FlashMessagesService
-  ) { }
+    private flashMessage: FlashMessagesService,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('Signup - Dataclip');
+
+  }
 
   ngOnInit() {
     if (this.authService.loggedIn()){

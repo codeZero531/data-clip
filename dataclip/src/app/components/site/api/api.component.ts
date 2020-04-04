@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import {AuthService} from "../../../services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-api',
@@ -15,9 +16,10 @@ export class ApiComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private flashMessage: FlashMessagesService
+    private flashMessage: FlashMessagesService,
+    private titleService: Title
   ) {
-
+    this.titleService.setTitle('API Key - Dataclip');
   }
 
   ngOnInit() {

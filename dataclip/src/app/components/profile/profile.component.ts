@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {FormBuilder} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-profile',
@@ -20,8 +21,10 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private flashMessage: FlashMessagesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('Profile - Dataclip');
     this.user = this.activatedRoute.snapshot.data['user'];
   }
 

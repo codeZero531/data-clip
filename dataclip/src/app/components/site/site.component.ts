@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 // import {Component, OnInit} from "@angular/core";
 
@@ -9,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('Home - Dataclip');
+  }
 
   ngOnInit() {
     localStorage.removeItem('siteName');
