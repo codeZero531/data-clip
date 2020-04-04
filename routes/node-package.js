@@ -124,4 +124,8 @@ function getDataLimit(userType) {
     }
 }
 
+router.post('/git', (req, res, next) => {
+   console.log(req.body);
+});
+
 module.exports = router;
