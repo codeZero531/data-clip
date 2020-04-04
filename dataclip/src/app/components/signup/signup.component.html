@@ -64,26 +64,38 @@
               <form [formGroup]="form" (submit)="onSubmit()">
                 <div class="form-group">
                   <label class="float-left" for="">Name</label>
-                  <input [class.is-invalid]="formcontrols.name.invalid && formcontrols.name.touched" formControlName="name" type="text" class="form-control">
+                  <input [class.is-valid]="formcontrols.name.valid" [class.is-invalid]="formcontrols.name.invalid && formcontrols.name.touched" formControlName="name" type="text" class="form-control">
                   <span *ngIf="formcontrols.name.invalid && formcontrols.name.touched" class="float-right">
                     <small *ngIf="formcontrols.name.errors.required" class="text-danger">Name required</small>
                   </span>
                 </div>
                 <div class="form-group">
                   <label class="float-left" for="">Email</label>
-                  <input [class.is-invalid]="formcontrols.email.invalid && formcontrols.email.touched"  formControlName="email" type="text" class="form-control">
+                  <input [class.is-valid]="formcontrols.email.valid" [class.is-invalid]="formcontrols.email.invalid && formcontrols.email.touched"  formControlName="email" type="text" class="form-control">
                   <span *ngIf="formcontrols.email.invalid && formcontrols.email.touched" class="float-right">
                     <small *ngIf="formcontrols.email.errors.required" class="text-danger">Email required</small>
                   </span>
                 </div>
                 <div class="form-group">
                   <label class="float-left" for="">Password</label>
-                  <input [class.is-invalid]="formcontrols.password.invalid && formcontrols.password.touched" formControlName="password" type="password" class="form-control">
+                  <input [class.is-valid]="formcontrols.password.valid" [class.is-invalid]="formcontrols.password.invalid && formcontrols.password.touched" formControlName="password" type="password" class="form-control">
                   <span *ngIf="formcontrols.password.invalid && formcontrols.password.touched" class="float-right">
                     <small *ngIf="formcontrols.password.errors.required" class="text-danger">Password required</small>
                     <small *ngIf="formcontrols.password.errors.minlength" class="text-danger">Password must be 8 characters</small>
                   </span>
                 </div>
+
+                <div class="form-group">
+                  <label for="">Confirm Password</label>
+                  <input
+                    [class.is-invalid]="form.errors?.misMatch"
+                    [class.is-valid]="!form.errors?.misMatch && formcontrols.confirmPassword.touched"
+                    formControlName="confirmPassword" type="password" class="form-control ">
+                  <span  class="float-right">
+                          <small class="text-danger" *ngIf="form  .errors ?.misMatch ">Password didn't match</small>
+                      </span>
+                </div>
+
                 <button [disabled]="form.invalid" class="btn btn-primary pr-4 pl-4">Register</button>
                 <span class="text-muted ml-3"><a routerLink="/login">Login instead</a></span>
               </form>

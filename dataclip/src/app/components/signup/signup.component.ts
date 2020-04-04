@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {passwordValidator} from "../../guards/password.validator";
 
 @Component({
   selector: 'app-signup',
@@ -26,9 +27,10 @@ export class SignupComponent implements OnInit {
     }
     this.form = this.fb.group({
       name : ['', Validators.required],
-      email : ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]]
-    });
+      email : ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required]]
+    }, {validators: passwordValidator });
   }
   get formcontrols(){
     return this.form.controls;

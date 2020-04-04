@@ -11,6 +11,7 @@ import {FlashMessagesService} from "angular2-flash-messages";
 })
 export class LOGINComponent implements OnInit {
   loginForm: FormGroup;
+  loadingIndicator: boolean;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -31,6 +32,7 @@ export class LOGINComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
+    this.loadingIndicator = true;
     this.authService.login(this.loginForm.value)
       .subscribe(
         res => {
@@ -47,9 +49,12 @@ export class LOGINComponent implements OnInit {
               type: res.result[0].type
             };
             // localStorage.setItem('user', JSON.stringify(data));
+            this.loadingIndicator = false;
             this.router.navigate(['site']);
+
           } else {
             //invalid
+            this.loadingIndicator = false;
             this.flashMessage.show(res.message, {cssClass: 'alert-danger ', timeout: 5000})
             this.formcontrols.password.reset();
           }
