@@ -28,6 +28,7 @@ import {GetSiteDataFormIdResolverService} from "./resolver/get-site-data-form-id
 import {DocComponent} from "./components/doc/doc.component";
 import {NewHomeComponent} from "./components/new-home/new-home.component";
 import {GetSiteApiTokenService} from "./resolver/get-site-api-token.service";
+import {PrivacyComponent} from "./components/privacy/privacy.component";
 
 
 const routes: Routes = [
@@ -37,7 +38,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'maintenance', component: MaintenanceModeComponent},
   {path: 'doc', component: DocComponent},
-  {path: 'api', component: ApiComponent},
+  {path: 'privacy', component: PrivacyComponent},
 
   {
     path: 'site',

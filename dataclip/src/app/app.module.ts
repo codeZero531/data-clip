@@ -41,6 +41,7 @@ import { MaintenanceModeComponent } from './components/maintenance-mode/maintena
 import { IntergrationComponent } from './components/site/intergration/intergration.component';
 import { DocComponent } from './components/doc/doc.component';
 import { NewHomeComponent } from './components/new-home/new-home.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { NewHomeComponent } from './components/new-home/new-home.component';
     IntergrationComponent,
     DocComponent,
     NewHomeComponent,
+    PrivacyComponent,
 
 
   ],
