@@ -8,13 +8,13 @@ import {AuthService} from "../../services/auth.service";
 })
 export class NewHomeComponent implements OnInit {
 
-  isLogin: boolean;
+
 
   constructor(
-    private authService: AuthService
+
   ) { }
 
   ngOnInit() {
-    this.isLogin = this.authService.loggedIn();
+
   }
 }

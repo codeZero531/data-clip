@@ -29,6 +29,7 @@ import {DocComponent} from "./components/doc/doc.component";
 import {NewHomeComponent} from "./components/new-home/new-home.component";
 import {GetSiteApiTokenService} from "./resolver/get-site-api-token.service";
 import {PrivacyComponent} from "./components/privacy/privacy.component";
+import {SecurityComponent} from "./components/security/security.component";
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'maintenance', component: MaintenanceModeComponent},
   {path: 'doc', component: DocComponent},
   {path: 'privacy', component: PrivacyComponent},
+  {path: 'security', component: SecurityComponent},
 
   {
     path: 'site',

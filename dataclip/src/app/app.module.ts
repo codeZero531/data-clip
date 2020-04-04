@@ -43,6 +43,8 @@ import { DocComponent } from './components/doc/doc.component';
 import { NewHomeComponent } from './components/new-home/new-home.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SecondNavBarComponent } from './components/second-nav-bar/second-nav-bar.component';
+import { SecurityComponent } from './components/security/security.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NewHomeComponent,
     PrivacyComponent,
     FooterComponent,
+    SecondNavBarComponent,
+    SecurityComponent,
 
 
   ],
