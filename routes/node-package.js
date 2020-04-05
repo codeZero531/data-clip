@@ -31,20 +31,17 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
 
         let site = await Site.findById(siteId);
         if (!site){return res.status(403).json({status: 403, message: 'api key invalid'})}
-        let bucketWithFewDetails = await Table.findOne({bucketName: req.params.bucketName, site: siteId});
-        if (!bucketWithFewDetails){ return res.status(403).json({status: 403, message: 'form name invalid'}) }
-        const bucketId = await bucketWithFewDetails.bucketId;
+
+        let bucket = await Table.findOne({bucketName: req.params.bucketName, site: siteId}).populate('site');
+        if (!bucket){ return res.status(403).json({status: 403, message: 'form name invalid'}) }
+
+        const bucketId = await bucket.bucketId;
         let user = await User.findById(site.user);
-        const userId = user._id;
         let userType = await user.type;
 
         let dataLimit = await getDataLimit(userType);
         let bucketData = await Bucket.findOne({bucketId: bucketId});
 
-        let bucket = await Table.findOne({user: userId, bucketId: bucketId}).populate('site');
-        if (!bucket) {
-            return res.status(403).json({status: 403, message: 'no bucket belongs to user!'})
-        }
 
         if (bucketData && bucketData.data.length >= dataLimit) {
             return res.status(403).json({status: 403, message: 'your plan expire with limits'})
@@ -66,7 +63,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
         let bucketInBucket = await Bucket.findOne({bucketId: bucketId});
         if (bucketInBucket){
             //push data to bucket
-            console.log('thynwa');
+            // console.log('thynwa');
             Bucket.updateOne(
                 {bucketId: bucketId},
                 {$push: {data: data}},
@@ -83,7 +80,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
 
         }else{
             //create an add data to bucket
-            console.log('naha');
+            // console.log('naha');
             const bucket = new Bucket({
                 _id: new mongoose.Types.ObjectId(),
                 bucketId: bucketId,
@@ -106,7 +103,7 @@ router.post('/data/:bucketName',apiVerifyToken,async (req, res, next) => {
 
     }catch (e) {
         console.log(e.message);
-        res.status(403).json({status: 403, message: 'something went wrong'});
+        return res.status(403).json({status: 403, message: 'something went wrong'});
     }
 
 });
