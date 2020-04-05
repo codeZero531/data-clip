@@ -30,8 +30,8 @@
                   <small *ngIf="formcontrols.password.errors.required" class="text-danger">Password required</small>
                 </span>
               </div>
-              <button [disabled]="loginForm.invalid" class="btn btn-primary pr-4 pl-4">Login</button>
-               <span class="text-muted ml-3"> <span class="text-primary">Don't you have account? </span><a routerLink="/signup">Signup instead</a></span>
+              <button [disabled]="loginForm.invalid" class="btn btn-primary btn-block">Login</button>
+               <span class="text-muted float-right mt-3"> <span class="text-primary">Don't you have account? </span><a routerLink="/signup">Signup instead</a></span>
             </form>
 
   </nav>
