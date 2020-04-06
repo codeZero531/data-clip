@@ -503,6 +503,13 @@ router.post('/save-slack-details', verifyToken ,(req, res, next) => {
         .catch(err => res.json({message: err.message}));
 });
 
+//get slack details from user id
+router.get('/get-slack-details', verifyToken ,(req, res, next) => {
+    Slack.findOne({_id: req.userId})
+        .then(result => res.json({status: true, data: result}))
+        .catch(err => res.json({status: false, err: err.message}));
+});
+
 
 
 
