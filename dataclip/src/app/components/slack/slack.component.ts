@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MainService} from "../../services/main.service";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
   selector: 'app-slack',
@@ -14,6 +15,8 @@ export class SlackComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private mainService: MainService,
+    private router: Router,
+    private flashMessage: FlashMessagesService
   ) {
 
   }
@@ -24,10 +27,39 @@ export class SlackComponent implements OnInit {
       .subscribe(
         res => {
           if (res.ok) {
-            const data = res;
+            this.sendData(res);
+          } else {
+            this.flashMessage.show('something went wrong. Try again!',{
+              cssClass: 'alert-danger', timeout: 5000
+            });
+            console.log(res);
+            // this.router.navigate(['/site']);
           }
         },
         error => console.log(error)
+      );
+  }
+  sendData(res: any) {
+    const data = {
+      url: res.incoming_webhook.url,
+      team: res.team.name,
+      channel: res.incoming_webhook.channel
+    };
+    this.mainService.sendSlackDetails(data)
+      .subscribe(
+        res => {
+          this.flashMessage.show('slack webhook added successfully!',{
+            cssClass: 'alert-success', timeout: 5000
+          });
+          this.router.navigate(['/site']);
+        },
+        error => {
+          this.flashMessage.show( error.message+'something went wrong. Try again!',{
+            cssClass: 'alert-danger', timeout: 5000
+          });
+          console.log(error);
+          // this.router.navigate(['/site']);
+        }
       );
   }
 

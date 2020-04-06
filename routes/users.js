@@ -4,6 +4,7 @@ const User = require('../model/user');
 const Bucket = require('../model/bucket');
 const Table = require('../model/table');
 const Site = require('../model/site');
+const Slack = require('../model/slack');
 const Integrations = require('../model/integration');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -490,6 +491,16 @@ router.get('/get-site-api-token/:id', verifyToken,async (req, res, next) => {
    const siteId = req.params.id;
    let site = await Site.findById(siteId);
    if (site){return res.json({token: site.apiToken})}
+});
+
+//save slack integration details
+router.post('/save-slack-details', verifyToken ,(req, res, next) => {
+    const data = req.body;
+    data._id = req.userId;
+    const slack = new Slack(data);
+    slack.save()
+        .then(result => res.json({message: 'ok', result: result}))
+        .catch(err => res.json({message: err.message}));
 });
 
 

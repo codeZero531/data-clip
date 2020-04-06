@@ -68,5 +68,8 @@ export class MainService {
     };
     return this.http.post('https://slack.com/api/oauth.v2.access', body.toString() , options)
   }
+  sendSlackDetails(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/save-slack-details`, data);
+  }
 
 }
