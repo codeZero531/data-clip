@@ -44,8 +44,6 @@ export class IntergrationComponent implements OnInit {
   ngOnInit() {
     this.siteId = localStorage.getItem('siteId');
     this.siteName = localStorage.getItem('siteName');
-    this.otherService.prevRouter = this.router.url;
-
   }
 
   loadWebHook() {

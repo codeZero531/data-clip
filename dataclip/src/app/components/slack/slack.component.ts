@@ -35,7 +35,7 @@ export class SlackComponent implements OnInit {
               cssClass: 'alert-danger', timeout: 5000
             });
             console.log(res);
-            this.router.navigate([this.otherService.prevRouter]);
+            this.router.navigate(['/site']);
           }
         },
         error => console.log(error)
@@ -53,7 +53,7 @@ export class SlackComponent implements OnInit {
           this.flashMessage.show('slack webhook added successfully!',{
             cssClass: 'alert-success', timeout: 5000
           });
-          this.router.navigate([this.otherService.prevRouter]);
+          this.router.navigate(['/site']);
         },
         error => {
           this.flashMessage.show( error.message+'something went wrong. Try again!',{

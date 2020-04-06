@@ -71,5 +71,11 @@ export class MainService {
   sendSlackDetails(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/save-slack-details`, data);
   }
+  getSlackDetails(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/get-slack-details`);
+  }
+  deleteSlack(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/delete-slack`);
+  }
 
 }
