@@ -12,8 +12,8 @@ export class UserLimitService {
     const data = {siteLimit: 0, formLimit: 0, submissionLimit: 0};
     switch (type) {
       case 0: //free
-        data.formLimit = 1;
-        data.siteLimit = 1;
+        data.formLimit = 2;
+        data.siteLimit = 2;
         data.submissionLimit = 500;
         return data;
       case 1: //basic
