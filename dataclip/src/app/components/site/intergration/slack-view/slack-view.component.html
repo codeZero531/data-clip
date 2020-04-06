@@ -1,0 +1,44 @@
+<div class="row justify-content-center mb-3 mt-4">
+  <div class="col-md-3">
+    <h3>Slack</h3>
+    <p>Dageclip can post each to form submission to the channel of your choice.</p>
+    <span *ngIf="!isHaveSlack">
+          <a class="btn btn-dark btn-block" href="https://slack.com/oauth/v2/authorize?client_id=1045337279207.1050427310372&scope=incoming-webhook"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"></a>
+    </span>
+    <form class="mt-3" *ngIf="isHaveSlack">
+      <div class="form-group">
+        <label for="">Slack Channel</label>
+        <input disabled value="{{slackDetails.channel}}" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">Slack Channel</label>
+        <input disabled value="{{slackDetails.team}}" type="text" class="form-control">
+      </div>
+      <div class="float-right">
+        <a style="cursor: pointer" data-toggle="modal" data-target="#removeSlackConfirmModal" class="text-danger">Remove</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- delete slack confirm Modal -->
+<div class="modal fade" id="removeSlackConfirmModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeSlackConfirmModalTitle">Really remove Slack integration?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-4"  >
+        <span>Are you sure you really want to remove the Slack integration for this site?</span>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onClickRemoveSlack()" type="button" class="btn btn-danger btn-block" data-dismiss="modal">YES, REALLY REMOVE SLACK INTEGRATION</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
