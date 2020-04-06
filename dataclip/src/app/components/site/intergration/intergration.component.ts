@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MainService} from "../../../services/main.service";
 import {FlashMessagesService} from "angular2-flash-messages";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {OtherService} from "../../../services/other.service";
 
 @Component({
   selector: 'app-intergration',
@@ -17,11 +18,15 @@ export class IntergrationComponent implements OnInit {
   siteName: string;
   data: any;
 
+  activatedUrl: string;
+
   constructor(
     private mainService: MainService,
+    private otherService: OtherService,
     private flashMessage: FlashMessagesService,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
   ) {
     this.titleService.setTitle('Site Integrations - Dataclip');
 
@@ -39,6 +44,8 @@ export class IntergrationComponent implements OnInit {
   ngOnInit() {
     this.siteId = localStorage.getItem('siteId');
     this.siteName = localStorage.getItem('siteName');
+    this.otherService.prevRouter = this.router.url;
+
   }
 
   loadWebHook() {

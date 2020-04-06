@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MainService} from "../../services/main.service";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {OtherService} from "../../services/other.service";
 
 @Component({
   selector: 'app-slack',
@@ -15,6 +16,7 @@ export class SlackComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private mainService: MainService,
+    private otherService: OtherService,
     private router: Router,
     private flashMessage: FlashMessagesService
   ) {
@@ -22,6 +24,7 @@ export class SlackComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.otherService.prevRouter);
     this.code = this.activatedRoute.snapshot.queryParamMap.get('code');
     this.mainService.getSlackUrl(this.code)
       .subscribe(
@@ -33,7 +36,7 @@ export class SlackComponent implements OnInit {
               cssClass: 'alert-danger', timeout: 5000
             });
             console.log(res);
-            // this.router.navigate(['/site']);
+            this.router.navigate(['/site']);
           }
         },
         error => console.log(error)
