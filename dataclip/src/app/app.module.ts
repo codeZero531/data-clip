@@ -45,6 +45,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SecondNavBarComponent } from './components/second-nav-bar/second-nav-bar.component';
 import { SecurityComponent } from './components/security/security.component';
+import { SlackComponent } from './components/slack/slack.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { SecurityComponent } from './components/security/security.component';
     FooterComponent,
     SecondNavBarComponent,
     SecurityComponent,
+    SlackComponent,
 
 
   ],

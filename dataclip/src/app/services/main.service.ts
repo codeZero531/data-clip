@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 
@@ -57,6 +57,16 @@ export class MainService {
   }
   getSiteApiToken(siteId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/users/get-site-api-token/${siteId}`);
+  }
+  getSlackUrl(code: string): Observable<any>{
+    const body = new URLSearchParams();
+    body.set('code', code);
+    body.set('client_id', '1045337279207.1050427310372');
+    body.set('client_secret', '23f9b5084aea497cf982cb3c49add0f2');
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.http.post('https://slack.com/api/oauth.v2.access', body.toString() , options)
   }
 
 }

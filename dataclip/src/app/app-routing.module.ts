@@ -30,6 +30,7 @@ import {NewHomeComponent} from "./components/new-home/new-home.component";
 import {GetSiteApiTokenService} from "./resolver/get-site-api-token.service";
 import {PrivacyComponent} from "./components/privacy/privacy.component";
 import {SecurityComponent} from "./components/security/security.component";
+import {SlackComponent} from "./components/slack/slack.component";
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path: 'doc', component: DocComponent},
   {path: 'privacy', component: PrivacyComponent},
   {path: 'security', component: SecurityComponent},
+  {path: 'slack', component: SlackComponent},
 
   {
     path: 'site',

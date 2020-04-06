@@ -4,17 +4,13 @@ const User = require('../model/user');
 const Bucket = require('../model/bucket');
 const Table = require('../model/table');
 const Site = require('../model/site');
+const Slack = require('../model/slack');
 const mongoose = require('mongoose');
 const apiVerifyToken = require('../function/apiVerifyToken');
 const _ = require('lodash');
 const request = require('request');
 const querystring = require('querystring');
-// const { App } = require("@slack/bolt");
-//
-// const hello = new App({
-//     token: 'xoxb-1045337279207-1048308985317-0YNUA4TnTiYDSx4voaznb5G2',
-//     signingSecret: '1bfdf9cfb5e1d6f3b073ab2628818d1e'
-// });
+
 // for node api package
 
 router.get('/:bucketName',apiVerifyToken ,async (req, res, next) => {
@@ -130,16 +126,16 @@ function getDataLimit(userType) {
     }
 }
 
-router.get('/slack/get', (req, res, next) => {
+router.get('/slack/get', async (req, res, next) => {
     const code = req.query.code;
     console.log(code);
     const data = {
         code: code,
         client_id: '1045337279207.1050427310372',
-        client_secret: '23f9b5084aea497cf982cb3c49add0f2'
+        client_secret: '23f9b5084aea497cf982cb3c49add0f2',
     };
     const formData = querystring.stringify(data);
-    request({
+    await request({
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -147,36 +143,24 @@ router.get('/slack/get', (req, res, next) => {
         body: formData,
         method: 'POST'
     }, function (err, result, body) {
-        if (err){console.log(err.message)}
-        console.log(result);
-        console.log(body);
-        res.send(body);
+        if (err){return res.send(err.message)}
+        if (!body.ok) {return res.send('something went wrong')}
+        const data = {
+          url: body.incoming_webhook.url,
+          team: body.team.name,
+          channel: body.incoming_webhook.channel
+        };
+
 
     });
 });
-//
-// router.get('/slack/check', (req, res, next) =>{
-//
-// });
-//
-//
-//     hello.message("hello",  async ({ payload, context }) => {
-//         try {
-//             // Call the chat.postMessage method using the built-in WebClient
-//             const result = await hello.client.chat.postMessage({
-//                 // The token you used to initialize your app is stored in the `context` object
-//                 token: 'xoxp-1045337279207-1045337279255-1046190412977-9ade6839fe080b52f7825b7bb1c3bf6f',
-//                 // Payload message should be posted in the channel where original message was heard
-//                 channel: 'C011B9X8BKR',
-//                 text: "world"
-//             });
-//
-//             console.log(result);
-//         }
-//         catch (error) {
-//             console.error(error);
-//         }
-//     });
+
+router.get('/slack/check', (req, res, next) =>{
+
+});
+
+
+
 
 
 

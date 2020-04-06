@@ -13,11 +13,20 @@ export class TokenInterceptorService implements HttpInterceptor {
   ) { }
   intercept(req, next) {
     const  authService = this.injector.get(AuthService);
-    const tokenizedReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${authService.getToken()}`
-      }
-    });
-    return next.handle(tokenizedReq);
+    if (!(req.url === 'https://slack.com/api/oauth.v2.access')){
+      const tokenizedReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${authService.getToken()}`
+        }
+      });
+      return next.handle(tokenizedReq);
+    } else {
+      const tokenizedReq = req.clone({
+        setHeaders: {
+        }
+      });
+      return next.handle(tokenizedReq);
+    }
+
   }
 }
