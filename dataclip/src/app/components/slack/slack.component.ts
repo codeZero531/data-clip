@@ -24,7 +24,6 @@ export class SlackComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.otherService.prevRouter);
     this.code = this.activatedRoute.snapshot.queryParamMap.get('code');
     this.mainService.getSlackUrl(this.code)
       .subscribe(
@@ -36,7 +35,7 @@ export class SlackComponent implements OnInit {
               cssClass: 'alert-danger', timeout: 5000
             });
             console.log(res);
-            this.router.navigate(['/site']);
+            this.router.navigate([this.otherService.prevRouter]);
           }
         },
         error => console.log(error)
@@ -54,7 +53,7 @@ export class SlackComponent implements OnInit {
           this.flashMessage.show('slack webhook added successfully!',{
             cssClass: 'alert-success', timeout: 5000
           });
-          this.router.navigate(['/site']);
+          this.router.navigate([this.otherService.prevRouter]);
         },
         error => {
           this.flashMessage.show( error.message+'something went wrong. Try again!',{
