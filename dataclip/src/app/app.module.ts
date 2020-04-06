@@ -46,6 +46,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SecondNavBarComponent } from './components/second-nav-bar/second-nav-bar.component';
 import { SecurityComponent } from './components/security/security.component';
 import { SlackComponent } from './components/slack/slack.component';
+import { SlackViewComponent } from './components/site/intergration/slack-view/slack-view.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { SlackComponent } from './components/slack/slack.component';
     SecondNavBarComponent,
     SecurityComponent,
     SlackComponent,
+    SlackViewComponent,
 
 
   ],

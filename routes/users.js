@@ -510,6 +510,13 @@ router.get('/get-slack-details', verifyToken ,(req, res, next) => {
         .catch(err => res.json({status: false, err: err.message}));
 });
 
+//delete slack details from user id
+router.get('/delete-slack', verifyToken ,(req, res, next) => {
+    Slack.deleteOne({_id: req.userId})
+        .then(result => res.json({status: true, data: result}))
+        .catch(err => res.json({status: false, err: err.message}));
+});
+
 
 
 
