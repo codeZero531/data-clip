@@ -38,7 +38,7 @@ export class SlackViewComponent implements OnInit {
       .subscribe(
         res => {
           if (res){
-            this.flashMessage.show('slack delete successfully!', {cssClass: 'alert-success text-center', timeout: 5000});
+            this.flashMessage.show('slack integration delete successfully!', {cssClass: 'alert-success text-center', timeout: 5000});
             this.ngOnInit();
           } else {
             this.flashMessage.show('something went wrong. Try again!', {cssClass: 'alert-danger text-center', timeout: 5000});
