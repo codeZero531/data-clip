@@ -46,7 +46,7 @@ try {
         method: 'POST',
         json: true
     }, function (err, result, body) {
-        if (err){console.log(err.message)}
+        if (err && req.isTest){console.log(err); return res.json({status: false})}
         console.log(body);
         if (req.isTest){
             res.json({status: true, message: body})
