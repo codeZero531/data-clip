@@ -4,10 +4,12 @@ const request = require('request');
 const User = require('../model/user');
 const Bucket = require('../model/bucket');
 const Table = require('../model/table');
+const Slack = require('../model/slack');
 const mongoose = require('mongoose');
 const hello = require('get-form-data');
 const formidable = require('formidable');
 const sendwebHook = require('../function/webhook');
+const slackSend = require('../function/slackSend');
 const _ = require('lodash');
 
 
@@ -29,7 +31,14 @@ function getDataLimit(userType) {
 router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
     try {
         const userId = await req.params.userId;
+        req.userId = userId;
         const bucketId = await req.params.bucketId;
+
+        //slack integrations
+        const slack = await Slack.findOne({_id: userId});
+        if (slack) {slackSend(req, res, next)}
+
+
         let user = await User.findById(userId);
         let userType = await user.type;
         let dataLimit = await getDataLimit(userType);
@@ -43,12 +52,12 @@ router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
         //host check
         const siteId = bucket.site._id;
         const host = bucket.site.host;
-        console.log(req.headers.host);
+        // console.log(req.headers.host);
         // if (host !== req.headers.host){
         //     return res.status(403).json({status: false, error: 'host not matched!'});
         // }
 
-        // no bucket belongs to user
+        //  bucket belongs to user
         if (bucketData && bucketData.data.length >= dataLimit) {
             return res.status(204).json({status: false, error: 'your plan expire with limits!'})
         }
@@ -58,49 +67,25 @@ router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
         const  keys = _.keys(data);
         data.date = Date();
 
+        //data save or push
         let bucketInBucket = await Bucket.findOne({bucketId: bucketId});
         if (bucketInBucket){
             //push data to bucket
-            console.log('thynwa');
-            Bucket.updateOne(
-                {bucketId: bucketId},
-                {$push: {data: data}},
-            )
-                .then(result => {
-                    Bucket.updateOne(
-                        {bucketId: bucketId},
-                        {$addToSet: {keys: keys}}
-                    )
-                        .then(result => {return res.status(201).json({status: true, message: 'data saved!'})});
-
-                });
-
-
+            let dataPush = await Bucket.updateOne( {bucketId: bucketId}, {$push: {data: data}, $addToSet: {keys: keys}}) ;
+            if (dataPush){ return res.status(201).json({status: true, message: 'data saved!'}) }
         }else{
             //create an add data to bucket
-            console.log('naha');
             const bucket = new Bucket({
                 _id: new mongoose.Types.ObjectId(),
                 bucketId: bucketId,
                 data: data,
-                site: siteId
+                site: siteId,
+                keys: keys
             });
-            bucket.save()
-                .then(
-                    result => {
-                        Bucket.updateOne(
-                            {bucketId: bucketId},
-                            {$addToSet: {keys: keys}},
-                        )
-                            .then(result => {return res.status(201).json({status: true, message: 'data saved!'})});
-                    }
-                );
-
-        }
-
+            let dataSave = await bucket.save();
+            if (dataSave) { return res.status(201).json({status: true, message: 'data saved!'})} }
 
     }catch (e) {
-        console.log(e.message);
         res.status(403).json({status: false, message: 'failed', err: e.message});
     }
 
