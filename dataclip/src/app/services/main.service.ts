@@ -77,5 +77,8 @@ export class MainService {
   deleteSlack(): Observable<any> {
     return this.http.get(`${this.baseUrl}/users/delete-slack`);
   }
+  sendTestItemSlack(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/send-test-item-slack`);
+  }
 
 }

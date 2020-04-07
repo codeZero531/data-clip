@@ -50,5 +50,18 @@ export class SlackViewComponent implements OnInit {
         }
       );
   }
+  clickOnSendTestItem(){
+    this.mainService.sendTestItemSlack()
+      .subscribe(
+        res => {
+          this.flashMessage.show('test item send!', {cssClass: 'alert-success text-center', timeout: 3000});
+          console.log(res);
+        },
+        error => {
+          this.flashMessage.show('send fail. Try again', {cssClass: 'alert-danger text-center', timeout: 3000});
+          console.log(error);
+        }
+      );
+  }
 
 }

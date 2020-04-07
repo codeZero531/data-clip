@@ -13,6 +13,7 @@ const jwt = require('jsonwebtoken');
 const shortId = require('shortid');
 const verifyToken = require('../function/verifyToken');
 const sendwebHook = require('../function/webhook');
+const slackSend = require('../function/slackSend');
 
 const smsSend = require('../function/mailSend');
 
@@ -515,6 +516,11 @@ router.get('/delete-slack', verifyToken ,(req, res, next) => {
     Slack.deleteOne({_id: req.userId})
         .then(result => res.json({status: true, data: result}))
         .catch(err => res.json({status: false, err: err.message}));
+});
+//send test item slack
+router.get('/send-test-item-slack', verifyToken,(req, res, next) => {
+    slackSend(req, res, next);
+    res.status(200).json('ok');
 });
 
 
