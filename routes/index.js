@@ -36,6 +36,7 @@ router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
 
         //slack integrations
         const slack = await Slack.findOne({_id: userId});
+        req.isTest = false;
         if (slack) {slackSend(req, res, next)}
 
 

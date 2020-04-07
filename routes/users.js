@@ -519,8 +519,9 @@ router.get('/delete-slack', verifyToken ,(req, res, next) => {
 });
 //send test item slack
 router.get('/send-test-item-slack', verifyToken,(req, res, next) => {
+    req.isTest = true;
     slackSend(req, res, next);
-    res.status(200).json('ok');
+    // res.status(200).json('ok');
 });
 
 
