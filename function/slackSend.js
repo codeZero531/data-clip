@@ -20,9 +20,9 @@ try {
         data = _.map(_.toPairs(data), d => _.fromPairs([d]));
         slackBody = {
             mrkdwn: true,
-            text : `New form submission | Form:  ${bucket.bucketName} | Site: ${bucket.site.siteName}`,
+            text : `*New form submission | Form:  ${bucket.bucketName} | Site: ${bucket.site.siteName}*`,
             attachments: data.map((t) => ({
-                text: `${_.keys(t)}:${_.values(t)}`,
+                text: `*${_.keys(t)}* :${_.values(t)}`,
                 color: 'good'
             })),
         };
@@ -30,11 +30,11 @@ try {
     else {
         slackBody = {
             mrkdwn: true,
-            text : `New form submission | Form:  Test | Site: Test`,
+            text : `*New form submission (Test)*`,
             attachments: [
-                {text: `email - john@gmail.com`,
+                {text: `*email* - john@gmail.com`,
                 color: 'good'},
-                {text: `phone - +86 54 25478 541`,
+                {text: `*phone* - +86 54 25478 541`,
                     color: 'good'}
             ]
         };
