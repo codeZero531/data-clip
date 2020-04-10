@@ -69,10 +69,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let bucket of bucketData">
-     <td *ngFor="let key of keys">{{bucket[key]}}</td>
-     <td >{{bucket['date'] | date:'short':'+0530'}}</td>
-    </tr>
+      <tr *ngFor="let bucket of bucketData">
+       <td *ngFor="let key of keys">{{bucket[key]}}</td>
+       <td >{{bucket['date'] | date:'short':'+0530'}}</td>
+      </tr>
     </tbody>
   </table>
   <hr>

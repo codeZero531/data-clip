@@ -17,9 +17,12 @@ router.get('/:bucketId',verifyToken , (req, res, next) => {
                 if (result.length ===1 ) {
                     // there is a bucket belongs to the user
                     Bucket.find({bucketId: bucketId})
-
+                   
                         .then(
-                            result => res.send(result)
+                            result => {
+                                console.log(result);
+                                res.send(result);
+                            }
                         )
                         .catch( err => console.log(err));
                 } else {
@@ -28,7 +31,10 @@ router.get('/:bucketId',verifyToken , (req, res, next) => {
                 }
             }
         )
-        .catch(err => res.send(err));
+        .catch(err => {
+            console.log(err);
+            res.send(err);
+        });
 });
 
 
