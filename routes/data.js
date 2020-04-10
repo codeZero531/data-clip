@@ -17,7 +17,7 @@ router.get('/:bucketId',verifyToken , (req, res, next) => {
                 if (result.length ===1 ) {
                     // there is a bucket belongs to the user
                     Bucket.find({bucketId: bucketId})
-                   
+
                         .then(
                             result => {
                                 console.log(result);
