@@ -16,13 +16,13 @@ router.get('/:bucketId',verifyToken , (req, res, next) => {
             result => {
                 if (result.length ===1 ) {
                     // there is a bucket belongs to the user
-                    // Bucket.find({bucketId: bucketId})
-                    Bucket.aggregate(
-                        [{$match: {bucketId: bucketId}},
-                        {$unwind: {path: "$data"}},
-                        {$sort: {"data.date": -1}},
-                                  {$group: {_id: "$_id",data: {$push: "$data"}}}]
-                    )
+                    Bucket.find({bucketId: bucketId})
+                    // Bucket.aggregate(
+                    //     [{$match: {bucketId: bucketId}},
+                    //     {$unwind: {path: "$data"}},
+                    //     {$sort: {"data.date": -1}},
+                    //               {$group: {_id: "$_id",data: {$push: "$data"}}}]
+                    // )
 
                         .then(
                             result => {
