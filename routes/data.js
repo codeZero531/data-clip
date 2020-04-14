@@ -21,7 +21,7 @@ router.get('/:bucketId',verifyToken , (req, res, next) => {
                         [{$match: {bucketId: bucketId}},
                         {$unwind: {path: "$data"}},
                         {$sort: {"data.date": -1}},
-                                  {$group: {_id: "$_id",data: {$push: "$data"}}}]
+                                  ]
                     )
 
                         .then(
