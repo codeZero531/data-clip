@@ -33,7 +33,7 @@ export class SettingsComponent implements OnInit {
 
     this.forms = this.activatedRoute.snapshot.data['data'];
     this.site = this.activatedRoute.snapshot.data['site'];
-    console.log(this.site);
+    // console.log(this.site);
   }
 
 
@@ -57,7 +57,10 @@ export class SettingsComponent implements OnInit {
         res =>{
           this.site = res;
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+          this.flashMessage.show('Something went wrong. Please reload page!', {cssClass: 'alert-danger text-center', timeout: 5000});
+        }
       );
   }
   loadFormsDetails() {
@@ -66,20 +69,22 @@ export class SettingsComponent implements OnInit {
         res =>{
           this.forms = res;
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+          this.flashMessage.show('Something went wrong. Please reload page!', {cssClass: 'alert-danger text-center', timeout: 5000})
+        }
       );
   }
   onUpdate() {
-    console.log(this.siteUpdateForm.value);
+    // console.log(this.siteUpdateForm.value);
     this.mainService.sitDetailsUpdate(this.siteUpdateForm.value)
       .subscribe(
         res => {
-          this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000})
+          this.flashMessage.show(res.message, {cssClass: 'alert-success text-center', timeout: 5000});
           this.loadSiteDetails();
         },
         error => {
-          this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000})
-
+          this.flashMessage.show('Site information update failed, Try again!', {cssClass: 'alert-danger text-center', timeout: 5000})
         }
       );
   }
@@ -92,7 +97,7 @@ export class SettingsComponent implements OnInit {
             this.loadFormsDetails()
           },
           error => {
-            this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
+            this.flashMessage.show('Form delete failed. Try again!', {cssClass: 'alert-danger text-center', timeout: 5000});
           }
         );
     }
@@ -103,8 +108,8 @@ export class SettingsComponent implements OnInit {
   }
 
   onFormEditSubmit(name: string, id: string) {
-    console.log(name);
-    console.log(id);
+    // console.log(name);
+    // console.log(id);
     const data = {bucketId: id, bucketName: name};
     this.mainService.updateFormName(data)
       .subscribe(
@@ -113,7 +118,7 @@ export class SettingsComponent implements OnInit {
           this.loadFormsDetails();
         },
         error => {
-          this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
+          this.flashMessage.show('Form information update failed. Try again!', {cssClass: 'alert-danger text-center', timeout: 5000});
         }
       );
   }
@@ -127,7 +132,7 @@ export class SettingsComponent implements OnInit {
             this.router.navigate(['site']);
           },
           error => {
-            this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000});
+            this.flashMessage.show('Site delete failed. Try again!', {cssClass: 'alert-danger text-center', timeout: 5000});
           }
         );
   }
