@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {passwordValidator} from "../../guards/password.validator";
 import {Title} from "@angular/platform-browser";
+import {retry} from "rxjs/operators";
 
 @Component({
   selector: 'app-signup',
@@ -43,6 +44,9 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.loadingIndicator = true;
     this.authService.register(this.form.value)
+      .pipe(
+        retry(3)
+      )
       .subscribe(
         res => {
           if (res.status) {
@@ -56,6 +60,10 @@ export class SignupComponent implements OnInit {
             this.loadingIndicator = false;
 
           }
+        },
+        error => {
+          this.flashMessage.show('Try again!', {cssClass: 'alert-danger', timeout: 5000});
+          this.loadingIndicator = false;
         }
       );
 
