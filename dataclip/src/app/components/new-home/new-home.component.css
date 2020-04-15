@@ -8,12 +8,14 @@
 
 .tag{
   color: #f50057;
-
-
+}
+.tag-space{
+  margin-left: 20px;
 }
 
 .att{
   color: #1de9b6;
+  margin-left: 5px;
 }
 
 .val{

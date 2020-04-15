@@ -35,7 +35,10 @@ export class ConfirmMailComponent implements OnInit {
             this.router.navigate(['login']);
           }
         },
-        error => console.log(error)
+        error => {
+          this.flashMessage.show('something went wrong!', {cssClass: 'alert-danger', timeout: 5000});
+          this.router.navigate(['login']);
+        }
       )
 
 

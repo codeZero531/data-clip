@@ -1,5 +1,5 @@
 <div class="row justify-content-center ">
-  <div class="col-4">
+  <div class="col-md-4">
     <i><h3 class="mt-4">"{{siteName}}" placement code</h3></i>
     <hr>
     <form action="" class="mt-5">
@@ -18,44 +18,36 @@
 
 <div class="row justify-content-center" >
   <div class="col-5 mt-5 text-center text-muted">Add the stylesheet to the <span class="tag">&lt;head&gt;</span> </div>
-
-  <div class="col-md-9 mt-3  p-3" style="background-color: #263238">
-      <span>
-        <pre style="color: white;letter-spacing: 0px; font-size: medium">
-            &lt;<span class="tag">link</span> <span class="att">rel</span>=<span class="val">&quot;stylesheet&quot;</span> <span class="att">href</span>=<span class="val">&quot;http://send.dataclip.tech/v1/dataclip.css&quot;</span>&gt;
-        </pre>
-      </span>
+  <div class="col-md-9 mt-3" style="background-color: #263238">
+      <div class="p-3 pl-5" style="color: white; font-size: medium">
+        &lt;<span class="tag">link</span> <span class="att"> rel</span>=<span class="val">&quot;stylesheet&quot;</span> <span class="att"> href</span>=<span class="val">&quot;http://send.dataclip.tech/v1/dataclip.css&quot;</span>&gt;
+      </div>
   </div>
-
 </div>
 
 <div class="row justify-content-center" >
   <div class="col-5 mt-5 text-center text-muted">Add the script file to end of the <span class="tag">&lt;body&gt;</span> </div>
 
-  <div class="col-md-9 mt-3  p-3" style="background-color: #263238">
-      <span>
-        <pre style="color: white;letter-spacing: 0px; font-size: medium">
-            &lt;<span class="tag">script</span> <span class="att">src</span>=<span class="val">&quot;http://send.dataclip.tech/v1/dataclip.js&quot;</span> defer&gt; &lt;/<span class="tag">script</span>&gt;
-        </pre>
-      </span>
+  <div class="col-md-9 mt-3 " style="background-color: #263238">
+    <div class="p-3 pl-5" style="color: white; font-size: medium">
+      &lt;<span class="tag">script</span> <span class="att">src</span>=<span class="val">&quot;http://send.dataclip.tech/v1/dataclip.js&quot;</span> defer&gt; &lt;/<span class="tag">script</span>&gt;
+    </div>
   </div>
 
 </div>
 
 <div class="row justify-content-center" >
-  <h6 class="mt-5 text-muted">Use this  <span class="tag">&lt;form&gt;</span> tag to make your form. Any  <span class="tag">&lt;input&gt;</span>,  <span class="tag">&lt;textarea&gt;</span>,  <span class="tag">&lt;select&gt;</span> elements with names will be saved to Pageclip when the form is submitted.</h6>
+  <h6 class="mt-5 text-muted">Use this  <span class="tag">&lt;form&gt;</span> tag to make your form. Any  <span class="tag">&lt;input&gt;</span>,  <span class="tag">&lt;textarea&gt;</span>,  <span class="tag">&lt;select&gt;</span> elements with names will be saved to Dataclip when the form is submitted.</h6>
 
-  <div class="col-md-9 mt-3  p-4" style="background-color: #263238">
-      <span>
-        <pre style="color: white;letter-spacing: 0px; font-size: medium">
-            &lt;<span class="tag">form</span> <span class="att">action</span>=<span class="val">"http://send.dataclip.tech/{{userId}}/{{bucketId}}"</span> <span class="att">method</span>=<span class="val">&quot;POST&quot;</span>&gt;
-               <i class="text-muted">&lt;!--Replace these inputs with your own. Make sure they have a "name" attribute!--&gt;</i>
-              &nbsp;&lt;<span class="tag">input</span> <span class="att">type</span>=<span class="val">&quot;text&quot;</span><span class="att">name</span>=<span class="val">&quot;name&quot;</span>&gt;
-              &nbsp;&lt;<span class="tag">input</span> <span class="att">type</span>=<span class="val">&quot;text&quot;</span> <span class="att">name</span>=<span class="val">&quot;name&quot;</span>&gt;
-              &nbsp;&lt;<span class="tag">button</span> <span class="att">type</span>=<span class="val">&quot;submit&quot;</span> <span class="att">type</span>=<span class="val">&quot;submit&quot;</span>&gt;submit&lt;/<span class="tag">button</span>&gt;
-            &lt;/<span class="tag">form</span>&gt;
-        </pre>
-      </span>
+  <div class="col-md-9 mt-3 " style="background-color: #263238">
+    <div class="p-3 pl-5" style="color: white;letter-spacing: 0px; font-size: medium">
+      &lt;<span class="tag">form</span> <span class="att">action</span>=<span class="val">"http://send.dataclip.tech/{{userId}}/{{bucketId}}"</span> <span class="att">method</span>=<span class="val">&quot;POST&quot;</span>&gt;<br>
+      <span class="tag-space">&nbsp;&lt;<span class="tag">input</span> <span class="att">type</span>=<span class="val">&quot;text&quot;</span><span class="att">name</span>=<span class="val">&quot;name&quot;</span>&gt;</span><br>
+      <span class="tag-space">&nbsp;&lt;<span class="tag">input</span> <span class="att">type</span>=<span class="val">&quot;text&quot;</span> <span class="att">name</span>=<span class="val">&quot;email&quot;</span>&gt;</span><br>
+      <span class="tag-space">&nbsp;&lt;<span class="tag">input</span> <span class="att">type</span>=<span class="val">&quot;text&quot;</span> <span class="att">name</span>=<span class="val">&quot;number&quot;</span>&gt;</span><br>
+      <span class="tag-space"> &nbsp;&lt;<span class="tag">button</span> <span class="att">type</span>=<span class="val">&quot;submit&quot;</span> <span class="att">type</span>=<span class="val">&quot;submit&quot;</span>&gt;submit&lt;/<span class="tag">button</span>&gt;</span><br>
+      &lt;/<span class="tag">form</span>&gt;
+    </div>
   </div>
 
 </div>

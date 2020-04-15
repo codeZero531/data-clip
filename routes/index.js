@@ -53,10 +53,11 @@ router.post('/:userId/:bucketId',sendwebHook,async function (req, res, next) {
         //host check
         const siteId = bucket.site._id;
         const host = bucket.site.host;
-        // console.log(req.headers.host);
-        // if (host !== req.headers.host){
-        //     return res.status(403).json({status: false, error: 'host not matched!'});
-        // }
+        const re = new RegExp(host, 'gi');
+        const arrReg = req.headers.host.match(re);
+        if (!arrReg){
+            return res.status(403).json({status: false, error: 'host not matched!'});
+        }
 
         //  bucket belongs to user
         if (bucketData && bucketData.data.length >= dataLimit) {

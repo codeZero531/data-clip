@@ -6,10 +6,15 @@
 
 .att{
   color: #1de9b6;
+  margin-left: 10px;
 }
 
 .val{
   color: #ffc107
 
 ;
+}
+
+.tag-space{
+  margin-left: 10px;
 }
