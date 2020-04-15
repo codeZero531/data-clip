@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Title} from "@angular/platform-browser";
+import {retry} from "rxjs/operators";
 
 
 @Component({
@@ -39,6 +40,9 @@ export class LOGINComponent implements OnInit {
   onSubmit() {
     this.loadingIndicator = true;
     this.authService.login(this.loginForm.value)
+      .pipe(
+        retry(3)
+      )
       .subscribe(
         res => {
           if (res.status) {
