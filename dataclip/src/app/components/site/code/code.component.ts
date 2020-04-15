@@ -37,7 +37,10 @@ export class CodeComponent implements OnInit {
     this.siteId = localStorage.getItem('siteId');
     this.mainService.getForms(this.siteId)
       .subscribe(
-        res => {this.forms = res; console.log(this.forms)},
+        res => {
+          this.forms = res;
+        // console.log(this.forms);
+        },
         error => console.log(error)
       );
   }
