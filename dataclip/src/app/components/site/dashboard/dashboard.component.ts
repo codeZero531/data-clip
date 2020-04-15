@@ -84,9 +84,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.isBucketDataHave = true;
             this.isLoadingStart = false;
             //date sort accending
-            // this.bucketData.sort((val1, val2)=> {
-            //   // @ts-ignore
-            //   return new Date(val2.date) - new Date(val1.date)});
+            this.bucketData.sort((val1, val2)=> {
+              // @ts-ignore
+              return new Date(val2.date) - new Date(val1.date)});
 
             console.log(res[0]);
             this.lastEntryDate = res[0].updatedAt;
