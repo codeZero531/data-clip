@@ -18,7 +18,7 @@ export class AppComponent {
     this.router.events.subscribe((routerEvent: Event) => {
 
       if (routerEvent instanceof  NavigationStart) {
-        console.log('loading');
+        // console.log('loading');
         this.loadingIndicator = true;
 
       }
@@ -26,7 +26,7 @@ export class AppComponent {
         routerEvent instanceof NavigationCancel ||
         routerEvent instanceof NavigationError
       ) {
-        console.log('stop loading');
+        // console.log('stop loading');
         this.loadingIndicator = false;
       }
 
