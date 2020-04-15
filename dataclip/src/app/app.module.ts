@@ -106,10 +106,6 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    },
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent]
