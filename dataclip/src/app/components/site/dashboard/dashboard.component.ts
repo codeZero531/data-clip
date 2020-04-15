@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.isBucketDataHave = false;
     this.isLoadingStart = true;
     this.isClickOnBucket = true;
-    console.log(bucketId);
+    // console.log(bucketId);
     this.mainService.getBucketData(bucketId)
       .subscribe(
         res => {
@@ -88,7 +88,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
               // @ts-ignore
               return new Date(val2.date) - new Date(val1.date)});
 
-            console.log(res[0]);
+            // console.log(res[0]);
             this.lastEntryDate = res[0].updatedAt;
             this.keys = res[0].keys;
 
