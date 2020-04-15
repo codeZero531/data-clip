@@ -48,6 +48,7 @@ import { SecurityComponent } from './components/security/security.component';
 import { SlackComponent } from './components/slack/slack.component';
 import { SlackViewComponent } from './components/site/intergration/slack-view/slack-view.component';
 
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -106,6 +107,10 @@ import { SlackViewComponent } from './components/site/intergration/slack-view/sl
       useClass: TokenInterceptorService,
       multi: true
     },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })
