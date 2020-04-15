@@ -22,7 +22,6 @@ export class SlackViewComponent implements OnInit {
     this.mainService.getSlackDetails()
       .subscribe(
         res => {
-
           if (res.status && res.data) {
             this.slackDetails = res.data;
             this.isHaveSlack = true
@@ -30,7 +29,10 @@ export class SlackViewComponent implements OnInit {
             this.isHaveSlack = false;
           }
         },
-        error => {}
+        error => {
+          this.flashMessage.show('something went wrong. Please reload page!', {cssClass: 'alert-danger text-center', timeout: 5000});
+
+        }
       );
   }
   onClickRemoveSlack() {
