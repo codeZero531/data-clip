@@ -45,7 +45,7 @@ export class LOGINComponent implements OnInit {
             this.flashMessage.show(res.message, {cssClass: 'alert-success', timeout: 5000})
 
             //success
-            console.log(res);
+            // console.log(res);
             localStorage.setItem('token', res.token);
             const data = {
               name: res.result[0].name,
@@ -63,6 +63,11 @@ export class LOGINComponent implements OnInit {
             this.flashMessage.show(res.message, {cssClass: 'alert-danger ', timeout: 5000})
             this.formcontrols.password.reset();
           }
+        },
+        error => {
+          this.loadingIndicator = false;
+          this.flashMessage.show('Try again!', {cssClass: 'alert-danger ', timeout: 5000})
+          this.formcontrols.password.reset();
         }
       );
   }
