@@ -31,7 +31,7 @@ export class IntergrationComponent implements OnInit {
     this.titleService.setTitle('Site Integrations - Dataclip');
 
     this.data = this.activatedRoute.snapshot.data['data'];
-    console.log(this.data);
+    // console.log(this.data);
     if (this.data.status) {
       this.isWebhookCreated = true;
       this.webhookUrl = this.data.webhookUrl;
@@ -58,6 +58,9 @@ export class IntergrationComponent implements OnInit {
           } else {
             this.isWebhookCreated = false;
           }
+        },
+        error => {
+          this.flashMessage.show('Something went wrong. Please reload page!', {cssClass: 'alert-danger text-center', timeout: 5000});
         }
 
       );
@@ -76,7 +79,7 @@ export class IntergrationComponent implements OnInit {
           }
         },
         error => {
-          this.flashMessage.show(error.message, {cssClass: 'alert-danger text-center', timeout: 5000})
+          this.flashMessage.show('Webhook create failed. Try again!', {cssClass: 'alert-danger text-center', timeout: 5000})
 
         }
       );
