@@ -36,8 +36,8 @@ import {SlackComponent} from "./components/slack/slack.component";
 const routes: Routes = [
   {path: '', component: NewHomeComponent},
   {path: 'confirm-account/:id/:code', component: ConfirmMailComponent},
-  // {path: 'login', component: LOGINComponent},
-  // {path: 'signup', component: SignupComponent},
+  {path: 'login', component: LOGINComponent},
+  {path: 'signup', component: SignupComponent},
   {path: 'maintenance', component: MaintenanceModeComponent},
   {path: 'doc', component: DocComponent},
   {path: 'privacy', component: PrivacyComponent},
@@ -68,7 +68,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, {useHash: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
