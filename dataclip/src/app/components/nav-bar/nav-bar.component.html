@@ -1,13 +1,13 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<nav class="navbar navbar-expand navbar-light bg-white">
   <div class="container-fluid">
 
         <span  id="sidebarCollapse" >
             <span class="text-black-50" routerLink="/site" style="cursor: pointer">dataclip</span>
         </span>
-    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fa fa-bars"></i>
-    </button>
+<!--    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <i class="fa fa-bars"></i>-->
+<!--    </button>-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav navbar-nav ml-auto">
         <!--            <li class="nav-item active">-->
@@ -20,14 +20,25 @@
 <!--        <li *ngIf="isLogin" class="nav-item item2">-->
 <!--          <a routerLink="/profile/settings" class="nav-link" href="#">Profile Setting</a>-->
 <!--        </li>-->
-        <li *ngIf="isLogin" class="nav-item ">
-          <img style="cursor: pointer" src="https://www.gravatar.com/avatar/{{user?.avatar}}?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="dropdown-menu dropdown-menu-sm-right">
-            <button routerLink="/profile/payment" class="dropdown-item" type="button">Payment and Plans</button>
-            <button routerLink="/profile/settings" class="dropdown-item" type="button">Profile</button>
+<!--        <li *ngIf="isLogin" class="nav-item ">-->
+<!--          <img style="cursor: pointer" src="https://www.gravatar.com/avatar/{{user?.avatar}}?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          <div class="dropdown-menu dropdown-menu-sm-right">-->
+<!--            <button routerLink="/profile/payment" class="dropdown-item" type="button">Payment and Plans</button>-->
+<!--            <button routerLink="/profile/settings" class="dropdown-item" type="button">Profile</button>-->
+<!--            <div class="dropdown-divider"></div>-->
+<!--            <button (click)="onPressLogout()" class="dropdown-item" type="button">Logout</button>-->
+<!--          </div>-->
+<!--        </li>-->
+        <li *ngIf="isLogin" class="dropdown">
+          <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Menu">
+            <img style="cursor: pointer" src="https://www.gravatar.com/avatar/{{user?.avatar}}?d=https%3A%2F%2Fi.ya-webdesign.com%2Fimages%2Fdefault-avatar-png-9.png" alt="Avatar" class="avatar"  >
+          </a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            <li><a routerLink="/profile/payment" class="dropdown-item" href=""><i class="fa fa-cog"></i> Payment and Plans</a></li>
+            <li><a routerLink="/profile/settings" class="dropdown-item" href=""><i class="fa fa-user"></i> Profile</a></li>
             <div class="dropdown-divider"></div>
-            <button (click)="onPressLogout()" class="dropdown-item" type="button">Logout</button>
-          </div>
+            <li><a (click)="onPressLogout()" class="dropdown-item" href=""><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+          </ul>
         </li>
 <!--        <li class="nav-item">-->
 <!--          <a class="nav-link" href="#">Logout</a>-->
