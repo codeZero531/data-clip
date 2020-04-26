@@ -49,6 +49,7 @@ import { SlackComponent } from './components/slack/slack.component';
 import { SlackViewComponent } from './components/site/intergration/slack-view/slack-view.component';
 
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
     FlashMessagesModule.forRoot(),
     MatTableModule,
     MatProgressBarModule,
+    MatPaginatorModule,
 
   ],
   providers: [

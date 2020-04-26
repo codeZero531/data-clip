@@ -1,10 +1,13 @@
-import {AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MainService} from "../../../services/main.service";
 import {InteractionService} from "../../../services/interaction.service";
 import {UserLimitService} from "../../../services/user-limit.service";
 import {AuthService} from "../../../services/auth.service";
 import {Title} from "@angular/platform-browser";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {strictEqual} from "assert";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +15,12 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   mySubscription: any;
   user: any;
+
+  pageEvent: PageEvent;
+
 
   siteName: string;
   siteId: string;
@@ -30,6 +37,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isBucketDataHave = false;
   isClickOnBucket = false;
   selectedBucketId = '';
+
+  displayedColumns: string[];
+  dataSource: any;
+  start = 0;
+  end = 25;
 
 
   constructor(
@@ -56,6 +68,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
       this.siteName = localStorage.getItem('siteName');
       this.authService.getUser().subscribe(
         res=> {
@@ -91,8 +104,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
             // console.log(res[0]);
             this.lastEntryDate = res[0].updatedAt;
             this.keys = res[0].keys;
+            // this.keys.push('date');
+            // this.displayedColumns = this.keys;
+            // this.dataSource = new MatTableDataSource<any>(this.bucketData);
+            // this.dataSource.paginator = this.paginator;
 
             this.bucketDataCount = this.bucketData.length;
+            // console.log(this.bucketData);
+            // console.log(this.keys);
+
           }
 
           // this.isLoaded = true;
@@ -113,5 +133,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     document.body.removeChild(element);
   }
 
+  clickPage() {
+    console.log(this.pageEvent);
+    this.start = this.pageEvent.pageIndex *25 ;
+    this.end = this.start +25;
 
+    console.log(`start ${this.start} - end ${this.end}`)
+
+
+  }
 }

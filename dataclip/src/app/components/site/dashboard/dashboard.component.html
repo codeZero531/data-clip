@@ -51,8 +51,9 @@
       <button (click)="downloadJson(bucketData)" class="btn btn-success">DOWNLOAD JSON</button>
       <csv-downloader class="ml-3" [fileName]="siteName" [data]="bucketData" [headers]="keys"></csv-downloader>
     </div>
-
   </div>
+
+<!--  data summary-->
   <div class="row justify-content-center">
     <div class="col-2 text-center">
       Total entries <h3 style="color: #43cea2">{{bucketDataCount}}</h3>
@@ -61,20 +62,28 @@
        Last entry <h3 style="color: #43cea2">{{lastEntryDate | dateAgo}}</h3>
     </div>
   </div>
-  <table class="table table-striped mt-5 table-ho">
-    <thead>
-    <tr>
-      <th scope="col" *ngFor="let key of keys">{{key}}</th>
-      <th scope="col" >when</th>
-    </tr>
+
+<!--  data table-->
+
+  <table class="table table-striped mt-5 ">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" *ngFor="let key of keys">{{key}}</th>
+        <th scope="col" >when</th>
+      </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let bucket of bucketData">
+      <tr *ngFor="let bucket of bucketData | slice:start:end">
        <td *ngFor="let key of keys">{{bucket[key]}}</td>
        <td >{{bucket['date'] | date:'short':'+0530'}}</td>
       </tr>
     </tbody>
   </table>
+    <mat-paginator [length]="bucketDataCount"
+                   [pageSize]="25"
+                   (page)="pageEvent = $event"
+                   (click)="clickPage()">
+</mat-paginator>
   <hr>
 <mat-progress-bar mode="determinate" value="{{(bucketDataCount/500)*100}}" color="accent"></mat-progress-bar>
   {{((bucketDataCount/userLimits?.submissionLimit)*100)}}% <small class="text-muted">capacity</small>
@@ -85,4 +94,30 @@
 <!--{{bucketDataCount}}-->
 
 <!--{{keys | json}}-->
+
+<!--<hr>-->
+<!--<div class="table-light">-->
+<!--  <table mat-table [dataSource]="dataSource">-->
+
+<!--    <div *ngFor="let key of keys">-->
+<!--      &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="{{key}}">-->
+<!--        <th mat-header-cell *matHeaderCellDef> {{key}} </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element[key]}} </td>-->
+<!--      </ng-container>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    &lt;!&ndash; Name Column &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <ng-container matColumnDef="date">&ndash;&gt;-->
+<!--&lt;!&ndash;      <th mat-header-cell *matHeaderCellDef> Date </th>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td mat-cell *matCellDef="let element"> {{element.date}} </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ng-container>&ndash;&gt;-->
+
+
+
+
+<!--    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>-->
+<!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--  </table>-->
+<!--  <mat-paginator [pageSizeOptions]="[25, 50, 75, 100]" showFirstLastButtons></mat-paginator>-->
+<!--</div>-->
 
