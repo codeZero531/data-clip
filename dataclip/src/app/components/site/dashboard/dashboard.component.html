@@ -1,13 +1,6 @@
-<!--{{siteName}} - {{siteId}}-->
-<!--{{data | json}}-->
-<!--<hr>-->
-<!--{{bucketData | json}}-->
-<span><h1 class="text-black-50">{{siteName}}</h1></span>
-<!--<h4>Your Forms  <small class="text-muted">({{data.length}})</small></h4>-->
 
-<!--<div class="step-four">-->
-<!--  <button routerLinkActive="active" (click)="loadData(d.bucketId)" *ngFor="let d of data" class="button button1">{{d.bucketName}}</button>-->
-<!--</div>-->
+<span><h1 class="text-black-50">{{siteName}}</h1></span>
+
 <hr>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
@@ -79,45 +72,16 @@
       </tr>
     </tbody>
   </table>
-    <mat-paginator [length]="bucketDataCount"
-                   [pageSize]="25"
-                   (page)="pageEvent = $event"
-                   (click)="clickPage()">
+  <mat-paginator [length]="bucketDataCount"
+                 [pageSize]="25"
+                 (page)="pageEvent = $event"
+                 (click)="clickPage()" >
 </mat-paginator>
+
   <hr>
 <mat-progress-bar mode="determinate" value="{{(bucketDataCount/500)*100}}" color="accent"></mat-progress-bar>
   {{((bucketDataCount/userLimits?.submissionLimit)*100)}}% <small class="text-muted">capacity</small>
 </span>
 
 <div class="mb-5 pb-5"></div>
-
-<!--{{bucketDataCount}}-->
-
-<!--{{keys | json}}-->
-
-<!--<hr>-->
-<!--<div class="table-light">-->
-<!--  <table mat-table [dataSource]="dataSource">-->
-
-<!--    <div *ngFor="let key of keys">-->
-<!--      &lt;!&ndash; Position Column &ndash;&gt;-->
-<!--      <ng-container matColumnDef="{{key}}">-->
-<!--        <th mat-header-cell *matHeaderCellDef> {{key}} </th>-->
-<!--        <td mat-cell *matCellDef="let element"> {{element[key]}} </td>-->
-<!--      </ng-container>-->
-<!--    </div>-->
-<!--&lt;!&ndash;    &lt;!&ndash; Name Column &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;    <ng-container matColumnDef="date">&ndash;&gt;-->
-<!--&lt;!&ndash;      <th mat-header-cell *matHeaderCellDef> Date </th>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td mat-cell *matCellDef="let element"> {{element.date}} </td>&ndash;&gt;-->
-<!--&lt;!&ndash;    </ng-container>&ndash;&gt;-->
-
-
-
-
-<!--    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>-->
-<!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-<!--  </table>-->
-<!--  <mat-paginator [pageSizeOptions]="[25, 50, 75, 100]" showFirstLastButtons></mat-paginator>-->
-<!--</div>-->
 

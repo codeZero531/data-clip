@@ -64,7 +64,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     this.data = this.activatedRoute.snapshot.data['data'];
-    // this.userLimits = this.userLimitService.getUserLimit();
   }
 
   ngOnInit() {
@@ -96,22 +95,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.bucketData = res[0].data;
             this.isBucketDataHave = true;
             this.isLoadingStart = false;
+
             //date sort accending
             this.bucketData.sort((val1, val2)=> {
               // @ts-ignore
               return new Date(val2.date) - new Date(val1.date)});
 
-            // console.log(res[0]);
             this.lastEntryDate = res[0].updatedAt;
             this.keys = res[0].keys;
-            // this.keys.push('date');
-            // this.displayedColumns = this.keys;
-            // this.dataSource = new MatTableDataSource<any>(this.bucketData);
-            // this.dataSource.paginator = this.paginator;
-
             this.bucketDataCount = this.bucketData.length;
-            // console.log(this.bucketData);
-            // console.log(this.keys);
 
           }
 
@@ -134,12 +126,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   clickPage() {
-    console.log(this.pageEvent);
     this.start = this.pageEvent.pageIndex *25 ;
     this.end = this.start +25;
-
-    console.log(`start ${this.start} - end ${this.end}`)
-
-
+    window.scrollTo(250,0);
   }
 }
